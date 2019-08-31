@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "892182486194",
+    "firebase_url": "https://express-1c6b7.firebaseio.com",
+    "project_id": "express-1c6b7",
+    "storage_bucket": "express-1c6b7.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:892182486194:android:e4c61adefec4b066",
+        "android_client_info": {
+          "package_name": "com.laioffer.botlogistics"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "892182486194-c1k9abj8u4cgn3aukf4mgs9hne7g0bal.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCMUv0b5DrWEeTUrHmO57WR-LpaDudaxwM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "892182486194-c1k9abj8u4cgn3aukf4mgs9hne7g0bal.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
