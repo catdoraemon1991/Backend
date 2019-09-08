@@ -22,7 +22,7 @@ import com.google.firebase.database.FirebaseDatabase;
 /**
  * A simple {@link Fragment} subclass.
  */
-public abstract class OnBoardingBaseFragment extends Fragment implements TransactionManager{
+public abstract class OnBoardingBaseFragment extends Fragment {
     protected EditText usernameEditText;
     protected EditText passwordEditText;
     protected Button submitButton;

@@ -11,12 +11,17 @@ public class MainActivity extends AppCompatActivity  implements TransactionManag
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        doTransctinonFragment(new DeliveryFragment());
+        doTransactionFragment(new DeliveryFragment());
 
     }
 
     @Override
-    public void doTransctinonFragment(Fragment fragment) {
+    public void doTransactionFragment(Fragment fragment) {
         getSupportFragmentManager().beginTransaction().replace(R.id.container, fragment, "").commit();
+    }
+
+    @Override
+    public void doActivityTransaction(Class clazz, boolean isFinish) {
+
     }
 }

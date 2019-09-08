@@ -40,6 +40,11 @@ public class DeliveryFragment extends Fragment {
 
     protected TransactionManager transactionManager;
 
+    private String pickUp;
+    private String dropOff;
+    private String time;
+    private String size;
+
 
     public static DeliveryFragment newInstance() {
         Bundle args = new Bundle();
@@ -70,10 +75,27 @@ public class DeliveryFragment extends Fragment {
         timePicker=(TimePicker)view.findViewById(R.id.timePicker);
         timePicker.setIs24HourView(true);
         sizeOptions = (RadioGroup) view.findViewById(R.id.size);
-        sizeButton = (RadioButton) sizeOptions.getChildAt(sizeOptions.getCheckedRadioButtonId());
         submitButton = (Button) view.findViewById(R.id.submit);
         database = FirebaseDatabase.getInstance().getReference();
 
+
+        sizeOptions.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup radioGroup, int i) {
+                switch (i) {
+                    case R.id.sizeS:
+                        size = getString(R.string.size_s);
+                        break;
+                    case R.id.sizeM:
+                        size = getString(R.string.size_m);
+                        break;
+
+                    case R.id.sizeL:
+                        size = getString(R.string.size_l);
+                        break;
+                }
+            }
+        });
 
         submitButton.setText(getString(R.string.login));
 
@@ -84,10 +106,10 @@ public class DeliveryFragment extends Fragment {
         submitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                final String pickUp = pickupEditText.getText().toString();
-                final String dropOff = dropoffEditText.getText().toString();
-                final String time=timePicker.toString();
-                final String size=sizeButton.getText().toString();
+                 pickUp = pickupEditText.getText().toString();
+                 dropOff = dropoffEditText.getText().toString();
+                 time = timePicker.toString();
+
                 database.child("order").addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {

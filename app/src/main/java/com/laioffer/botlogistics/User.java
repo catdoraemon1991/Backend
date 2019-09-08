@@ -28,7 +28,7 @@ public class User {
         return user_password;
     }
 
-    public void setUser_password(String user_email) {
+    public void setUser_password(String user_password) {
         this.user_password = user_password;
     }
 
@@ -37,8 +37,9 @@ public class User {
     }
 
     public void setUser_email(String user_email) {
-        this.user_password = user_password;
+        this.user_email = user_email;
     }
+
     public String[] getUser_orderId() {
         return orderId;
     }

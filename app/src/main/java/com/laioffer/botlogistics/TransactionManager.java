@@ -4,5 +4,7 @@ import androidx.fragment.app.Fragment;
 
 public interface TransactionManager {
 
-    void doTransctinonFragment(Fragment fragment);
+    void doTransactionFragment(Fragment fragment);
+
+    void doActivityTransaction(Class clazz, boolean isFinish);
 }
