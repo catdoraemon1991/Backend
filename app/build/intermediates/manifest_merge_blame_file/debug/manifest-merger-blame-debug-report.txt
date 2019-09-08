@@ -20,7 +20,7 @@
 14-->[com.google.firebase:firebase-database:19.0.0] /Users/zuic/.gradle/caches/transforms-2/files-2.1/0027c910a64e8deac4a49ba74b5b709c/firebase-database-19.0.0/AndroidManifest.xml:26:22-64
 15
 16    <application
-16-->/Users/zuic/AndroidStudioProjects/BotLogistics/app/src/main/AndroidManifest.xml:5:5-21:19
+16-->/Users/zuic/AndroidStudioProjects/BotLogistics/app/src/main/AndroidManifest.xml:5:5-22:19
 17        android:allowBackup="true"
 17-->/Users/zuic/AndroidStudioProjects/BotLogistics/app/src/main/AndroidManifest.xml:6:9-35
 18        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
@@ -37,67 +37,70 @@
 24        android:testOnly="true"
 25        android:theme="@style/AppTheme" >
 25-->/Users/zuic/AndroidStudioProjects/BotLogistics/app/src/main/AndroidManifest.xml:11:9-40
-26        <activity android:name="com.laioffer.botlogistics.ControlPanel" />
-26-->/Users/zuic/AndroidStudioProjects/BotLogistics/app/src/main/AndroidManifest.xml:12:9-59
-26-->/Users/zuic/AndroidStudioProjects/BotLogistics/app/src/main/AndroidManifest.xml:12:19-47
-27        <activity android:name="com.laioffer.botlogistics.OnBoardingActivity" >
-27-->/Users/zuic/AndroidStudioProjects/BotLogistics/app/src/main/AndroidManifest.xml:13:9-19:20
-27-->/Users/zuic/AndroidStudioProjects/BotLogistics/app/src/main/AndroidManifest.xml:13:19-53
-28            <intent-filter>
-28-->/Users/zuic/AndroidStudioProjects/BotLogistics/app/src/main/AndroidManifest.xml:14:13-18:29
-29                <action android:name="android.intent.action.MAIN" />
-29-->/Users/zuic/AndroidStudioProjects/BotLogistics/app/src/main/AndroidManifest.xml:15:17-69
-29-->/Users/zuic/AndroidStudioProjects/BotLogistics/app/src/main/AndroidManifest.xml:15:25-66
-30
-31                <category android:name="android.intent.category.LAUNCHER" />
-31-->/Users/zuic/AndroidStudioProjects/BotLogistics/app/src/main/AndroidManifest.xml:17:17-77
-31-->/Users/zuic/AndroidStudioProjects/BotLogistics/app/src/main/AndroidManifest.xml:17:27-74
-32            </intent-filter>
-33        </activity>
-34        <activity android:name="com.laioffer.botlogistics.MainActivity" />
-34-->/Users/zuic/AndroidStudioProjects/BotLogistics/app/src/main/AndroidManifest.xml:20:9-59
-34-->/Users/zuic/AndroidStudioProjects/BotLogistics/app/src/main/AndroidManifest.xml:20:19-47
-35
-36        <service
-36-->[com.google.firebase:firebase-database:19.0.0] /Users/zuic/.gradle/caches/transforms-2/files-2.1/0027c910a64e8deac4a49ba74b5b709c/firebase-database-19.0.0/AndroidManifest.xml:29:9-35:19
-37            android:name="com.google.firebase.components.ComponentDiscoveryService"
-37-->[com.google.firebase:firebase-database:19.0.0] /Users/zuic/.gradle/caches/transforms-2/files-2.1/0027c910a64e8deac4a49ba74b5b709c/firebase-database-19.0.0/AndroidManifest.xml:30:13-84
-38            android:exported="false" >
-38-->[com.google.firebase:firebase-database:19.0.0] /Users/zuic/.gradle/caches/transforms-2/files-2.1/0027c910a64e8deac4a49ba74b5b709c/firebase-database-19.0.0/AndroidManifest.xml:31:13-37
-39            <meta-data
-39-->[com.google.firebase:firebase-database:19.0.0] /Users/zuic/.gradle/caches/transforms-2/files-2.1/0027c910a64e8deac4a49ba74b5b709c/firebase-database-19.0.0/AndroidManifest.xml:32:13-34:85
-40                android:name="com.google.firebase.components:com.google.firebase.database.DatabaseRegistrar"
-40-->[com.google.firebase:firebase-database:19.0.0] /Users/zuic/.gradle/caches/transforms-2/files-2.1/0027c910a64e8deac4a49ba74b5b709c/firebase-database-19.0.0/AndroidManifest.xml:33:17-109
-41                android:value="com.google.firebase.components.ComponentRegistrar" />
-41-->[com.google.firebase:firebase-database:19.0.0] /Users/zuic/.gradle/caches/transforms-2/files-2.1/0027c910a64e8deac4a49ba74b5b709c/firebase-database-19.0.0/AndroidManifest.xml:34:17-82
-42        </service>
-43
-44        <activity
-44-->[com.google.android.gms:play-services-base:17.0.0] /Users/zuic/.gradle/caches/transforms-2/files-2.1/951b5e7f354daaaf8db57d3e12181016/play-services-base-17.0.0/AndroidManifest.xml:23:9-26:75
-45            android:name="com.google.android.gms.common.api.GoogleApiActivity"
-45-->[com.google.android.gms:play-services-base:17.0.0] /Users/zuic/.gradle/caches/transforms-2/files-2.1/951b5e7f354daaaf8db57d3e12181016/play-services-base-17.0.0/AndroidManifest.xml:24:13-79
-46            android:exported="false"
-46-->[com.google.android.gms:play-services-base:17.0.0] /Users/zuic/.gradle/caches/transforms-2/files-2.1/951b5e7f354daaaf8db57d3e12181016/play-services-base-17.0.0/AndroidManifest.xml:25:13-37
-47            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
-47-->[com.google.android.gms:play-services-base:17.0.0] /Users/zuic/.gradle/caches/transforms-2/files-2.1/951b5e7f354daaaf8db57d3e12181016/play-services-base-17.0.0/AndroidManifest.xml:26:13-72
-48
-49        <provider
-49-->[com.google.firebase:firebase-common:19.0.0] /Users/zuic/.gradle/caches/transforms-2/files-2.1/b1384c5fdf3acad4baebcde528b744a2/firebase-common-19.0.0/AndroidManifest.xml:12:9-16:39
-50            android:name="com.google.firebase.provider.FirebaseInitProvider"
-50-->[com.google.firebase:firebase-common:19.0.0] /Users/zuic/.gradle/caches/transforms-2/files-2.1/b1384c5fdf3acad4baebcde528b744a2/firebase-common-19.0.0/AndroidManifest.xml:13:13-77
-51            android:authorities="com.laioffer.botlogistics.firebaseinitprovider"
-51-->[com.google.firebase:firebase-common:19.0.0] /Users/zuic/.gradle/caches/transforms-2/files-2.1/b1384c5fdf3acad4baebcde528b744a2/firebase-common-19.0.0/AndroidManifest.xml:14:13-72
-52            android:exported="false"
-52-->[com.google.firebase:firebase-common:19.0.0] /Users/zuic/.gradle/caches/transforms-2/files-2.1/b1384c5fdf3acad4baebcde528b744a2/firebase-common-19.0.0/AndroidManifest.xml:15:13-37
-53            android:initOrder="100" />
-53-->[com.google.firebase:firebase-common:19.0.0] /Users/zuic/.gradle/caches/transforms-2/files-2.1/b1384c5fdf3acad4baebcde528b744a2/firebase-common-19.0.0/AndroidManifest.xml:16:13-36
-54
-55        <meta-data
-55-->[com.google.android.gms:play-services-basement:17.0.0] /Users/zuic/.gradle/caches/transforms-2/files-2.1/147cee4464810a0956cfa35500042798/jetified-play-services-basement-17.0.0/AndroidManifest.xml:23:9-25:69
-56            android:name="com.google.android.gms.version"
-56-->[com.google.android.gms:play-services-basement:17.0.0] /Users/zuic/.gradle/caches/transforms-2/files-2.1/147cee4464810a0956cfa35500042798/jetified-play-services-basement-17.0.0/AndroidManifest.xml:24:13-58
-57            android:value="@integer/google_play_services_version" />
-57-->[com.google.android.gms:play-services-basement:17.0.0] /Users/zuic/.gradle/caches/transforms-2/files-2.1/147cee4464810a0956cfa35500042798/jetified-play-services-basement-17.0.0/AndroidManifest.xml:25:13-66
-58    </application>
-59
-60</manifest>
+26        <activity android:name="com.laioffer.botlogistics.DeliveryActivity" />
+26-->/Users/zuic/AndroidStudioProjects/BotLogistics/app/src/main/AndroidManifest.xml:12:9-63
+26-->/Users/zuic/AndroidStudioProjects/BotLogistics/app/src/main/AndroidManifest.xml:12:19-51
+27        <activity android:name="com.laioffer.botlogistics.ControlPanel" />
+27-->/Users/zuic/AndroidStudioProjects/BotLogistics/app/src/main/AndroidManifest.xml:13:9-50
+27-->/Users/zuic/AndroidStudioProjects/BotLogistics/app/src/main/AndroidManifest.xml:13:19-47
+28        <activity android:name="com.laioffer.botlogistics.OnBoardingActivity" >
+28-->/Users/zuic/AndroidStudioProjects/BotLogistics/app/src/main/AndroidManifest.xml:14:9-20:20
+28-->/Users/zuic/AndroidStudioProjects/BotLogistics/app/src/main/AndroidManifest.xml:14:19-53
+29            <intent-filter>
+29-->/Users/zuic/AndroidStudioProjects/BotLogistics/app/src/main/AndroidManifest.xml:15:13-19:29
+30                <action android:name="android.intent.action.MAIN" />
+30-->/Users/zuic/AndroidStudioProjects/BotLogistics/app/src/main/AndroidManifest.xml:16:17-69
+30-->/Users/zuic/AndroidStudioProjects/BotLogistics/app/src/main/AndroidManifest.xml:16:25-66
+31
+32                <category android:name="android.intent.category.LAUNCHER" />
+32-->/Users/zuic/AndroidStudioProjects/BotLogistics/app/src/main/AndroidManifest.xml:18:17-77
+32-->/Users/zuic/AndroidStudioProjects/BotLogistics/app/src/main/AndroidManifest.xml:18:27-74
+33            </intent-filter>
+34        </activity>
+35        <activity android:name="com.laioffer.botlogistics.MainActivity" />
+35-->/Users/zuic/AndroidStudioProjects/BotLogistics/app/src/main/AndroidManifest.xml:21:9-50
+35-->/Users/zuic/AndroidStudioProjects/BotLogistics/app/src/main/AndroidManifest.xml:21:19-47
+36
+37        <service
+37-->[com.google.firebase:firebase-database:19.0.0] /Users/zuic/.gradle/caches/transforms-2/files-2.1/0027c910a64e8deac4a49ba74b5b709c/firebase-database-19.0.0/AndroidManifest.xml:29:9-35:19
+38            android:name="com.google.firebase.components.ComponentDiscoveryService"
+38-->[com.google.firebase:firebase-database:19.0.0] /Users/zuic/.gradle/caches/transforms-2/files-2.1/0027c910a64e8deac4a49ba74b5b709c/firebase-database-19.0.0/AndroidManifest.xml:30:13-84
+39            android:exported="false" >
+39-->[com.google.firebase:firebase-database:19.0.0] /Users/zuic/.gradle/caches/transforms-2/files-2.1/0027c910a64e8deac4a49ba74b5b709c/firebase-database-19.0.0/AndroidManifest.xml:31:13-37
+40            <meta-data
+40-->[com.google.firebase:firebase-database:19.0.0] /Users/zuic/.gradle/caches/transforms-2/files-2.1/0027c910a64e8deac4a49ba74b5b709c/firebase-database-19.0.0/AndroidManifest.xml:32:13-34:85
+41                android:name="com.google.firebase.components:com.google.firebase.database.DatabaseRegistrar"
+41-->[com.google.firebase:firebase-database:19.0.0] /Users/zuic/.gradle/caches/transforms-2/files-2.1/0027c910a64e8deac4a49ba74b5b709c/firebase-database-19.0.0/AndroidManifest.xml:33:17-109
+42                android:value="com.google.firebase.components.ComponentRegistrar" />
+42-->[com.google.firebase:firebase-database:19.0.0] /Users/zuic/.gradle/caches/transforms-2/files-2.1/0027c910a64e8deac4a49ba74b5b709c/firebase-database-19.0.0/AndroidManifest.xml:34:17-82
+43        </service>
+44
+45        <activity
+45-->[com.google.android.gms:play-services-base:17.0.0] /Users/zuic/.gradle/caches/transforms-2/files-2.1/951b5e7f354daaaf8db57d3e12181016/play-services-base-17.0.0/AndroidManifest.xml:23:9-26:75
+46            android:name="com.google.android.gms.common.api.GoogleApiActivity"
+46-->[com.google.android.gms:play-services-base:17.0.0] /Users/zuic/.gradle/caches/transforms-2/files-2.1/951b5e7f354daaaf8db57d3e12181016/play-services-base-17.0.0/AndroidManifest.xml:24:13-79
+47            android:exported="false"
+47-->[com.google.android.gms:play-services-base:17.0.0] /Users/zuic/.gradle/caches/transforms-2/files-2.1/951b5e7f354daaaf8db57d3e12181016/play-services-base-17.0.0/AndroidManifest.xml:25:13-37
+48            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+48-->[com.google.android.gms:play-services-base:17.0.0] /Users/zuic/.gradle/caches/transforms-2/files-2.1/951b5e7f354daaaf8db57d3e12181016/play-services-base-17.0.0/AndroidManifest.xml:26:13-72
+49
+50        <provider
+50-->[com.google.firebase:firebase-common:19.0.0] /Users/zuic/.gradle/caches/transforms-2/files-2.1/b1384c5fdf3acad4baebcde528b744a2/firebase-common-19.0.0/AndroidManifest.xml:12:9-16:39
+51            android:name="com.google.firebase.provider.FirebaseInitProvider"
+51-->[com.google.firebase:firebase-common:19.0.0] /Users/zuic/.gradle/caches/transforms-2/files-2.1/b1384c5fdf3acad4baebcde528b744a2/firebase-common-19.0.0/AndroidManifest.xml:13:13-77
+52            android:authorities="com.laioffer.botlogistics.firebaseinitprovider"
+52-->[com.google.firebase:firebase-common:19.0.0] /Users/zuic/.gradle/caches/transforms-2/files-2.1/b1384c5fdf3acad4baebcde528b744a2/firebase-common-19.0.0/AndroidManifest.xml:14:13-72
+53            android:exported="false"
+53-->[com.google.firebase:firebase-common:19.0.0] /Users/zuic/.gradle/caches/transforms-2/files-2.1/b1384c5fdf3acad4baebcde528b744a2/firebase-common-19.0.0/AndroidManifest.xml:15:13-37
+54            android:initOrder="100" />
+54-->[com.google.firebase:firebase-common:19.0.0] /Users/zuic/.gradle/caches/transforms-2/files-2.1/b1384c5fdf3acad4baebcde528b744a2/firebase-common-19.0.0/AndroidManifest.xml:16:13-36
+55
+56        <meta-data
+56-->[com.google.android.gms:play-services-basement:17.0.0] /Users/zuic/.gradle/caches/transforms-2/files-2.1/147cee4464810a0956cfa35500042798/jetified-play-services-basement-17.0.0/AndroidManifest.xml:23:9-25:69
+57            android:name="com.google.android.gms.version"
+57-->[com.google.android.gms:play-services-basement:17.0.0] /Users/zuic/.gradle/caches/transforms-2/files-2.1/147cee4464810a0956cfa35500042798/jetified-play-services-basement-17.0.0/AndroidManifest.xml:24:13-58
+58            android:value="@integer/google_play_services_version" />
+58-->[com.google.android.gms:play-services-basement:17.0.0] /Users/zuic/.gradle/caches/transforms-2/files-2.1/147cee4464810a0956cfa35500042798/jetified-play-services-basement-17.0.0/AndroidManifest.xml:25:13-66
+59    </application>
+60
+61</manifest>

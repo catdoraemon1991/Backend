@@ -24,6 +24,7 @@
         android:supportsRtl="true"
         android:testOnly="true"
         android:theme="@style/AppTheme" >
+        <activity android:name="com.laioffer.botlogistics.DeliveryActivity" />
         <activity android:name="com.laioffer.botlogistics.ControlPanel" />
         <activity android:name="com.laioffer.botlogistics.OnBoardingActivity" >
             <intent-filter>

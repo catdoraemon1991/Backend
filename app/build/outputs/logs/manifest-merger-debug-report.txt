@@ -1,9 +1,9 @@
 -- Merging decision tree log ---
 manifest
-ADDED from /Users/zuic/AndroidStudioProjects/BotLogistics/app/src/main/AndroidManifest.xml:2:1-23:12
-INJECTED from /Users/zuic/AndroidStudioProjects/BotLogistics/app/src/main/AndroidManifest.xml:2:1-23:12
-INJECTED from /Users/zuic/AndroidStudioProjects/BotLogistics/app/src/main/AndroidManifest.xml:2:1-23:12
-INJECTED from /Users/zuic/AndroidStudioProjects/BotLogistics/app/src/main/AndroidManifest.xml:2:1-23:12
+ADDED from /Users/zuic/AndroidStudioProjects/BotLogistics/app/src/main/AndroidManifest.xml:2:1-24:12
+INJECTED from /Users/zuic/AndroidStudioProjects/BotLogistics/app/src/main/AndroidManifest.xml:2:1-24:12
+INJECTED from /Users/zuic/AndroidStudioProjects/BotLogistics/app/src/main/AndroidManifest.xml:2:1-24:12
+INJECTED from /Users/zuic/AndroidStudioProjects/BotLogistics/app/src/main/AndroidManifest.xml:2:1-24:12
 MERGED from [com.google.android.material:material:1.0.0] /Users/zuic/.gradle/caches/transforms-2/files-2.1/f5cee04665f635392fbc3a078a89e818/material-1.0.0/AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.appcompat:appcompat:1.0.2] /Users/zuic/.gradle/caches/transforms-2/files-2.1/85e257a6babe96d3b8085bcd76499598/appcompat-1.0.2/AndroidManifest.xml:17:1-22:12
 MERGED from [com.google.firebase:firebase-database:19.0.0] /Users/zuic/.gradle/caches/transforms-2/files-2.1/0027c910a64e8deac4a49ba74b5b709c/firebase-database-19.0.0/AndroidManifest.xml:15:1-38:12
@@ -44,25 +44,25 @@ MERGED from [androidx.lifecycle:lifecycle-livedata:2.0.0] /Users/zuic/.gradle/ca
 MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.0.0] /Users/zuic/.gradle/caches/transforms-2/files-2.1/f5e5093a6d2ffb564f346d2769a020dc/lifecycle-livedata-core-2.0.0/AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.arch.core:core-runtime:2.0.0] /Users/zuic/.gradle/caches/transforms-2/files-2.1/c92e9c6549150a4bd8eb347f54ac769d/core-runtime-2.0.0/AndroidManifest.xml:17:1-22:12
 MERGED from [com.google.firebase:firebase-database-collection:17.0.0] /Users/zuic/.gradle/caches/transforms-2/files-2.1/6df0cf79b64fd2c26bf8b27a76ce287b/firebase-database-collection-17.0.0/AndroidManifest.xml:2:1-7:12
-INJECTED from /Users/zuic/AndroidStudioProjects/BotLogistics/app/src/main/AndroidManifest.xml:2:1-23:12
-INJECTED from /Users/zuic/AndroidStudioProjects/BotLogistics/app/src/main/AndroidManifest.xml:2:1-23:12
-INJECTED from /Users/zuic/AndroidStudioProjects/BotLogistics/app/src/main/AndroidManifest.xml:2:1-23:12
+INJECTED from /Users/zuic/AndroidStudioProjects/BotLogistics/app/src/main/AndroidManifest.xml:2:1-24:12
+INJECTED from /Users/zuic/AndroidStudioProjects/BotLogistics/app/src/main/AndroidManifest.xml:2:1-24:12
+INJECTED from /Users/zuic/AndroidStudioProjects/BotLogistics/app/src/main/AndroidManifest.xml:2:1-24:12
 	package
 		ADDED from /Users/zuic/AndroidStudioProjects/BotLogistics/app/src/main/AndroidManifest.xml:3:5-40
 		INJECTED from /Users/zuic/AndroidStudioProjects/BotLogistics/app/src/main/AndroidManifest.xml
 		INJECTED from /Users/zuic/AndroidStudioProjects/BotLogistics/app/src/main/AndroidManifest.xml
 	android:versionName
 		INJECTED from /Users/zuic/AndroidStudioProjects/BotLogistics/app/src/main/AndroidManifest.xml
-		ADDED from /Users/zuic/AndroidStudioProjects/BotLogistics/app/src/main/AndroidManifest.xml:2:1-23:12
+		ADDED from /Users/zuic/AndroidStudioProjects/BotLogistics/app/src/main/AndroidManifest.xml:2:1-24:12
 		INJECTED from /Users/zuic/AndroidStudioProjects/BotLogistics/app/src/main/AndroidManifest.xml
 	android:versionCode
 		INJECTED from /Users/zuic/AndroidStudioProjects/BotLogistics/app/src/main/AndroidManifest.xml
-		ADDED from /Users/zuic/AndroidStudioProjects/BotLogistics/app/src/main/AndroidManifest.xml:2:1-23:12
+		ADDED from /Users/zuic/AndroidStudioProjects/BotLogistics/app/src/main/AndroidManifest.xml:2:1-24:12
 		INJECTED from /Users/zuic/AndroidStudioProjects/BotLogistics/app/src/main/AndroidManifest.xml
 	xmlns:android
 		ADDED from /Users/zuic/AndroidStudioProjects/BotLogistics/app/src/main/AndroidManifest.xml:2:11-69
 application
-ADDED from /Users/zuic/AndroidStudioProjects/BotLogistics/app/src/main/AndroidManifest.xml:5:5-21:19
+ADDED from /Users/zuic/AndroidStudioProjects/BotLogistics/app/src/main/AndroidManifest.xml:5:5-22:19
 MERGED from [com.google.android.material:material:1.0.0] /Users/zuic/.gradle/caches/transforms-2/files-2.1/f5cee04665f635392fbc3a078a89e818/material-1.0.0/AndroidManifest.xml:22:5-20
 MERGED from [com.google.android.material:material:1.0.0] /Users/zuic/.gradle/caches/transforms-2/files-2.1/f5cee04665f635392fbc3a078a89e818/material-1.0.0/AndroidManifest.xml:22:5-20
 MERGED from [com.google.firebase:firebase-database:19.0.0] /Users/zuic/.gradle/caches/transforms-2/files-2.1/0027c910a64e8deac4a49ba74b5b709c/firebase-database-19.0.0/AndroidManifest.xml:28:5-36:19
@@ -97,28 +97,32 @@ MERGED from [androidx.versionedparcelable:versionedparcelable:1.0.0] /Users/zuic
 		ADDED from /Users/zuic/AndroidStudioProjects/BotLogistics/app/src/main/AndroidManifest.xml:6:9-35
 	android:theme
 		ADDED from /Users/zuic/AndroidStudioProjects/BotLogistics/app/src/main/AndroidManifest.xml:11:9-40
+activity#com.laioffer.botlogistics.DeliveryActivity
+ADDED from /Users/zuic/AndroidStudioProjects/BotLogistics/app/src/main/AndroidManifest.xml:12:9-63
+	android:name
+		ADDED from /Users/zuic/AndroidStudioProjects/BotLogistics/app/src/main/AndroidManifest.xml:12:19-51
 activity#com.laioffer.botlogistics.ControlPanel
-ADDED from /Users/zuic/AndroidStudioProjects/BotLogistics/app/src/main/AndroidManifest.xml:12:9-59
+ADDED from /Users/zuic/AndroidStudioProjects/BotLogistics/app/src/main/AndroidManifest.xml:13:9-50
 	android:name
-		ADDED from /Users/zuic/AndroidStudioProjects/BotLogistics/app/src/main/AndroidManifest.xml:12:19-47
+		ADDED from /Users/zuic/AndroidStudioProjects/BotLogistics/app/src/main/AndroidManifest.xml:13:19-47
 activity#com.laioffer.botlogistics.OnBoardingActivity
-ADDED from /Users/zuic/AndroidStudioProjects/BotLogistics/app/src/main/AndroidManifest.xml:13:9-19:20
+ADDED from /Users/zuic/AndroidStudioProjects/BotLogistics/app/src/main/AndroidManifest.xml:14:9-20:20
 	android:name
-		ADDED from /Users/zuic/AndroidStudioProjects/BotLogistics/app/src/main/AndroidManifest.xml:13:19-53
+		ADDED from /Users/zuic/AndroidStudioProjects/BotLogistics/app/src/main/AndroidManifest.xml:14:19-53
 intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
-ADDED from /Users/zuic/AndroidStudioProjects/BotLogistics/app/src/main/AndroidManifest.xml:14:13-18:29
+ADDED from /Users/zuic/AndroidStudioProjects/BotLogistics/app/src/main/AndroidManifest.xml:15:13-19:29
 action#android.intent.action.MAIN
-ADDED from /Users/zuic/AndroidStudioProjects/BotLogistics/app/src/main/AndroidManifest.xml:15:17-69
+ADDED from /Users/zuic/AndroidStudioProjects/BotLogistics/app/src/main/AndroidManifest.xml:16:17-69
 	android:name
-		ADDED from /Users/zuic/AndroidStudioProjects/BotLogistics/app/src/main/AndroidManifest.xml:15:25-66
+		ADDED from /Users/zuic/AndroidStudioProjects/BotLogistics/app/src/main/AndroidManifest.xml:16:25-66
 category#android.intent.category.LAUNCHER
-ADDED from /Users/zuic/AndroidStudioProjects/BotLogistics/app/src/main/AndroidManifest.xml:17:17-77
+ADDED from /Users/zuic/AndroidStudioProjects/BotLogistics/app/src/main/AndroidManifest.xml:18:17-77
 	android:name
-		ADDED from /Users/zuic/AndroidStudioProjects/BotLogistics/app/src/main/AndroidManifest.xml:17:27-74
+		ADDED from /Users/zuic/AndroidStudioProjects/BotLogistics/app/src/main/AndroidManifest.xml:18:27-74
 activity#com.laioffer.botlogistics.MainActivity
-ADDED from /Users/zuic/AndroidStudioProjects/BotLogistics/app/src/main/AndroidManifest.xml:20:9-59
+ADDED from /Users/zuic/AndroidStudioProjects/BotLogistics/app/src/main/AndroidManifest.xml:21:9-50
 	android:name
-		ADDED from /Users/zuic/AndroidStudioProjects/BotLogistics/app/src/main/AndroidManifest.xml:20:19-47
+		ADDED from /Users/zuic/AndroidStudioProjects/BotLogistics/app/src/main/AndroidManifest.xml:21:19-47
 uses-sdk
 INJECTED from /Users/zuic/AndroidStudioProjects/BotLogistics/app/src/main/AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from /Users/zuic/AndroidStudioProjects/BotLogistics/app/src/main/AndroidManifest.xml

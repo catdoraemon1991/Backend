@@ -1353,6 +1353,7 @@ layout design_navigation_menu
 layout design_navigation_menu_item
 layout design_text_input_password_icon
 layout fragment_base
+layout fragment_delivery
 layout fragment_login
 layout fragment_register
 layout mtrl_layout_snackbar
