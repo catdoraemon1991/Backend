@@ -1,0 +1,108 @@
+package com.laioffer.botlogistics;
+
+
+import android.content.Intent;
+import android.os.Bundle;
+
+import androidx.annotation.LayoutRes;
+import androidx.fragment.app.Fragment;
+
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+import android.widget.Toast;
+
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
+import java.util.List;
+
+
+/**
+ * A simple {@link Fragment} subclass.
+ */
+public class OrderFragment extends Fragment {
+    private FloatingActionButton fabReport;
+    private DeliveryDialog dialog;
+    private ListView listView;
+    protected DatabaseReference database;
+    private List<Order> userOrders;
+
+    public static OrderFragment newInstance() {
+
+        Bundle args = new Bundle();
+
+        OrderFragment fragment = new OrderFragment();
+        fragment.setArguments(args);
+        return fragment;
+    }
+
+    public OrderFragment() {
+        // Required empty public constructor
+    }
+
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        // Inflate the layout for this fragment
+        View view = inflater.inflate(R.layout.fragment_order, container, false);
+
+        fabReport = (FloatingActionButton)view.findViewById(R.id.fab);
+        fabReport.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showDialog(null, null);
+            }
+        });
+
+        database = FirebaseDatabase.getInstance().getReference();
+        final String username = Config.username;
+        userOrders = new ArrayList<Order>();
+        database.child("order").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for (DataSnapshot child : dataSnapshot.getChildren()) {
+                    Order order = child.getValue(Order.class);
+                    if(order.getUserId().equals(username)){
+                        userOrders.add(order);
+                        System.out.println(order.getDeliveryTime());
+                    }
+                }
+            }
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+        listView = (ListView) view.findViewById(R.id.order_list);
+
+        // Assign adapter to ListView.
+        OrderAdapter adapter = new OrderAdapter(getActivity(), userOrders);
+        listView.setAdapter(adapter);
+
+        return view;
+    }
+
+    private void showDialog(String label, String prefillText) {
+        int cx = (int) (fabReport.getX() + (fabReport.getWidth() / 2));
+        int cy = (int) (fabReport.getY()) + fabReport.getHeight() + 56;
+        dialog = DeliveryDialog.newInstance(getContext(), cx, cy);
+        dialog.show();
+    }
+
+
+    @LayoutRes
+    protected int getLayout() {
+        return R.layout.fragment_order;
+    }
+}

@@ -12,5 +12,8 @@
     <string name="size_s">Small</string>
     <string name="size_m">Medium</string>
     <string name="size_l">Large</string>
+    <string name="app_label">Express</string>
+    <string name="search_hint">Your order ID</string>
+    <string name="submit">Submit</string>
 
 </resources>

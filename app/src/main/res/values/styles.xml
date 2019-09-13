@@ -9,4 +9,9 @@
 <!--        <item name="yellowButton">@color/yellowButton</item>-->
     </style>
 
+    <style name="MyAlertDialogStyle" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <item name="colorAccent">@color/colorWhite</item>
+        <item name="android:windowIsFloating">false</item>
+        <item name="android:windowBackground">@color/colorWhite</item>
+    </style>
 </resources>

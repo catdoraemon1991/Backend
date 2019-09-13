@@ -5,4 +5,9 @@
     <color name="colorAccent">#D81B60</color>
     <color name="yellowButton">#F0C559</color>
     <color name="colorDarkGrey">#363B41</color>
+    <color name="colorDark">#778899</color>
+    <color name="colorOrange">#FFA500</color>
+    <color name="transparent">#00ffffff</color>
+    <color name="colorMain">#FFA38B</color>
+    <color name="colorWhite">#f6f6f6</color>
 </resources>

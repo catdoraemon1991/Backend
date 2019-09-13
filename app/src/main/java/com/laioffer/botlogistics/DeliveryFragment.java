@@ -3,6 +3,7 @@ package com.laioffer.botlogistics;
 
 import android.content.Context;
 import android.content.Intent;
+import android.net.http.RequestQueue;
 import android.os.Bundle;
 
 import androidx.annotation.CallSuper;
@@ -19,6 +20,7 @@ import android.widget.RadioGroup;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
+import com.google.android.gms.common.api.Response;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -64,7 +66,6 @@ public class DeliveryFragment extends Fragment {
         transactionManager = (TransactionManager) context;
     }
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -97,12 +98,9 @@ public class DeliveryFragment extends Fragment {
             }
         });
 
-        submitButton.setText(getString(R.string.login));
+        submitButton.setText(getString(R.string.submit));
 
-//        // test database connection
-//        DatabaseReference myRef = FirebaseDatabase.getInstance().getReference("message");
-//        myRef.setValue("Hello, World!");
-        // login the submitButton and register
+        // submit
         submitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -110,23 +108,28 @@ public class DeliveryFragment extends Fragment {
                  dropOff = dropoffEditText.getText().toString();
                  time = timePicker.toString();
 
-                database.child("order").addListenerForSingleValueEvent(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(DataSnapshot dataSnapshot) {
-//                        if (dataSnapshot.hasChild() && (.equals(dataSnapshot.child(username).child("user_password").getValue()))) {
-//                            Config.username = username;
-//                            startActivity(new Intent(getActivity(), ControlPanel.class));
+//                // Instantiate the RequestQueue.
+//                RequestQueue queue = Volley.newRequestQueue(this);
+//                String url ="http://www.google.com";
 //
-//                        } else {
-//                            Toast.makeText(getActivity(),"Please try to login again", Toast.LENGTH_SHORT).show();
-//                        }
-                    }
+//                // Request a string response from the provided URL.
+//                StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
+//                        new Response.Listener<String>() {
+//                            @Override
+//                            public void onResponse(String response) {
+//                                // Display the first 500 characters of the response string.
+//                                textView.setText("Response is: "+ response.substring(0,500));
+//                            }
+//                        }, new Response.ErrorListener() {
+//                    @Override
+//                    public void onErrorResponse(VolleyError error) {
+//                        textView.setText("That didn't work!");
+//                    }
+//                });
+//
+//                // Add the request to the RequestQueue.
+//                queue.add(stringRequest);
 
-                    @Override
-                    public void onCancelled(DatabaseError databaseError) {
-
-                    }
-                });
             }
         });
 
