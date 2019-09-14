@@ -1,7 +1,10 @@
 package com.laioffer.botlogistics;
 
 
+import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
+import android.os.AsyncTask;
 import android.os.Bundle;
 
 import androidx.annotation.LayoutRes;
@@ -11,8 +14,10 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -21,6 +26,9 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,6 +43,22 @@ public class OrderFragment extends Fragment {
     private ListView listView;
     protected DatabaseReference database;
     private List<Order> userOrders;
+    OnItemSelectListener callBack;
+
+    // Container Activity must implement this interface
+    public interface OnItemSelectListener {
+        public void onItemSelected(int position);
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        try {
+            callBack = (OnItemSelectListener) context;
+        } catch (ClassCastException e) {
+            //do something
+        }
+    }
 
     public static OrderFragment newInstance() {
 
@@ -74,7 +98,6 @@ public class OrderFragment extends Fragment {
                     Order order = child.getValue(Order.class);
                     if(order.getUserId().equals(username)){
                         userOrders.add(order);
-                        System.out.println(order.getDeliveryTime());
                     }
                 }
             }
@@ -90,8 +113,18 @@ public class OrderFragment extends Fragment {
         OrderAdapter adapter = new OrderAdapter(getActivity(), userOrders);
         listView.setAdapter(adapter);
 
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                callBack.onItemSelected(i);
+            }
+        });
+
+
         return view;
     }
+
+
 
     private void showDialog(String label, String prefillText) {
         int cx = (int) (fabReport.getX() + (fabReport.getWidth() / 2));
@@ -100,9 +133,30 @@ public class OrderFragment extends Fragment {
         dialog.show();
     }
 
+    // Change background color if the item is selected
+    public void onItemSelected(int position){
+        for (int i = 0; i < listView.getChildCount(); i++){
+            if (position == i) {
+                listView.getChildAt(i).setBackgroundColor(Color.BLUE);
+                Order r = userOrders.get(i);
+            } else {
+                listView.getChildAt(i).setBackgroundColor(Color.parseColor("#FAFAFA"));
+            }
+        }
+    }
+
+
+    // get selected order
+    public Order getOrderById(int position){
+        if(position < 0 || position >= userOrders.size()){
+            return null;
+        }
+        return userOrders.get(position);
+    }
 
     @LayoutRes
     protected int getLayout() {
         return R.layout.fragment_order;
     }
+
 }

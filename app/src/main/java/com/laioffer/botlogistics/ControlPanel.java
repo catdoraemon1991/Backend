@@ -17,9 +17,11 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.google.android.material.navigation.NavigationView;
+import com.google.gson.Gson;
 
-public class ControlPanel extends AppCompatActivity {
+public class ControlPanel extends AppCompatActivity implements OrderFragment.OnItemSelectListener{
     private DrawerLayout drawerLayout;
+    private OrderFragment orderFragment;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -79,7 +81,17 @@ public class ControlPanel extends AppCompatActivity {
                     }
                 });
         // add Fragment to the activity
-        getSupportFragmentManager().beginTransaction().replace(R.id.content_frame, OrderFragment.newInstance()).commit();
+        orderFragment = OrderFragment.newInstance();
+        getSupportFragmentManager().beginTransaction().replace(R.id.content_frame, orderFragment).commit();
+    }
+
+    @Override
+    public void onItemSelected(int position) {
+        orderFragment.onItemSelected(position);
+        Order order = orderFragment.getOrderById(position);
+        Intent intent = new Intent(this, MapActivity.class);
+        intent.putExtra("EXTRA_ORDER", new Gson().toJson(order));
+        startActivity(intent);
     }
 
     @Override
@@ -95,7 +107,7 @@ public class ControlPanel extends AppCompatActivity {
     @Override
     public boolean onSearchRequested() {
         Bundle appData = new Bundle();
-        //appData.putBoolean(SearchActivity.JARGON, true);
+        // sappData.putBoolean(SearchActivity.JARGON, true);
         startSearch(null, false, appData, false);
         return true;
     }

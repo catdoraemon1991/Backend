@@ -15,11 +15,11 @@ import java.util.Calendar;
 
 public class OrderAdapter extends BaseAdapter{
     Context context;
-    List<Order> eventData;
+    List<Order> orderData;
 
-    public OrderAdapter(Context context, List<Order> eventData) {
+    public OrderAdapter(Context context, List<Order> orderData) {
         this.context = context;
-        this.eventData = eventData;
+        this.orderData = orderData;
     }
 
     /**
@@ -27,7 +27,7 @@ public class OrderAdapter extends BaseAdapter{
      */
     @Override
     public int getCount() {
-        return eventData.size();
+        return orderData.size();
     }
 
     /**
@@ -39,7 +39,7 @@ public class OrderAdapter extends BaseAdapter{
      */
     @Override
     public Order getItem(int position) {
-        return eventData.get(position);
+        return orderData.get(position);
     }
 
     @Override
@@ -52,7 +52,7 @@ public class OrderAdapter extends BaseAdapter{
      * @param convertView the old view to reuse, if possible. Note: You should check that this view
      *                    is non-null and of an appropriate type before using.
      *                    If it is not possible to convert this view to display the correct data, this method can create a new view.
-     * @param parent the parent that this view will eventually be attached to
+     * @param parent the parent that this view will orderually be attached to
      * @return Gets a View that displays in the listView with the data at the specified position in the data set.
      */
     @Override
@@ -73,7 +73,7 @@ public class OrderAdapter extends BaseAdapter{
                 R.id.order_delivery_time);
         TextView orderStatus = (TextView) convertView.findViewById(R.id.order_status);
 
-        Order r = eventData.get(position);
+        Order r = orderData.get(position);
 
         // set Image for different types of machine
         String machineId = r.getMachineId();

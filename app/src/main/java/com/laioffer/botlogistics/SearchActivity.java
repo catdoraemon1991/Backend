@@ -75,7 +75,7 @@ public class SearchActivity extends AppCompatActivity {
     }
 
     private void backToMain(){
-        Intent intent = new Intent(this, ContentActivity.class);
+        Intent intent = new Intent(this, ControlPanel.class);
         startActivity(intent);
         finish();
     }

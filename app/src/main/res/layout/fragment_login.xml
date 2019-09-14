@@ -1,50 +1,64 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-android:layout_width="match_parent"
-android:layout_height="wrap_content"
-android:paddingLeft="20dp"
-android:paddingRight="20dp"
-android:paddingTop="20dp"
-android:layout_marginTop="100dp"
-android:orientation="vertical">
-
-<!-- username tag-->
-
-<!-- username edit area-->
-<com.google.android.material.textfield.TextInputLayout
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:hint="@string/username">
+    android:layout_height="match_parent"
+    tools:context=".LoginFragment">
 
-    <com.google.android.material.textfield.TextInputEditText
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/editTextLogin"/>
-
-</com.google.android.material.textfield.TextInputLayout>
-
-<!-- password edit area-->
-<com.google.android.material.textfield.TextInputLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:hint="@string/password">
-
-    <com.google.android.material.textfield.TextInputEditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/editTextPassword"/>
-
-</com.google.android.material.textfield.TextInputLayout>
-
-<!-- button to onboard_layout-->
-<Button
-    android:layout_width="match_parent"
-    android:layout_height="48dp"
-    android:fontFamily="Roboto"
-    android:textColor="@android:color/black"
-    android:background="@drawable/login_buttons"
-    android:id="@+id/submit"
-    android:text="Next"/>
+        android:layout_height="match_parent"
+        android:id="@+id/grid_container">
 
 
-</LinearLayout>
+            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+                android:paddingTop="20dp"
+                android:layout_marginTop="100dp"
+                android:layout_centerInParent="true"
+                android:orientation="vertical">
+
+                <!-- username tag-->
+
+                <!-- username edit area-->
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/username">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/editTextLogin"/>
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <!-- password edit area-->
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/password">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/editTextPassword"/>
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <!-- button to onboard_layout-->
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:fontFamily="Roboto"
+                    android:textColor="@android:color/black"
+                    android:background="@drawable/login_buttons"
+                    android:id="@+id/submit"
+                    android:text="Next"/>
+            </LinearLayout>
+    </RelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
