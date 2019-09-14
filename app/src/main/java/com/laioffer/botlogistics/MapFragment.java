@@ -27,6 +27,7 @@ import com.google.gson.Gson;
 
 
 public class MapFragment extends Fragment implements OnMapReadyCallback {
+    private static final String ORDER = "order_key";
     private MapView mapView;
     private View view;
     private GoogleMap googleMap;
@@ -37,10 +38,11 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
     private OrderDetailDialog dialog;
     private Order order;
 
-    public static MapFragment newInstance() {
+
+    public static MapFragment newInstance(Order order) {
 
         Bundle args = new Bundle();
-
+        args.putSerializable(ORDER, order);
         MapFragment fragment = new MapFragment();
         fragment.setArguments(args);
         return fragment;
@@ -88,7 +90,9 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
             mapView.onResume();// needed to get the map to display immediately
             mapView.getMapAsync(this);
         }
-
+        if (getArguments() != null && getArguments().containsKey(ORDER)) {
+            order = (Order) getArguments().get(ORDER);
+        }
         // get current location
         locationTracker = new LocationTracker(getActivity());
         locationTracker.getLocation();

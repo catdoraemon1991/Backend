@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.Fragment;
 
 import android.app.SearchManager;
 import android.content.Context;
@@ -19,7 +20,7 @@ import android.widget.TextView;
 import com.google.android.material.navigation.NavigationView;
 import com.google.gson.Gson;
 
-public class ControlPanel extends AppCompatActivity implements OrderFragment.OnItemSelectListener{
+public class ControlPanel extends AppCompatActivity implements OrderFragment.OnItemSelectListener {
     private DrawerLayout drawerLayout;
     private OrderFragment orderFragment;
     @Override
@@ -86,12 +87,24 @@ public class ControlPanel extends AppCompatActivity implements OrderFragment.OnI
     }
 
     @Override
-    public void onItemSelected(int position) {
-        orderFragment.onItemSelected(position);
-        Order order = orderFragment.getOrderById(position);
-        Intent intent = new Intent(this, MapActivity.class);
-        intent.putExtra("EXTRA_ORDER", new Gson().toJson(order));
-        startActivity(intent);
+    public void onItemSelected(int position, Order order) {
+        //TODO handle in orderfragment itself
+//        orderFragment.onItemSelected(position);
+//        Order order = orderFragment.getOrderById(position);
+//        Intent intent = new Intent(this, MapActivity.class);
+//        intent.putExtra("EXTRA_ORDER", new Gson().toJson(order));
+//        startActivity(intent);
+
+        getSupportFragmentManager().beginTransaction().replace(R.id.content_frame, MapFragment.newInstance(order)).addToBackStack(null).commit();
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (getSupportFragmentManager().getBackStackEntryCount() > 0) {
+            getSupportFragmentManager().popBackStack();
+        } else {
+            super.onBackPressed();
+        }
     }
 
     @Override

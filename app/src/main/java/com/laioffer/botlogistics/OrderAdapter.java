@@ -7,6 +7,8 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import java.util.ArrayList;
 import java.util.List;
 
 import java.text.DateFormat;
@@ -15,11 +17,23 @@ import java.util.Calendar;
 
 public class OrderAdapter extends BaseAdapter{
     Context context;
-    List<Order> orderData;
+    List<Order> orderData = new ArrayList<>();
 
-    public OrderAdapter(Context context, List<Order> orderData) {
+    public OrderAdapter(Context context) {
         this.context = context;
-        this.orderData = orderData;
+    }
+
+    public void updateOrder(List<Order> orders) {
+        if (orders == null) {
+            return;
+        }
+        orderData.clear();
+        orderData.addAll(orders);
+        notifyDataSetChanged();
+    }
+
+    public List<Order> getOrders() {
+        return orderData;
     }
 
     /**

@@ -42,12 +42,12 @@ public class OrderFragment extends Fragment {
     private DeliveryDialog dialog;
     private ListView listView;
     protected DatabaseReference database;
-    private List<Order> userOrders;
     OnItemSelectListener callBack;
+    private OrderAdapter orderAdapter;
 
     // Container Activity must implement this interface
     public interface OnItemSelectListener {
-        public void onItemSelected(int position);
+        public void onItemSelected(int position, Order order);
     }
 
     @Override
@@ -80,7 +80,7 @@ public class OrderFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_order, container, false);
 
-        fabReport = (FloatingActionButton)view.findViewById(R.id.fab);
+        fabReport = (FloatingActionButton) view.findViewById(R.id.fab);
         fabReport.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -90,40 +90,39 @@ public class OrderFragment extends Fragment {
 
         database = FirebaseDatabase.getInstance().getReference();
         final String username = Config.username;
-        userOrders = new ArrayList<Order>();
-        database.child("order").addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                for (DataSnapshot child : dataSnapshot.getChildren()) {
-                    Order order = child.getValue(Order.class);
-                    if(order.getUserId().equals(username)){
-                        userOrders.add(order);
-                    }
-                }
-            }
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
-
         listView = (ListView) view.findViewById(R.id.order_list);
 
         // Assign adapter to ListView.
-        OrderAdapter adapter = new OrderAdapter(getActivity(), userOrders);
-        listView.setAdapter(adapter);
+        orderAdapter = new OrderAdapter(getActivity());
+        listView.setAdapter(orderAdapter);
+        database.child("order").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                List<Order> orders = new ArrayList<>();
+                for (DataSnapshot child : dataSnapshot.getChildren()) {
+                    Order order = child.getValue(Order.class);
+                    if (order.getUserId().equals(username)) {
+                        orders.add(order);
+                    }
+                }
+                orderAdapter.updateOrder(orders);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+            }
+        });
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                callBack.onItemSelected(i);
+                callBack.onItemSelected(i, getOrderById(i));
             }
         });
 
 
         return view;
     }
-
 
 
     private void showDialog(String label, String prefillText) {
@@ -134,11 +133,11 @@ public class OrderFragment extends Fragment {
     }
 
     // Change background color if the item is selected
-    public void onItemSelected(int position){
-        for (int i = 0; i < listView.getChildCount(); i++){
+    public void onItemSelected(int position) {
+        for (int i = 0; i < listView.getChildCount(); i++) {
             if (position == i) {
                 listView.getChildAt(i).setBackgroundColor(Color.BLUE);
-                Order r = userOrders.get(i);
+                Order r = orderAdapter.getOrders().get(i);
             } else {
                 listView.getChildAt(i).setBackgroundColor(Color.parseColor("#FAFAFA"));
             }
@@ -147,11 +146,11 @@ public class OrderFragment extends Fragment {
 
 
     // get selected order
-    public Order getOrderById(int position){
-        if(position < 0 || position >= userOrders.size()){
+    public Order getOrderById(int position) {
+        if (position < 0 || position >= orderAdapter.getOrders().size()) {
             return null;
         }
-        return userOrders.get(position);
+        return orderAdapter.getOrders().get(position);
     }
 
     @LayoutRes

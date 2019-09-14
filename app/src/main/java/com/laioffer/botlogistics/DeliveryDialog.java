@@ -13,8 +13,11 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewAnimationUtils;
 import android.view.Window;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+
+import org.w3c.dom.Text;
 
 public class DeliveryDialog extends Dialog {
     private int cx;
@@ -60,6 +63,10 @@ public class DeliveryDialog extends Dialog {
                 return false;
             }
         });
+
+        //TODO delete
+        TextView textView = findViewById(R.id.text1);
+        textView.setText("hello");
     }
 
     private void animateDialog(View dialogView, boolean open) {
