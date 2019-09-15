@@ -16,10 +16,12 @@ import android.view.Window;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 
 import org.w3c.dom.Text;
 
-public class DeliveryDialog extends Dialog {
+public class DeliveryDialog extends Dialog{
     private int cx;
     private int cy;
 

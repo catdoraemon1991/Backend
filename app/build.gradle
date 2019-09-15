@@ -29,7 +29,7 @@ dependencies {
     implementation 'com.google.firebase:firebase-database:19.0.0'
 
 //    // lib for http request
-//    implementation 'com.squareup.retrofit2:retrofit:2.6.1'
+    implementation 'com.android.volley:volley:1.1.1'
 
     implementation 'com.github.arimorty:floatingsearchview:2.1.1'
 

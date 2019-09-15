@@ -40,6 +40,7 @@ public class LoginFragment extends OnBoardingBaseFragment{
 
         // Inflate the layout for this fragment
         View view = super.onCreateView(inflater, container, savedInstanceState);
+
         submitButton.setText(getString(R.string.login));
 
         // login the submitButton and register

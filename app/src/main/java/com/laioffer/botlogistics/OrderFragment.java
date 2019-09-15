@@ -7,6 +7,7 @@ import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
 
+import androidx.annotation.CallSuper;
 import androidx.annotation.LayoutRes;
 import androidx.fragment.app.Fragment;
 
@@ -37,13 +38,14 @@ import java.util.List;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class OrderFragment extends Fragment {
+public class OrderFragment extends Fragment{
     private FloatingActionButton fabReport;
     private DeliveryDialog dialog;
     private ListView listView;
     protected DatabaseReference database;
     OnItemSelectListener callBack;
     private OrderAdapter orderAdapter;
+    protected TransactionManager transactionManager;
 
     // Container Activity must implement this interface
     public interface OnItemSelectListener {
@@ -58,6 +60,7 @@ public class OrderFragment extends Fragment {
         } catch (ClassCastException e) {
             //do something
         }
+        transactionManager = (TransactionManager) context;
     }
 
     public static OrderFragment newInstance() {
@@ -72,7 +75,6 @@ public class OrderFragment extends Fragment {
     public OrderFragment() {
         // Required empty public constructor
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -126,10 +128,11 @@ public class OrderFragment extends Fragment {
 
 
     private void showDialog(String label, String prefillText) {
-        int cx = (int) (fabReport.getX() + (fabReport.getWidth() / 2));
-        int cy = (int) (fabReport.getY()) + fabReport.getHeight() + 56;
-        dialog = DeliveryDialog.newInstance(getContext(), cx, cy);
-        dialog.show();
+//        int cx = (int) (fabReport.getX() + (fabReport.getWidth() / 2));
+//        int cy = (int) (fabReport.getY()) + fabReport.getHeight() + 56;
+//        dialog = DeliveryDialog.newInstance(getContext(), cx, cy);
+//        dialog.show();
+        transactionManager.doTransactionFragment(DeliveryFragment.newInstance());
     }
 
     // Change background color if the item is selected

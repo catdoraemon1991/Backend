@@ -3,7 +3,6 @@ package com.laioffer.botlogistics;
 
 import android.content.Context;
 import android.content.Intent;
-import android.net.http.RequestQueue;
 import android.os.Bundle;
 
 import androidx.annotation.CallSuper;
@@ -17,10 +16,17 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
-import com.google.android.gms.common.api.Response;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -35,7 +41,6 @@ public class DeliveryFragment extends Fragment {
     protected EditText pickupEditText;
     protected EditText dropoffEditText;
     protected RadioGroup sizeOptions;
-    protected RadioButton sizeButton;
     protected TimePicker timePicker;
     protected Button submitButton;
     protected DatabaseReference database;
@@ -76,9 +81,10 @@ public class DeliveryFragment extends Fragment {
         timePicker=(TimePicker)view.findViewById(R.id.timePicker);
         timePicker.setIs24HourView(true);
         sizeOptions = (RadioGroup) view.findViewById(R.id.size);
-        submitButton = (Button) view.findViewById(R.id.submit);
-        database = FirebaseDatabase.getInstance().getReference();
+        submitButton = (Button) view.findViewById(R.id.delivery_submit);
+        submitButton.setText(getString(R.string.submit));
 
+        database = FirebaseDatabase.getInstance().getReference();
 
         sizeOptions.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
@@ -98,8 +104,6 @@ public class DeliveryFragment extends Fragment {
             }
         });
 
-        submitButton.setText(getString(R.string.submit));
-
         // submit
         submitButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -107,28 +111,29 @@ public class DeliveryFragment extends Fragment {
                  pickUp = pickupEditText.getText().toString();
                  dropOff = dropoffEditText.getText().toString();
                  time = timePicker.toString();
+                final TextView textView = (TextView) getActivity().findViewById(R.id.text2);
+                submitButton.setText("Clicked !");
+                // Instantiate the RequestQueue.
+                RequestQueue queue = Volley.newRequestQueue(getContext());
+                String url = Config.url_prefix + "shippingMethod";
 
-//                // Instantiate the RequestQueue.
-//                RequestQueue queue = Volley.newRequestQueue(this);
-//                String url ="http://www.google.com";
-//
-//                // Request a string response from the provided URL.
-//                StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
-//                        new Response.Listener<String>() {
-//                            @Override
-//                            public void onResponse(String response) {
-//                                // Display the first 500 characters of the response string.
-//                                textView.setText("Response is: "+ response.substring(0,500));
-//                            }
-//                        }, new Response.ErrorListener() {
-//                    @Override
-//                    public void onErrorResponse(VolleyError error) {
-//                        textView.setText("That didn't work!");
-//                    }
-//                });
-//
-//                // Add the request to the RequestQueue.
-//                queue.add(stringRequest);
+                // Request a string response from the provided URL.
+                StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
+                        new Response.Listener<String>() {
+                            @Override
+                            public void onResponse(String response) {
+                                // Display the first 500 characters of the response string.
+                                textView.setText("Response is: "+ response.substring(0,500));
+                            }
+                        }, new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        textView.setText("That didn't work!");
+                    }
+                });
+
+                // Add the request to the RequestQueue.
+                queue.add(stringRequest);
 
             }
         });

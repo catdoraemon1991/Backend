@@ -17,16 +17,29 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
+import com.arlib.floatingsearchview.FloatingSearchView;
+import com.arlib.floatingsearchview.suggestions.model.SearchSuggestion;
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.gson.Gson;
 
-public class ControlPanel extends AppCompatActivity implements OrderFragment.OnItemSelectListener {
+import java.util.ArrayList;
+import java.util.List;
+
+public class ControlPanel extends AppCompatActivity implements OrderFragment.OnItemSelectListener, TransactionManager{
     private DrawerLayout drawerLayout;
     private OrderFragment orderFragment;
+    private DatabaseReference database;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_control_panel);
+
+        database = FirebaseDatabase.getInstance().getReference();
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -81,6 +94,48 @@ public class ControlPanel extends AppCompatActivity implements OrderFragment.OnI
                         return true;
                     }
                 });
+
+        // TODO: How to get activity context more elegent
+        final Context context = this;
+
+        final FloatingSearchView mSearchView = findViewById(R.id.floating_search_view);
+
+        mSearchView.setOnLeftMenuClickListener(
+                new FloatingSearchView.OnLeftMenuClickListener(){
+                    @Override
+                    public void onMenuOpened() {
+                        drawerLayout.openDrawer(GravityCompat.START);
+                    }
+                    @Override
+                    public void onMenuClosed() {
+
+                    }
+                });
+
+        // set listener to search content
+        mSearchView.setOnSearchListener(new FloatingSearchView.OnSearchListener() {
+            @Override
+            public void onSuggestionClicked(SearchSuggestion searchSuggestion) {
+            }
+            @Override
+            public void onSearchAction(final String currentQuery) {
+                database.child("order").addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        if(dataSnapshot.hasChild(currentQuery)){
+                            Order order = dataSnapshot.child(currentQuery).getValue(Order.class);
+                            OrderDetailDialog dialog = OrderDetailDialog.newInstance(context, order);
+                            dialog.show();
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+                    }
+                });
+            }
+        });
+
         // add Fragment to the activity
         orderFragment = OrderFragment.newInstance();
         getSupportFragmentManager().beginTransaction().replace(R.id.content_frame, orderFragment).commit();
@@ -88,8 +143,9 @@ public class ControlPanel extends AppCompatActivity implements OrderFragment.OnI
 
     @Override
     public void onItemSelected(int position, Order order) {
-        //TODO handle in orderfragment itself
-        getSupportFragmentManager().beginTransaction().replace(R.id.content_frame, MapFragment.newInstance(order)).addToBackStack(null).commit();
+        doTransactionFragment(MapFragment.newInstance(order));
+//        //TODO handle in orderfragment itself
+//        getSupportFragmentManager().beginTransaction().replace(R.id.content_frame, MapFragment.newInstance(order)).addToBackStack(null).commit();
     }
 
     @Override
@@ -126,7 +182,15 @@ public class ControlPanel extends AppCompatActivity implements OrderFragment.OnI
     }
 
     private void search(){
-        Intent intent = new Intent(this, OnBoardingActivity.class);
-        startActivity(intent);
+    }
+
+    @Override
+    public void doTransactionFragment(Fragment fragment) {
+        getSupportFragmentManager().beginTransaction().replace(R.id.content_frame, fragment).addToBackStack(null).commit();
+    }
+
+    @Override
+    public void doActivityTransaction(Class clazz, boolean isFinish) {
+
     }
 }

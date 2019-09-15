@@ -17,12 +17,23 @@
             android:layout_height="?attr/actionBarSize"
             android:background="@color/colorMain"
             android:theme="@style/ThemeOverlay.AppCompat.ActionBar" />
+
+        <com.arlib.floatingsearchview.FloatingSearchView
+            android:id="@+id/floating_search_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:floatingSearch_searchHint="Search..."
+            app:floatingSearch_suggestionsListAnimDuration="250"
+            app:floatingSearch_showSearchKey="false"
+            app:floatingSearch_leftActionMode="showHamburger"
+            app:floatingSearch_close_search_on_keyboard_dismiss="true"/>
+
         <FrameLayout
             android:id="@+id/content_frame"
-            android:layout_below="@+id/toolbar"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
-        </FrameLayout>
+            android:layout_height="match_parent"
+            android:layout_below="@+id/toolbar"
+            android:layout_marginTop="2dp"></FrameLayout>
     </RelativeLayout>
 
     <com.google.android.material.navigation.NavigationView
