@@ -89,12 +89,6 @@ public class ControlPanel extends AppCompatActivity implements OrderFragment.OnI
     @Override
     public void onItemSelected(int position, Order order) {
         //TODO handle in orderfragment itself
-//        orderFragment.onItemSelected(position);
-//        Order order = orderFragment.getOrderById(position);
-//        Intent intent = new Intent(this, MapActivity.class);
-//        intent.putExtra("EXTRA_ORDER", new Gson().toJson(order));
-//        startActivity(intent);
-
         getSupportFragmentManager().beginTransaction().replace(R.id.content_frame, MapFragment.newInstance(order)).addToBackStack(null).commit();
     }
 

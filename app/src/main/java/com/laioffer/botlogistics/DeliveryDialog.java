@@ -63,7 +63,6 @@ public class DeliveryDialog extends Dialog {
                 return false;
             }
         });
-
         //TODO delete
         TextView textView = findViewById(R.id.text1);
         textView.setText("hello");

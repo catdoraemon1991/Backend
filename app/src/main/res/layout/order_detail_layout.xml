@@ -147,7 +147,7 @@
             android:layout_width="wrap_content"
             android:textSize="25sp"
             android:textColor="#FFFFFF"
-            android:text="Shipping Address"/>
+            android:text="Shipping Address: "/>
 
         <TextView
             android:layout_height="wrap_content"

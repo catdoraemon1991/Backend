@@ -57,15 +57,13 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
                              Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_map, container,
                 false);
-        final String json = getActivity().getIntent().getStringExtra("EXTRA_ORDER");
-        order = new Gson().fromJson(json, Order.class);
+        order = (Order)getArguments().get(ORDER);
         fabOrderDetail = (FloatingActionButton)view.findViewById(R.id.fab_order_detail);
         fabOrderDetail.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //show Detail
                 showDialog(null, null);
-                Log.println(Log.DEBUG, "Debug:",json);
             }
         });
 
@@ -165,7 +163,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
     }
 
     private void showDialog(String label, String prefillText) {
-        dialog = new OrderDetailDialog(getContext());
+        dialog = OrderDetailDialog.newInstance(getContext(), (Order)getArguments().get(ORDER));
         dialog.show();
     }
 
