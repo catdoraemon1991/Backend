@@ -36,7 +36,8 @@
                         android:layout_height="wrap_content"
                         android:id="@+id/editTextLogin"
                         android:theme="@style/MyTheme.EditText"
-                        android:maxLines="1"/>
+                        android:maxLines="1"
+                        android:inputType="text"/>
 
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -51,19 +52,23 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:id="@+id/editTextPassword"
-                        android:theme="@style/MyTheme.EditText"/>
+                        android:theme="@style/MyTheme.EditText"
+                        android:maxLines="1"
+                        android:inputType="text"/>
 
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <!-- button to onboard_layout-->
                 <Button
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:layout_gravity="center"
                     android:layout_height="48dp"
                     android:fontFamily="Roboto"
                     android:textColor="@android:color/black"
                     android:background="@drawable/login_buttons"
                     android:id="@+id/submit"
-                    android:text="Next"/>
+                    android:text="next"/>
             </LinearLayout>
     </RelativeLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -7,8 +7,8 @@
     <string name="email">Email</string>
     <string name="register">Sign Up</string>
     <string name="login">Sign In</string>
-    <string name="pick_up">Where to Pick Up</string>
-    <string name="drop_off">Where to Drop Off</string>
+    <string name="pick_up">Where to pick up</string>
+    <string name="drop_off">Where to drop off</string>
     <string name="size_s">Small</string>
     <string name="size_m">Medium</string>
     <string name="size_l">Large</string>

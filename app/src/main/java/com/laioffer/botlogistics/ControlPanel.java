@@ -1,21 +1,16 @@
 package com.laioffer.botlogistics;
 
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.core.view.GravityCompat;
-import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.fragment.app.Fragment;
-
-import android.app.SearchManager;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.Fragment;
 
 import com.arlib.floatingsearchview.FloatingSearchView;
 import com.arlib.floatingsearchview.suggestions.model.SearchSuggestion;
@@ -25,10 +20,6 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.google.gson.Gson;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class ControlPanel extends AppCompatActivity implements OrderFragment.OnItemSelectListener, TransactionManager{
     private DrawerLayout drawerLayout;
@@ -41,11 +32,11 @@ public class ControlPanel extends AppCompatActivity implements OrderFragment.OnI
 
         database = FirebaseDatabase.getInstance().getReference();
 
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        ActionBar actionbar = getSupportActionBar();
-        actionbar.setDisplayHomeAsUpEnabled(true);
-        actionbar.setHomeAsUpIndicator(R.drawable.baseline_home_black_18dp);
+//        Toolbar toolbar = findViewById(R.id.toolbar);
+//        setSupportActionBar(toolbar);
+//        ActionBar actionbar = getSupportActionBar();
+//        actionbar.setDisplayHomeAsUpEnabled(true);
+//        actionbar.setHomeAsUpIndicator(R.drawable.baseline_home_black_18dp);
 
         drawerLayout = findViewById(R.id.drawer_layout);
         drawerLayout.addDrawerListener(
@@ -108,7 +99,7 @@ public class ControlPanel extends AppCompatActivity implements OrderFragment.OnI
                     }
                     @Override
                     public void onMenuClosed() {
-
+                        drawerLayout.openDrawer(GravityCompat.START);
                     }
                 });
 
@@ -136,7 +127,7 @@ public class ControlPanel extends AppCompatActivity implements OrderFragment.OnI
             }
         });
 
-        // add Fragment to the activity
+        // addicon Fragment to the activity
         orderFragment = OrderFragment.newInstance();
         getSupportFragmentManager().beginTransaction().replace(R.id.content_frame, orderFragment).commit();
     }

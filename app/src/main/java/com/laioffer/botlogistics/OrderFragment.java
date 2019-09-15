@@ -2,24 +2,16 @@ package com.laioffer.botlogistics;
 
 
 import android.content.Context;
-import android.content.Intent;
 import android.graphics.Color;
-import android.os.AsyncTask;
 import android.os.Bundle;
-
-import androidx.annotation.CallSuper;
-import androidx.annotation.LayoutRes;
-import androidx.fragment.app.Fragment;
-
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.TextView;
-import android.widget.Toast;
+
+import androidx.annotation.LayoutRes;
+import androidx.fragment.app.Fragment;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.database.DataSnapshot;
@@ -27,9 +19,6 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -83,6 +72,7 @@ public class OrderFragment extends Fragment{
         View view = inflater.inflate(R.layout.fragment_order, container, false);
 
         fabReport = (FloatingActionButton) view.findViewById(R.id.fab);
+        fabReport.setImageResource(R.drawable.addicon);
         fabReport.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

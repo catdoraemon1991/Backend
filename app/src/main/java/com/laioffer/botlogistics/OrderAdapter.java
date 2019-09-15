@@ -1,6 +1,6 @@
 package com.laioffer.botlogistics;
+
 import android.content.Context;
-import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,12 +8,10 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.core.content.ContextCompat;
+
 import java.util.ArrayList;
 import java.util.List;
-
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
 
 public class OrderAdapter extends BaseAdapter{
     Context context;
@@ -69,6 +67,7 @@ public class OrderAdapter extends BaseAdapter{
      * @param parent the parent that this view will orderually be attached to
      * @return Gets a View that displays in the listView with the data at the specified position in the data set.
      */
+
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         if (convertView == null) {
@@ -107,10 +106,10 @@ public class OrderAdapter extends BaseAdapter{
         Long now = System.currentTimeMillis();
         if(now >= r.getDeliveryTime()){
             orderStatus.setText("Delivered");
-            orderStatus.setTextColor(Color.GREEN);
+            orderStatus.setTextColor(ContextCompat.getColor(context, R.color.colorCoral));
         }else{
             orderStatus.setText("Shipping");
-            orderStatus.setTextColor(Color.BLUE);
+            orderStatus.setTextColor(ContextCompat.getColor(context, R.color.colorYellow));
         }
 
         return convertView;

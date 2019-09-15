@@ -17,7 +17,7 @@
         <item name="colorControlNormal">@color/colorLightGrey</item>
 
         <!-- Cursor and Active underline color, uses colorAccent by default if not defined-->
-        <item name="colorControlActivated">@color/colorCoral</item>
+        <item name="colorControlActivated">@color/colorYellow</item>
     </style>
 
     <style name="HintTextAppearance" parent="TextAppearance.Design.Hint">
@@ -27,7 +27,7 @@
 
 
     <style name="MyAlertDialogStyle" parent="Theme.AppCompat.Light.Dialog.Alert">
-        <item name="colorAccent">@color/colorCoral</item>
+        <item name="colorAccent">@color/colorYellow</item>
         <item name="android:windowIsFloating">false</item>
         <item name="android:windowBackground">@color/colorWhite</item>
     </style>
