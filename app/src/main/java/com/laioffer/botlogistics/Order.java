@@ -1,50 +1,98 @@
 package com.laioffer.botlogistics;
 
-public class Order {
-    private String pick_up;
-    private String drop_off;
-    private String time_picker;
-    private String size;
-    private String[] orderId;
+import java.io.Serializable;
 
-
-    public String getPick_up() {
-        return pick_up;
+public class Order implements Serializable {
+    private String orderId;
+    private Long deliveryTime;
+    private Long departTime;
+    private String destination;
+    private String machineId;
+    private Long pickupTime;
+    private String shippingAddress;
+    private String shippingMethod;
+    private Long shippingTime;
+    private String userId;
+    public Order(){
     }
 
-    public void setPick_up(String pick_up) {
-        this.pick_up = pick_up;
-    }
-
-    public String getDrop_off() {
-        return drop_off;
-    }
-
-    public void setDrop_off(String drop_off) {
-        this.drop_off = drop_off;
-    }
-
-    public String getTime_picker() {
-        return time_picker;
-    }
-
-    public void setTime_picker(String time_picker) {
-        this.time_picker = time_picker;
-    }
-
-    public String getSize() {
-        return size;
-    }
-
-    public void setSize(String user_email) {
-        this.size = size;
-    }
-
-    public String[] getUser_orderId() {
+    public String getOrderId() {
         return orderId;
     }
 
-    public void setUser_orderId(String user_orderId) {
+    public void setOrderId(String orderId) {
         this.orderId = orderId;
+    }
+
+    public Long getDeliveryTime() {
+        return deliveryTime;
+    }
+
+    public void setDeliveryTime(Long deliveryTime) {
+        this.deliveryTime = deliveryTime;
+    }
+
+    public Long getDepartTime() {
+        return departTime;
+    }
+
+    public void setDepartTime(Long departTime) {
+        this.departTime = departTime;
+    }
+
+    public Long getPickupTime() {
+        return pickupTime;
+    }
+
+    public void setPickupTime(Long pickupTime) {
+        this.pickupTime = pickupTime;
+    }
+
+    public Long getShippingTime() {
+        return shippingTime;
+    }
+
+    public void setShippingTime(Long shippingTime) {
+        this.shippingTime = shippingTime;
+    }
+
+    public String getDestination() {
+        return destination;
+    }
+
+    public void setDestination(String destination) {
+        this.destination = destination;
+    }
+
+    public String getMachineId() {
+        return machineId;
+    }
+
+    public void setMachineId(String machineId) {
+        this.machineId = machineId;
+    }
+
+    public String getShippingAddress() {
+        return shippingAddress;
+    }
+
+    public void setShippingAddress(String shippingAddress) {
+        this.shippingAddress = shippingAddress;
+    }
+
+    public String getShippingMethod() {
+        return shippingMethod;
+    }
+
+    public void setShippingMethod(String shippingMethod) {
+        this.shippingMethod = shippingMethod;
+    }
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
 }

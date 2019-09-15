@@ -11,8 +11,8 @@ public class MainActivity extends AppCompatActivity  implements TransactionManag
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        doTransactionFragment(new DeliveryFragment());
-
+        // doTransactionFragment(new DeliveryFragment());
+        doTransactionFragment(new OrderFragment());
     }
 
     @Override

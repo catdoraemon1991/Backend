@@ -2,28 +2,28 @@ package com.laioffer.botlogistics;
 
 
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
-
-import androidx.annotation.CallSuper;
-import androidx.annotation.LayoutRes;
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.TextView;
 import android.widget.TimePicker;
-import android.widget.Toast;
 
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
+import androidx.annotation.CallSuper;
+import androidx.annotation.LayoutRes;
+import androidx.fragment.app.Fragment;
+
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
 
 /**
@@ -33,7 +33,6 @@ public class DeliveryFragment extends Fragment {
     protected EditText pickupEditText;
     protected EditText dropoffEditText;
     protected RadioGroup sizeOptions;
-    protected RadioButton sizeButton;
     protected TimePicker timePicker;
     protected Button submitButton;
     protected DatabaseReference database;
@@ -64,7 +63,6 @@ public class DeliveryFragment extends Fragment {
         transactionManager = (TransactionManager) context;
     }
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -75,9 +73,10 @@ public class DeliveryFragment extends Fragment {
         timePicker=(TimePicker)view.findViewById(R.id.timePicker);
         timePicker.setIs24HourView(true);
         sizeOptions = (RadioGroup) view.findViewById(R.id.size);
-        submitButton = (Button) view.findViewById(R.id.submit);
-        database = FirebaseDatabase.getInstance().getReference();
+        submitButton = (Button) view.findViewById(R.id.delivery_submit);
+        submitButton.setText(getString(R.string.submit));
 
+        database = FirebaseDatabase.getInstance().getReference();
 
         sizeOptions.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
@@ -97,36 +96,37 @@ public class DeliveryFragment extends Fragment {
             }
         });
 
-        submitButton.setText(getString(R.string.login));
-
-//        // test database connection
-//        DatabaseReference myRef = FirebaseDatabase.getInstance().getReference("message");
-//        myRef.setValue("Hello, World!");
-        // login the submitButton and register
+        // submit
         submitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                  pickUp = pickupEditText.getText().toString();
                  dropOff = dropoffEditText.getText().toString();
                  time = timePicker.toString();
+                final TextView textView = (TextView) getActivity().findViewById(R.id.text2);
+                submitButton.setText("Clicked !");
+                // Instantiate the RequestQueue.
+                RequestQueue queue = Volley.newRequestQueue(getContext());
+                String url = Config.url_prefix + "shippingMethod";
 
-                database.child("order").addListenerForSingleValueEvent(new ValueEventListener() {
+                // Request a string response from the provided URL.
+                StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
+                        new Response.Listener<String>() {
+                            @Override
+                            public void onResponse(String response) {
+                                // Display the first 500 characters of the response string.
+                                textView.setText("Response is: "+ response.substring(0,500));
+                            }
+                        }, new Response.ErrorListener() {
                     @Override
-                    public void onDataChange(DataSnapshot dataSnapshot) {
-//                        if (dataSnapshot.hasChild() && (.equals(dataSnapshot.child(username).child("user_password").getValue()))) {
-//                            Config.username = username;
-//                            startActivity(new Intent(getActivity(), ControlPanel.class));
-//
-//                        } else {
-//                            Toast.makeText(getActivity(),"Please try to login again", Toast.LENGTH_SHORT).show();
-//                        }
-                    }
-
-                    @Override
-                    public void onCancelled(DatabaseError databaseError) {
-
+                    public void onErrorResponse(VolleyError error) {
+                        textView.setText("That didn't work!");
                     }
                 });
+
+                // Add the request to the RequestQueue.
+                queue.add(stringRequest);
+
             }
         });
 

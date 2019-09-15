@@ -1,6 +1,7 @@
 package com.laioffer.botlogistics;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -39,11 +40,9 @@ public class LoginFragment extends OnBoardingBaseFragment{
 
         // Inflate the layout for this fragment
         View view = super.onCreateView(inflater, container, savedInstanceState);
+
         submitButton.setText(getString(R.string.login));
 
-//        // test database connection
-//        DatabaseReference myRef = FirebaseDatabase.getInstance().getReference("message");
-//        myRef.setValue("Hello, World!");
         // login the submitButton and register
         submitButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -56,8 +55,7 @@ public class LoginFragment extends OnBoardingBaseFragment{
                     public void onDataChange(DataSnapshot dataSnapshot) {
                         if (dataSnapshot.hasChild(username) && (password.equals(dataSnapshot.child(username).child("user_password").getValue()))) {
                             Config.username = username;
-                            transactionManager.doActivityTransaction(MainActivity.class, false);
-
+                            transactionManager.doActivityTransaction(ControlPanel.class, true);
                         } else {
                             Toast.makeText(getActivity(),"Please try to sign in again", Toast.LENGTH_SHORT).show();
                         }
