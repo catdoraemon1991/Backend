@@ -1,5 +1,7 @@
 package com.laioffer.botlogistics;
 
+import android.animation.ValueAnimator;
+import android.graphics.Color;
 import android.os.Bundle;
 
 import androidx.annotation.IdRes;
@@ -7,11 +9,17 @@ import androidx.annotation.IdRes;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import android.os.Handler;
+import android.os.SystemClock;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Interpolator;
+import android.view.animation.LinearInterpolator;
 
+import com.amalbit.trail.Route;
+import com.amalbit.trail.RouteOverlayView;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -27,6 +35,7 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MapStyleOptions;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import com.google.android.gms.maps.model.Polyline;
@@ -38,6 +47,11 @@ import com.laioffer.entity.Order;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
+import java.util.Deque;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Queue;
 
 
 public class MapFragment extends Fragment implements OnMapReadyCallback {
@@ -45,7 +59,8 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
     private MapView mapView;
     private View view;
     private GoogleMap googleMap;
-    private LocationTracker locationTracker;
+    private RouteOverlayView mRouteOverlayView;
+    private List<LatLng> track;
 
     LatLng focusLatLng;
 
@@ -74,7 +89,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
         view = inflater.inflate(R.layout.fragment_map, container,
                 false);
         order = (Order)getArguments().get(ORDER);
-
+        track = new ArrayList<LatLng>();
         // Instantiate the RequestQueue.
         RequestQueue queue = HttpHelper.getInstance(getContext()).getRequestQueue();
         String url = Config.url_prefix + "tracking";
@@ -147,6 +162,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         mapView = (MapView) this.view.findViewById(R.id.event_map_view);
+        mRouteOverlayView = (RouteOverlayView) this.view.findViewById(R.id.mapOverlayView);
         if (mapView != null) {
             mapView.onCreate(null);
             mapView.onResume();// needed to get the map to display immediately
@@ -229,18 +245,45 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
             e.printStackTrace();
         }
 
+        LatLng stationLatLng = new LatLng(station.getLat(), station.getLog());
+        LatLng currentLatLng = new LatLng(current.getLat(), current.getLog());
+        LatLng shippingLatLng = new LatLng(shippingAddress.getLat(), shippingAddress.getLog());
+        LatLng destinationLatLng = new LatLng(destination.getLat(), destination.getLog());
+
         // set the default camera position
-        focusLatLng = new LatLng(destination.getLat(), destination.getLog());
+        focusLatLng = currentLatLng;
 
-        Polyline line1 = googleMap.addPolyline(new PolylineOptions()
-                .add(new LatLng(station.getLat(), station.getLog()), new LatLng(shippingAddress.getLat(), shippingAddress.getLog()))
-                .width(20)
-                .color(R.color.colorOrange));
+        track.add(stationLatLng);
+        track.add(shippingLatLng);
+        track.add(destinationLatLng);
 
-        Polyline line2 = googleMap.addPolyline(new PolylineOptions()
-                .add(new LatLng(shippingAddress.getLat(), shippingAddress.getLog()), new LatLng(destination.getLat(), destination.getLog()))
-                .width(20)
-                .color(R.color.colorOrange));
+        // draw two static lines
+//        Polyline line1 = googleMap.addPolyline(new PolylineOptions()
+//                .add(stationLatLng, shippingLatLng)
+//                .width(20)
+//                .color(R.color.colorOrange));
+//
+//        Polyline line2 = googleMap.addPolyline(new PolylineOptions()
+//                .add(shippingLatLng, destinationLatLng)
+//                .width(20)
+//                .color(R.color.colorOrange));
+
+        // draw a dynamic line
+        googleMap.setOnMapLoadedCallback(() -> {
+                Route normalRoute = new Route.Builder(mRouteOverlayView)
+                .setRouteType(RouteOverlayView.RouteType.PATH)
+                .setCameraPosition(googleMap.getCameraPosition())
+                .setProjection(googleMap.getProjection())
+                .setLatLngs(track)
+                .setBottomLayerColor(Color.RED)
+                .setTopLayerColor(Color.GREEN)
+                .create();
+        });
+
+        googleMap.setOnCameraMoveListener(() -> {
+                    mRouteOverlayView.onCameraMove(googleMap.getProjection(), googleMap.getCameraPosition());
+                }
+        );
 
         // station
         addMark(station, "station", R.drawable.station);
@@ -254,16 +297,6 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
             addMark(shippingAddress, "Your package has been picked up", R.drawable.checkmark);
         }
 
-        if(status.equals(Utils.DEPART_MESG) || status.equals(Utils.PICKUP_MESG)){
-            if(order.getShippingMethod().equals("robot")){
-                // task is assigned to a robot
-                addMark(current, "Robot on the way!", R.drawable.robot);
-            }else {
-                // task is assigned to a drone
-                addMark(current, "Drone on the way!", R.drawable.drone);
-            }
-        }
-
         if(status.equals(Utils.DELIVER_MESG)){
             // package have delivered
             addMark(destination, "delivered!", R.drawable.destination);
@@ -271,9 +304,37 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
             // package haven't delivered yet
             addMark(destination, "destination", R.drawable.location);
         }
+
+//        // set the machine to the original location and get the marker
+        Marker marker;
+        if(order.getShippingMethod().equals("robot")){
+            // task is assigned to a robot
+            marker = addMark(station, "Robot on the way!", R.drawable.robot);
+        }else {
+            // task is assigned to a drone
+            marker = addMark(station, "Drone on the way!", R.drawable.drone);
+        }
+
+        Queue<Location> locations = new LinkedList<>();
+        // move the marker based on status
+        if(status.equals(Utils.DEPART_MESG)){
+            locations.offer(station);
+            locations.offer(current);
+            animateMarker(marker, locations, false);
+        }else if(status.equals(Utils.PICKUP_MESG)){
+            locations.offer(station);
+            locations.offer(shippingAddress);
+            locations.offer(current);
+            animateMarker(marker, locations, false);
+        }else if(status.equals(Utils.DELIVER_MESG)){
+            locations.offer(station);
+            locations.offer(shippingAddress);
+            locations.offer(destination);
+            animateMarker(marker, locations, true);
+        }
     }
 
-    private void addMark(Location loc, String text, int id){
+    private Marker addMark(Location loc, String text, int id){
         LatLng latLng = new LatLng(loc.getLat(), loc.getLog());
         CameraPosition cameraPosition = new CameraPosition.Builder()
                 .target(latLng)      // Sets the center of the map to Mountain View
@@ -290,9 +351,54 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
         marker.icon(BitmapDescriptorFactory.fromResource(id));
 
         // adding marker
-        googleMap.addMarker(marker);
+        return googleMap.addMarker(marker);
+    }
 
+    //This methos is used to move the marker of each car smoothly when there are any updates of their position
+    public void animateMarker(Marker marker, Queue<Location> locations,
+                              final boolean hideMarker) {
+        if(locations.size() < 2){
+            return;
+        }
+        final LatLng startPosition = new LatLng(locations.peek().getLat(), locations.peek().getLog());
+        locations.poll();
 
+        // make it next start
+        final LatLng toPosition = new LatLng(locations.peek().getLat(), locations.peek().getLog());
+
+        final Handler handler = new Handler();
+        final long start = SystemClock.uptimeMillis();
+
+        final long duration = 1000;
+        final Interpolator interpolator = new LinearInterpolator();
+
+        handler.post(new Runnable() {
+            @Override
+            public void run() {
+                long elapsed = SystemClock.uptimeMillis() - start;
+                float t = interpolator.getInterpolation((float) elapsed
+                        / duration);
+                double lng = t * toPosition.longitude + (1 - t)
+                        * startPosition.longitude;
+                double lat = t * toPosition.latitude + (1 - t)
+                        * startPosition.latitude;
+
+                marker.setPosition(new LatLng(lat, lng));
+
+                if (t < 1.0) {
+                    // Post again 16ms later.
+                    handler.postDelayed(this, 16);
+                } else if(locations.size() > 1){
+                    animateMarker(marker, locations, hideMarker);
+                }else {
+                    if (hideMarker) {
+                        marker.setVisible(false);
+                    } else {
+                        marker.setVisible(true);
+                    }
+                }
+            }
+        });
     }
 
 }

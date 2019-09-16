@@ -76,6 +76,10 @@ public class ControlPanel extends AppCompatActivity implements OrderFragment.OnI
                             Config.username = null;
                             logout();
                         }
+
+                        if (menuItem.getItemId() == R.id.drawer_home) {
+                            doTransactionFragment(new OrderFragment());
+                        }
                         return true;
                     }
                 });

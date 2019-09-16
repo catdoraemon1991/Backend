@@ -12,6 +12,10 @@
             android:id="@+id/event_map_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
+        <com.amalbit.trail.RouteOverlayView
+            android:id="@+id/mapOverlayView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/fab_focus"

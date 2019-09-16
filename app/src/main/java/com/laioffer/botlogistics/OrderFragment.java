@@ -25,6 +25,8 @@ import com.laioffer.entity.Order;
 
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 
@@ -105,6 +107,16 @@ public class OrderFragment extends Fragment{
                         orders.add(order);
                     }
                 }
+                // sort orders based on delivery time
+                Collections.sort(orders, new Comparator<Order>() {
+                    @Override
+                    public int compare(Order o1, Order o2) {
+                        if(o1.getDeliveryTime() == o2.getDeliveryTime()){
+                            return 0;
+                        }
+                        return o1.getDeliveryTime() > o2.getDeliveryTime() ? -1 : 1;
+                    }
+                });
                 orderAdapter.updateOrder(orders);
             }
 
@@ -128,19 +140,6 @@ public class OrderFragment extends Fragment{
     private void showDialog(String label, String prefillText) {
         transactionManager.doTransactionFragment(DeliveryFragment.newInstance());
     }
-
-    // Change background color if the item is selected
-    public void onItemSelected(int position) {
-        for (int i = 0; i < listView.getChildCount(); i++) {
-            if (position == i) {
-                listView.getChildAt(i).setBackgroundColor(Color.BLUE);
-                Order r = orderAdapter.getOrders().get(i);
-            } else {
-                listView.getChildAt(i).setBackgroundColor(Color.parseColor("#FAFAFA"));
-            }
-        }
-    }
-
 
     // get selected order
     public Order getOrderById(int position) {

@@ -26,15 +26,12 @@
             app:floatingSearch_showSearchKey="false"
             app:floatingSearch_leftActionMode="showHome"
             app:floatingSearch_close_search_on_keyboard_dismiss="true">
-
-            <FrameLayout
-                android:id="@+id/content_frame"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginTop="2dp"/>
-
         </com.arlib.floatingsearchview.FloatingSearchView>
 
+        <FrameLayout
+            android:id="@+id/content_frame"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
 
     </RelativeLayout>
 
