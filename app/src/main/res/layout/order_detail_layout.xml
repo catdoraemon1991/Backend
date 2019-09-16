@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:id="@+id/event_type_layout_id"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorDark">
+
+    <TextView
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:gravity="center"
+        android:textSize="25sp"
+        android:textColor="#FFFFFF"
+        android:paddingTop="25dp"
+        android:paddingBottom="25dp"
+        android:text="Order detail"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:textSize="25sp"
+            android:textColor="#FFFFFF"
+            android:text="Order ID: "/>
+
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:textSize="25sp"
+            android:textColor="#FFFFFF"
+            android:id="@+id/order_detail_order_id"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:textSize="25sp"
+            android:textColor="#FFFFFF"
+            android:text="Delivery Time: "/>
+
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:textSize="25sp"
+            android:textColor="#FFFFFF"
+            android:id="@+id/order_detail_order_delivery_time"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:textSize="25sp"
+            android:textColor="#FFFFFF"
+            android:text="Depart Time"/>
+
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:textSize="25sp"
+            android:textColor="#FFFFFF"
+            android:id="@+id/order_detail_order_depart_time"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:textSize="25sp"
+            android:textColor="#FFFFFF"
+            android:text="Destination"/>
+
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:textSize="25sp"
+            android:textColor="#FFFFFF"
+            android:id="@+id/order_detail_order_destination"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:textSize="25sp"
+            android:textColor="#FFFFFF"
+            android:text="Machine ID: "/>
+
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:textSize="25sp"
+            android:textColor="#FFFFFF"
+            android:id="@+id/order_detail_order_machine_id"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:textSize="25sp"
+            android:textColor="#FFFFFF"
+            android:text="Pick-Up Time: "/>
+
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:textSize="25sp"
+            android:textColor="#FFFFFF"
+            android:id="@+id/order_detail_order_pick_up_time"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:textSize="25sp"
+            android:textColor="#FFFFFF"
+            android:text="Shipping Address: "/>
+
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:textSize="25sp"
+            android:textColor="#FFFFFF"
+            android:id="@+id/order_detail_order_shipping_address"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:textSize="25sp"
+            android:textColor="#FFFFFF"
+            android:text="Shipping Method: "/>
+
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:textSize="25sp"
+            android:textColor="#FFFFFF"
+            android:id="@+id/order_detail_shipping_method"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:textSize="25sp"
+            android:textColor="#FFFFFF"
+            android:text="Shipping Time: "/>
+
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:textSize="25sp"
+            android:textColor="#FFFFFF"
+            android:id="@+id/order_detail_shipping_time"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:textSize="25sp"
+            android:textColor="#FFFFFF"
+            android:text="User ID: "/>
+
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:textSize="25sp"
+            android:textColor="#FFFFFF"
+            android:id="@+id/order_detail_user_id"/>
+    </LinearLayout>
+
+</LinearLayout>

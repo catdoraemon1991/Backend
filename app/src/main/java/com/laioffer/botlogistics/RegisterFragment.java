@@ -15,6 +15,7 @@ import android.widget.Toast;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.ValueEventListener;
+import com.laioffer.entity.User;
 
 
 /**
@@ -34,7 +35,6 @@ public class RegisterFragment extends OnBoardingBaseFragment {
     public RegisterFragment() {
         // Required empty public constructor
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

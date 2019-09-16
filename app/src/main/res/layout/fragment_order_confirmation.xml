@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorDark"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp">
+
+    <TextView
+        android:id="@+id/confirmation_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:paddingTop="25dp"
+        android:paddingBottom="25dp"
+        android:text="Order Confirmation"
+        android:textColor="#FFFFFF"
+        android:textSize="25sp" />
+
+
+    <TextView
+        android:id="@+id/confirmation_dest_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/confirmation_title"
+        android:text="Destination: "
+        android:textColor="#FFFFFF"
+        android:textSize="25sp" />
+
+    <TextView
+        android:id="@+id/confirmation_destination"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/confirmation_dest_text"
+        android:textColor="#FFFFFF"
+        android:textSize="25sp" />
+
+
+    <TextView
+        android:id="@+id/confirmation_ship_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/confirmation_destination"
+        android:layout_alignParentLeft="true"
+        android:text="Shipping Address: "
+        android:textColor="#FFFFFF"
+        android:textSize="25sp" />
+
+    <TextView
+        android:id="@+id/confirmation_shippingAddress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/confirmation_ship_text"
+        android:textColor="#FFFFFF"
+        android:textSize="25sp" />
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_toLeftOf="@id/confirmation_shippingMethod"
+        android:layout_below="@id/confirmation_shippingAddress"
+        android:text="Shipping Method: "
+        android:textColor="#FFFFFF"
+        android:textSize="25sp" />
+
+    <TextView
+        android:id="@+id/confirmation_shippingMethod"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_below="@id/confirmation_shippingAddress"
+        android:textColor="#FFFFFF"
+        android:textSize="25sp" />
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_toLeftOf="@id/confirmation_stationId"
+        android:layout_below="@id/confirmation_shippingMethod"
+        android:text="Station: "
+        android:textColor="#FFFFFF"
+        android:textSize="25sp" />
+
+    <TextView
+        android:id="@+id/confirmation_stationId"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_below="@id/confirmation_shippingMethod"
+        android:textColor="#FFFFFF"
+        android:textSize="25sp" />
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_toLeftOf="@id/confirmation_userId"
+        android:layout_below="@id/confirmation_stationId"
+        android:text="User: "
+        android:textColor="#FFFFFF"
+        android:textSize="25sp" />
+
+    <TextView
+        android:id="@+id/confirmation_userId"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_below="@id/confirmation_stationId"
+        android:textColor="#FFFFFF"
+        android:textSize="25sp" />
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_toLeftOf="@id/confirmation_duration"
+        android:layout_below="@id/confirmation_userId"
+        android:text="Duration: "
+        android:textColor="#FFFFFF"
+        android:textSize="25sp" />
+
+    <TextView
+        android:id="@+id/confirmation_duration"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_below="@id/confirmation_userId"
+        android:textColor="#FFFFFF"
+        android:textSize="25sp" />
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_toLeftOf="@id/confirmation_price"
+        android:layout_below="@id/confirmation_duration"
+        android:text="Price: "
+        android:textColor="#FFFFFF"
+        android:textSize="25sp" />
+
+
+    <TextView
+        android:id="@+id/confirmation_price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_below="@id/confirmation_duration"
+        android:textColor="#FFFFFF"
+        android:textSize="25sp" />
+
+
+    <Button
+        android:id="@+id/confirmation_submit"
+        android:layout_width="wrap_content"
+        android:layout_height="48dp"
+        android:layout_centerInParent="true"
+        android:layout_below="@id/confirmation_price"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/login_buttons"
+        android:fontFamily="Roboto"
+        android:text="Submit"
+        android:textColor="@android:color/black" />
+
+</RelativeLayout>
+

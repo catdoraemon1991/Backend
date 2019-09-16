@@ -2,8 +2,10 @@ package com.laioffer.botlogistics;
 
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.os.Bundle;
 
+import androidx.annotation.CallSuper;
 import androidx.annotation.LayoutRes;
 import androidx.fragment.app.Fragment;
 
@@ -25,6 +27,13 @@ public abstract class OnBoardingBaseFragment extends Fragment {
     protected EditText passwordEditText;
     protected Button submitButton;
     protected DatabaseReference database;
+    protected TransactionManager transactionManager;
+
+    @CallSuper
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        transactionManager = (TransactionManager) context;
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

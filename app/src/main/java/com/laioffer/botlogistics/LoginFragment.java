@@ -13,15 +13,13 @@ import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class LoginFragment extends OnBoardingBaseFragment {
+public class LoginFragment extends OnBoardingBaseFragment{
 
     public static LoginFragment newInstance() {
         Bundle args = new Bundle();
@@ -39,13 +37,11 @@ public class LoginFragment extends OnBoardingBaseFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
         // Inflate the layout for this fragment
         View view = super.onCreateView(inflater, container, savedInstanceState);
-        submitButton.setText(getString(R.string.login));
 
-//        // test database connection
-//        DatabaseReference myRef = FirebaseDatabase.getInstance().getReference("message");
-//        myRef.setValue("Hello, World!");
+        submitButton.setText(getString(R.string.login));
         // login the submitButton and register
         submitButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -58,10 +54,9 @@ public class LoginFragment extends OnBoardingBaseFragment {
                     public void onDataChange(DataSnapshot dataSnapshot) {
                         if (dataSnapshot.hasChild(username) && (password.equals(dataSnapshot.child(username).child("user_password").getValue()))) {
                             Config.username = username;
-                            startActivity(new Intent(getActivity(), ControlPanel.class));
-
+                            transactionManager.doActivityTransaction(ControlPanel.class, true);
                         } else {
-                            Toast.makeText(getActivity(),"Please try to login again", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getActivity(),"Please try to sign in again", Toast.LENGTH_SHORT).show();
                         }
                     }
 
@@ -80,6 +75,4 @@ public class LoginFragment extends OnBoardingBaseFragment {
     protected int getLayout() {
         return R.layout.fragment_login;
     }
-
-
 }

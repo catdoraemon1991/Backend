@@ -7,4 +7,16 @@
     <string name="email">Email</string>
     <string name="register">Sign Up</string>
     <string name="login">Sign In</string>
+    <string name="pick_up">Where to Pick Up</string>
+    <string name="drop_off">Where to Drop Off</string>
+    <string name="size_s">small</string>
+    <string name="size_m">medium</string>
+    <string name="size_l">large</string>
+    <string name="app_label">Express</string>
+    <string name="search_hint">Your order ID</string>
+    <string name="submit">Submit</string>
+    <string name="BEFORE_SHIP_MESG">order processing</string>
+    <string name="DEPART_MESG">departed, on its way to pickup</string>
+    <string name="PICKUP_MESG">picked up, on its way to destination</string>
+    <string name="DELIVER_MESG">delivered</string>
 </resources>
