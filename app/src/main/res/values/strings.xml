@@ -9,9 +9,9 @@
     <string name="login">Sign In</string>
     <string name="pick_up">Where to Pick Up</string>
     <string name="drop_off">Where to Drop Off</string>
-    <string name="size_s">Small</string>
-    <string name="size_m">Medium</string>
-    <string name="size_l">Large</string>
+    <string name="size_s">small</string>
+    <string name="size_m">medium</string>
+    <string name="size_l">large</string>
     <string name="app_label">Express</string>
     <string name="search_hint">Your order ID</string>
     <string name="submit">Submit</string>

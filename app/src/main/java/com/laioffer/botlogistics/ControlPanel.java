@@ -7,12 +7,9 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 
-import android.app.SearchManager;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
@@ -25,10 +22,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.google.gson.Gson;
-
-import java.util.ArrayList;
-import java.util.List;
+import com.laioffer.entity.Order;
 
 public class ControlPanel extends AppCompatActivity implements OrderFragment.OnItemSelectListener, TransactionManager{
     private DrawerLayout drawerLayout;
@@ -100,15 +94,11 @@ public class ControlPanel extends AppCompatActivity implements OrderFragment.OnI
 
         final FloatingSearchView mSearchView = findViewById(R.id.floating_search_view);
 
-        mSearchView.setOnLeftMenuClickListener(
-                new FloatingSearchView.OnLeftMenuClickListener(){
+        mSearchView.setOnHomeActionClickListener(
+                new FloatingSearchView.OnHomeActionClickListener() {
                     @Override
-                    public void onMenuOpened() {
+                    public void onHomeClicked() {
                         drawerLayout.openDrawer(GravityCompat.START);
-                    }
-                    @Override
-                    public void onMenuClosed() {
-
                     }
                 });
 
@@ -138,14 +128,12 @@ public class ControlPanel extends AppCompatActivity implements OrderFragment.OnI
 
         // add Fragment to the activity
         orderFragment = OrderFragment.newInstance();
-        getSupportFragmentManager().beginTransaction().replace(R.id.content_frame, orderFragment).commit();
+        doTransactionFragment(orderFragment);
     }
 
     @Override
     public void onItemSelected(int position, Order order) {
         doTransactionFragment(MapFragment.newInstance(order));
-//        //TODO handle in orderfragment itself
-//        getSupportFragmentManager().beginTransaction().replace(R.id.content_frame, MapFragment.newInstance(order)).addToBackStack(null).commit();
     }
 
     @Override

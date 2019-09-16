@@ -10,7 +10,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 
-import com.google.gson.Gson;
+import com.laioffer.entity.Order;
 
 public class OrderDetailDialog extends Dialog {
     private Order order;

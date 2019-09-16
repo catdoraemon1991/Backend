@@ -1,4 +1,4 @@
-package com.laioffer.botlogistics;
+package com.laioffer.entity;
 
 import java.io.Serializable;
 
@@ -13,6 +13,7 @@ public class Order implements Serializable {
     private String shippingMethod;
     private Long shippingTime;
     private String userId;
+
     public Order(){
     }
 

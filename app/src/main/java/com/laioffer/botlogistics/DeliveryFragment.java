@@ -9,6 +9,7 @@ import androidx.annotation.CallSuper;
 import androidx.annotation.LayoutRes;
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,10 +21,12 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
@@ -32,11 +35,16 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.laioffer.entity.ConfirmationRequest;
+import com.laioffer.entity.Order;
 
+import org.json.JSONException;
+import org.json.JSONObject;
 
-/**
- * A simple {@link Fragment} subclass.
- */
+import java.util.Calendar;
+import java.util.HashMap;
+import java.util.Map;
+
 public class DeliveryFragment extends Fragment {
     protected EditText pickupEditText;
     protected EditText dropoffEditText;
@@ -45,13 +53,12 @@ public class DeliveryFragment extends Fragment {
     protected Button submitButton;
     protected DatabaseReference database;
 
-    protected TransactionManager transactionManager;
-
     private String pickUp;
     private String dropOff;
-    private String time;
+    private Long time;
     private String size;
 
+    protected TransactionManager transactionManager;
 
     public static DeliveryFragment newInstance() {
         Bundle args = new Bundle();
@@ -76,6 +83,7 @@ public class DeliveryFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(getLayout(), container, false);
+
         pickupEditText = (EditText) view.findViewById(R.id.editTextPickUp);
         dropoffEditText = (EditText) view.findViewById(R.id.editTextDropOff);
         timePicker=(TimePicker)view.findViewById(R.id.timePicker);
@@ -110,31 +118,56 @@ public class DeliveryFragment extends Fragment {
             public void onClick(View v) {
                  pickUp = pickupEditText.getText().toString();
                  dropOff = dropoffEditText.getText().toString();
-                 time = timePicker.toString();
-                final TextView textView = (TextView) getActivity().findViewById(R.id.text2);
-                submitButton.setText("Clicked !");
+
+                 // read by a calendar
+                Calendar cal = Calendar.getInstance();
+                cal.set(Calendar.HOUR, timePicker.getCurrentHour());
+                cal.set(Calendar.MINUTE, timePicker.getCurrentMinute());
+                time = cal.getTimeInMillis();
+
+                 Log.d("pickUp", pickUp);
+                 Log.d("dropOff", dropOff);
+                 Log.d("time", Long.toString(time));
+                 Log.d("size", size);
+
+                 submitButton.setText("Clicked !");
+
                 // Instantiate the RequestQueue.
-                RequestQueue queue = Volley.newRequestQueue(getContext());
+                RequestQueue queue = HttpHelper.getInstance(getContext()).getRequestQueue();
                 String url = Config.url_prefix + "shippingMethod";
 
-                // Request a string response from the provided URL.
-                StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
-                        new Response.Listener<String>() {
+                JSONObject parameters = new JSONObject();
+                try {
+                    parameters.put("destination", dropOff);
+                    parameters.put("shippingAddress", pickUp);
+                    parameters.put("shippingTime", time);
+                    parameters.put("size", size);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+                JsonObjectRequest postRequest = new JsonObjectRequest( Request.Method.POST, url,
+                        parameters,
+                        new Response.Listener<JSONObject>() {
                             @Override
-                            public void onResponse(String response) {
-                                // Display the first 500 characters of the response string.
-                                textView.setText("Response is: "+ response.substring(0,500));
+                            public void onResponse(JSONObject response) {
+                                Log.d("Response", response.toString());
+                                ConfirmationRequest confirm = new ConfirmationRequest();
+                                confirm.setDestination(dropOff);
+                                confirm.setShippingAddress(pickUp);
+                                confirm.setShippingTime(time);
+                                transactionManager.doTransactionFragment(ShippingMethodFragment.newInstance(response, confirm));
                             }
-                        }, new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        textView.setText("That didn't work!");
-                    }
-                });
-
-                // Add the request to the RequestQueue.
-                queue.add(stringRequest);
-
+                        },
+                        new Response.ErrorListener() {
+                            @Override
+                            public void onErrorResponse(VolleyError error) {
+                                //   Handle Error
+                                Log.d("Error", error.toString());
+                            }
+                        }) {
+                };
+                queue.add(postRequest);
             }
         });
 

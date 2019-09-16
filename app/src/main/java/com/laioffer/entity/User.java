@@ -1,4 +1,4 @@
-package com.laioffer.botlogistics;
+package com.laioffer.entity;
 
 public class User {
     private double user_timestamp;
