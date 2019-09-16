@@ -32,7 +32,6 @@ public class ControlPanel extends AppCompatActivity implements OrderFragment.OnI
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_control_panel);
-
         database = FirebaseDatabase.getInstance().getReference();
 
         Toolbar toolbar = findViewById(R.id.toolbar);
@@ -176,6 +175,5 @@ public class ControlPanel extends AppCompatActivity implements OrderFragment.OnI
 
     @Override
     public void doActivityTransaction(Class clazz, boolean isFinish) {
-
     }
 }
