@@ -20,7 +20,9 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+
 import com.laioffer.entity.Order;
+
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,10 +32,12 @@ import java.util.List;
  * A simple {@link Fragment} subclass.
  */
 public class OrderFragment extends Fragment{
+
     OnItemSelectListener callBack;
     private FloatingActionButton fabReport;
     private ListView listView;
     protected DatabaseReference database;
+
     private OrderAdapter orderAdapter;
     protected TransactionManager transactionManager;
 
@@ -73,6 +77,7 @@ public class OrderFragment extends Fragment{
         View view = inflater.inflate(R.layout.fragment_order, container, false);
 
         fabReport = (FloatingActionButton) view.findViewById(R.id.fab);
+
         fabReport.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -80,9 +85,11 @@ public class OrderFragment extends Fragment{
             }
         });
 
+
         final String username = Config.username;
 
         database = FirebaseDatabase.getInstance().getReference();
+
         listView = (ListView) view.findViewById(R.id.order_list);
 
         // Assign adapter to ListView.

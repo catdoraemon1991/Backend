@@ -1,5 +1,6 @@
 package com.laioffer.botlogistics;
 
+
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -35,11 +36,6 @@ public class ControlPanel extends AppCompatActivity implements OrderFragment.OnI
 
         database = FirebaseDatabase.getInstance().getReference();
 
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        ActionBar actionbar = getSupportActionBar();
-        actionbar.setDisplayHomeAsUpEnabled(true);
-        actionbar.setHomeAsUpIndicator(R.drawable.baseline_home_black_18dp);
 
         drawerLayout = findViewById(R.id.drawer_layout);
         drawerLayout.addDrawerListener(
@@ -126,11 +122,13 @@ public class ControlPanel extends AppCompatActivity implements OrderFragment.OnI
         // add Fragment to the activity
         orderFragment = OrderFragment.newInstance();
         doTransactionFragment(orderFragment);
+
     }
 
     @Override
     public void onItemSelected(int position, Order order) {
         doTransactionFragment(MapFragment.newInstance(order));
+
     }
 
     @Override

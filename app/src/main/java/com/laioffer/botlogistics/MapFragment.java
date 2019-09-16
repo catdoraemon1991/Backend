@@ -3,6 +3,7 @@ package com.laioffer.botlogistics;
 import android.os.Bundle;
 
 import androidx.annotation.IdRes;
+
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
@@ -16,6 +17,7 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
+
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
@@ -26,6 +28,7 @@ import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MapStyleOptions;
 import com.google.android.gms.maps.model.MarkerOptions;
+
 import com.google.android.gms.maps.model.Polyline;
 import com.google.android.gms.maps.model.PolylineOptions;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -36,13 +39,16 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 
+
 public class MapFragment extends Fragment implements OnMapReadyCallback {
     private static final String ORDER = "order_key";
     private MapView mapView;
     private View view;
     private GoogleMap googleMap;
     private LocationTracker locationTracker;
+
     LatLng focusLatLng;
+
     private FloatingActionButton fabOrderDetail;
     private FloatingActionButton fabFocus;
     private OrderDetailDialog dialog;
@@ -99,6 +105,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
         };
         queue.add(postRequest);
 
+
         fabOrderDetail = (FloatingActionButton)view.findViewById(R.id.fab_order_detail);
         fabOrderDetail.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -132,10 +139,6 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
         if (getArguments() != null && getArguments().containsKey(ORDER)) {
             order = (Order) getArguments().get(ORDER);
         }
-//        // get current location
-//        locationTracker = new LocationTracker(getActivity());
-//        locationTracker.getLocation();
-//        latLng = new LatLng(locationTracker.getLatitude(), locationTracker.getLongitude());
 
         return view;
     }
@@ -281,14 +284,14 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
 
         googleMap.moveCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
 
-        MarkerOptions marker = new MarkerOptions().position(latLng).
-                title(text);
+        MarkerOptions marker = new MarkerOptions().position(latLng).title(text);
 
         // Changing marker icon
         marker.icon(BitmapDescriptorFactory.fromResource(id));
 
         // adding marker
         googleMap.addMarker(marker);
+
 
     }
 

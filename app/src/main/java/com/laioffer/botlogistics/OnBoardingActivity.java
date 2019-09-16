@@ -26,7 +26,9 @@ public class OnBoardingActivity extends AppCompatActivity implements Transaction
         TabLayout tabLayout = (TabLayout) findViewById(R.id.sliding_tabs);
         tabLayout.setupWithViewPager(viewpage);
         tabLayout.setTabMode(TabLayout.MODE_FIXED);
-        tabLayout.setSelectedTabIndicatorColor(ContextCompat.getColor(this, R.color.yellowButton));
+
+        tabLayout.setSelectedTabIndicatorColor(ContextCompat.getColor(this, R.color.colorYellow));
+
     }
 
     // switch viewpage to #page

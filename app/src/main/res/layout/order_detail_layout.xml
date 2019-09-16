@@ -5,14 +5,14 @@
     android:id="@+id/event_type_layout_id"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorDark">
+    android:background="#FFFFFF">
 
     <TextView
         android:layout_height="wrap_content"
         android:layout_width="match_parent"
         android:gravity="center"
         android:textSize="25sp"
-        android:textColor="#FFFFFF"
+        android:textColor="@color/black"
         android:paddingTop="25dp"
         android:paddingBottom="25dp"
         android:text="Order detail"/>
@@ -26,14 +26,14 @@
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
             android:textSize="25sp"
-            android:textColor="#FFFFFF"
+            android:textColor="@color/black"
             android:text="Order ID: "/>
 
         <TextView
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
             android:textSize="25sp"
-            android:textColor="#FFFFFF"
+            android:textColor="@color/black"
             android:id="@+id/order_detail_order_id"/>
     </LinearLayout>
 
@@ -46,14 +46,14 @@
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
             android:textSize="25sp"
-            android:textColor="#FFFFFF"
+            android:textColor="@color/black"
             android:text="Delivery Time: "/>
 
         <TextView
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
             android:textSize="25sp"
-            android:textColor="#FFFFFF"
+            android:textColor="@color/black"
             android:id="@+id/order_detail_order_delivery_time"/>
     </LinearLayout>
 
@@ -66,14 +66,14 @@
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
             android:textSize="25sp"
-            android:textColor="#FFFFFF"
+            android:textColor="@color/black"
             android:text="Depart Time"/>
 
         <TextView
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
             android:textSize="25sp"
-            android:textColor="#FFFFFF"
+            android:textColor="@color/black"
             android:id="@+id/order_detail_order_depart_time"/>
     </LinearLayout>
 
@@ -86,14 +86,14 @@
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
             android:textSize="25sp"
-            android:textColor="#FFFFFF"
+            android:textColor="@color/black"
             android:text="Destination"/>
 
         <TextView
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
             android:textSize="25sp"
-            android:textColor="#FFFFFF"
+            android:textColor="@color/black"
             android:id="@+id/order_detail_order_destination"/>
     </LinearLayout>
 
@@ -106,14 +106,14 @@
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
             android:textSize="25sp"
-            android:textColor="#FFFFFF"
+            android:textColor="@color/black"
             android:text="Machine ID: "/>
 
         <TextView
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
             android:textSize="25sp"
-            android:textColor="#FFFFFF"
+            android:textColor="@color/black"
             android:id="@+id/order_detail_order_machine_id"/>
     </LinearLayout>
 
@@ -126,14 +126,14 @@
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
             android:textSize="25sp"
-            android:textColor="#FFFFFF"
+            android:textColor="@color/black"
             android:text="Pick-Up Time: "/>
 
         <TextView
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
             android:textSize="25sp"
-            android:textColor="#FFFFFF"
+            android:textColor="@color/black"
             android:id="@+id/order_detail_order_pick_up_time"/>
     </LinearLayout>
 
@@ -146,14 +146,14 @@
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
             android:textSize="25sp"
-            android:textColor="#FFFFFF"
+            android:textColor="@color/black"
             android:text="Shipping Address: "/>
 
         <TextView
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
             android:textSize="25sp"
-            android:textColor="#FFFFFF"
+            android:textColor="@color/black"
             android:id="@+id/order_detail_order_shipping_address"/>
     </LinearLayout>
 
@@ -166,14 +166,14 @@
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
             android:textSize="25sp"
-            android:textColor="#FFFFFF"
+            android:textColor="@color/black"
             android:text="Shipping Method: "/>
 
         <TextView
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
             android:textSize="25sp"
-            android:textColor="#FFFFFF"
+            android:textColor="@color/black"
             android:id="@+id/order_detail_shipping_method"/>
     </LinearLayout>
 
@@ -186,14 +186,14 @@
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
             android:textSize="25sp"
-            android:textColor="#FFFFFF"
+            android:textColor="@color/black"
             android:text="Shipping Time: "/>
 
         <TextView
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
             android:textSize="25sp"
-            android:textColor="#FFFFFF"
+            android:textColor="@color/black"
             android:id="@+id/order_detail_shipping_time"/>
     </LinearLayout>
 
@@ -206,14 +206,14 @@
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
             android:textSize="25sp"
-            android:textColor="#FFFFFF"
+            android:textColor="@color/black"
             android:text="User ID: "/>
 
         <TextView
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
             android:textSize="25sp"
-            android:textColor="#FFFFFF"
+            android:textColor="@color/black"
             android:id="@+id/order_detail_user_id"/>
     </LinearLayout>
 

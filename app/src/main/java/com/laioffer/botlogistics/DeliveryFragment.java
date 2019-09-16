@@ -1,27 +1,24 @@
 package com.laioffer.botlogistics;
 
-
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
-
 import androidx.annotation.CallSuper;
 import androidx.annotation.LayoutRes;
 import androidx.fragment.app.Fragment;
 
 import android.util.Log;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.TimePicker;
-import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
+
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -40,6 +37,7 @@ import com.laioffer.entity.Order;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+
 
 import java.util.Calendar;
 import java.util.HashMap;
@@ -119,7 +117,7 @@ public class DeliveryFragment extends Fragment {
                  pickUp = pickupEditText.getText().toString();
                  dropOff = dropoffEditText.getText().toString();
 
-                 // read by a calendar
+               // read by a calendar
                 Calendar cal = Calendar.getInstance();
                 cal.set(Calendar.HOUR, timePicker.getCurrentHour());
                 cal.set(Calendar.MINUTE, timePicker.getCurrentMinute());
@@ -168,6 +166,7 @@ public class DeliveryFragment extends Fragment {
                         }) {
                 };
                 queue.add(postRequest);
+
             }
         });
 

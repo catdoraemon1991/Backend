@@ -12,6 +12,7 @@ import androidx.annotation.NonNull;
 
 import com.laioffer.entity.Order;
 
+
 public class OrderDetailDialog extends Dialog {
     private Order order;
     public OrderDetailDialog(@NonNull Context context) {

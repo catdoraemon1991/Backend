@@ -14,7 +14,9 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+
 import com.laioffer.entity.Order;
+
 
 public class SearchActivity extends AppCompatActivity {
     protected TextView search_orderId;
@@ -61,6 +63,7 @@ public class SearchActivity extends AppCompatActivity {
                     search_orderId.setText(order.getOrderId());
                     search_shippingAddress.setText(order.getShippingAddress());
                     search_deliveryTime.setText(Utils.convertTime(order.getDeliveryTime()));
+
                 }else{
                     search_orderId.setText("Not Found");
                     search_shippingAddress.setText("Not Found");
