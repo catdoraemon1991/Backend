@@ -82,9 +82,6 @@ public class ControlPanel extends AppCompatActivity implements OrderFragment.OnI
                             Config.username = null;
                             logout();
                         }
-                        if(menuItem.getItemId() == R.id.drawer_search){
-                            search();
-                        }
                         return true;
                     }
                 });

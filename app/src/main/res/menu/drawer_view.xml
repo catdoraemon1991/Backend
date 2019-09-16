@@ -7,11 +7,6 @@
             android:icon="@drawable/baseline_home_black_18dp"
             android:title="Home" />
         <item
-            android:id="@+id/drawer_search"
-            android:checked="true"
-            android:icon="@drawable/baseline_search_black_18dp"
-            android:title="Search" />
-        <item
             android:id="@+id/drawer_logout"
             android:checked="true"
             android:icon="@drawable/baseline_settings_black_18dp"

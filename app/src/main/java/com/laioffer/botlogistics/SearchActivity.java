@@ -60,7 +60,7 @@ public class SearchActivity extends AppCompatActivity {
                     Order order = dataSnapshot.child(orderId).getValue(Order.class);
                     search_orderId.setText(order.getOrderId());
                     search_shippingAddress.setText(order.getShippingAddress());
-                    search_deliveryTime.setText(DataService.convertTime(order.getDeliveryTime()));
+                    search_deliveryTime.setText(Utils.convertTime(order.getDeliveryTime()));
                 }else{
                     search_orderId.setText("Not Found");
                     search_shippingAddress.setText("Not Found");

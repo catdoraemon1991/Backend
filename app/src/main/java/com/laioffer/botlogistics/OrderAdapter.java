@@ -99,7 +99,7 @@ public class OrderAdapter extends BaseAdapter{
         // set basic information for an order
         orderId.setText(r.getOrderId());
         orderShippingAddress.setText(r.getShippingAddress());
-        orderDeliveryTime.setText(DataService.convertTime(r.getDeliveryTime()));
+        orderDeliveryTime.setText(Utils.convertTime(r.getDeliveryTime()));
 
         // set order status
         Long now = System.currentTimeMillis();
