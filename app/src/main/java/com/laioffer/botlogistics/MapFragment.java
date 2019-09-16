@@ -42,7 +42,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
     private View view;
     private GoogleMap googleMap;
     private LocationTracker locationTracker;
-    LatLng latLng;
+    LatLng focusLatLng;
     private FloatingActionButton fabOrderDetail;
     private FloatingActionButton fabFocus;
     private OrderDetailDialog dialog;
@@ -114,10 +114,10 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
             @Override
             public void onClick(View view) {
                 CameraPosition cameraPosition = new CameraPosition.Builder()
-                        .target(latLng)      // Sets the center of the map to Mountain View
-                        .zoom(16)// Sets the zoom
+                        .target(focusLatLng)      // Sets the center of the map to Mountain View
+                        .zoom(12)// Sets the zoom
                         .bearing(0)           // Sets the orientation of the camera to east
-                        .tilt(30)                   // Sets the tilt of the camera to 30 degrees
+                        .tilt(0)                   // Sets the tilt of the camera to 30 degrees
                         .build();                   // Creates a CameraPosition from the builder
 
                 googleMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
@@ -132,10 +132,10 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
         if (getArguments() != null && getArguments().containsKey(ORDER)) {
             order = (Order) getArguments().get(ORDER);
         }
-        // get current location
-        locationTracker = new LocationTracker(getActivity());
-        locationTracker.getLocation();
-        latLng = new LatLng(locationTracker.getLatitude(), locationTracker.getLongitude());
+//        // get current location
+//        locationTracker = new LocationTracker(getActivity());
+//        locationTracker.getLocation();
+//        latLng = new LatLng(locationTracker.getLatitude(), locationTracker.getLongitude());
 
         return view;
     }
@@ -183,24 +183,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
         this.googleMap.setMapStyle(
                 MapStyleOptions.loadRawResourceStyle(
                         getActivity(), R.raw.style_json));
-
-        CameraPosition cameraPosition = new CameraPosition.Builder()
-                .target(latLng)      // Sets the center of the map to Mountain View
-                .zoom(16)// Sets the zoom
-                .bearing(0)           // Sets the orientation of the camera to north
-                .tilt(30)                   // Sets the tilt of the camera to 30 degrees
-                .build();                   // Creates a CameraPosition from the builder
-
-        googleMap.moveCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
-
-        MarkerOptions marker = new MarkerOptions().position(latLng).
-                title("You");
-
-        // Changing marker icon
-        marker.icon(BitmapDescriptorFactory.fromResource(R.drawable.boy));
-
-        // adding marker
-        googleMap.addMarker(marker);
+        this.googleMap.clear();
     }
 
     private void showDialog(String label, String prefillText) {
@@ -243,6 +226,9 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
             e.printStackTrace();
         }
 
+        // set the default camera position
+        focusLatLng = new LatLng(destination.getLat(), destination.getLog());
+
         Polyline line1 = googleMap.addPolyline(new PolylineOptions()
                 .add(new LatLng(station.getLat(), station.getLog()), new LatLng(shippingAddress.getLat(), shippingAddress.getLog()))
                 .width(20)
@@ -259,25 +245,25 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
 
         if(status.equals(Utils.DEPART_MESG) || status.equals(Utils.BEFORE_SHIP_MESG)){
             // package haven't been picked up
-            addMark(shippingAddress, "shippingAddress", R.drawable.box);
+            addMark(shippingAddress, "Your package is here", R.drawable.box);
         }else{
             // package haven been picked up
-            addMark(shippingAddress, "shippingAddress", R.drawable.checkmark);
+            addMark(shippingAddress, "Your package has been picked up", R.drawable.checkmark);
         }
 
         if(status.equals(Utils.DEPART_MESG) || status.equals(Utils.PICKUP_MESG)){
             if(order.getShippingMethod().equals("robot")){
                 // task is assigned to a robot
-                addMark(current, "current", R.drawable.robot);
+                addMark(current, "Robot on the way!", R.drawable.robot);
             }else {
                 // task is assigned to a drone
-                addMark(current, "current", R.drawable.drone);
+                addMark(current, "Drone on the way!", R.drawable.drone);
             }
         }
 
         if(status.equals(Utils.DELIVER_MESG)){
             // package have delivered
-            addMark(destination, "destination", R.drawable.destination);
+            addMark(destination, "delivered!", R.drawable.destination);
         }else{
             // package haven't delivered yet
             addMark(destination, "destination", R.drawable.location);
