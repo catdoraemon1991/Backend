@@ -21,16 +21,19 @@
         android:paddingTop="20dp"
         android:paddingRight="20dp">
 
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@android:color/darker_gray"/>
+        
         <TextView
             style="@style/TextAppearance.Widget.AppCompat.Toolbar.Title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="What is your package size?" />
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@android:color/darker_gray"/>
+
 
 
         <RadioGroup
