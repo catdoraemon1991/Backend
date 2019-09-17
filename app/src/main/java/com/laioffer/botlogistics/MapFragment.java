@@ -69,6 +69,11 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
     private OrderDetailDialog dialog;
     private Order order;
 
+    Location current = new Location();
+    Location station = new Location();
+    Location shippingAddress = new Location();
+    Location destination = new Location();
+    String status = new String();
 
     public static MapFragment newInstance(Order order) {
 
@@ -211,11 +216,6 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
     }
 
     private void generateTrack(JSONObject response) {
-        Location current = new Location();
-        Location station = new Location();
-        Location shippingAddress = new Location();
-        Location destination = new Location();
-        String status = new String();
         try {
             JSONObject currentJson = (JSONObject) response.get("currentLocation");
             current.setLat((Double) currentJson.get("latitude"))
@@ -226,6 +226,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
                     .setLog((Double) stationJson.get("longitude"));
 
             JSONObject shippingAddressJson = (JSONObject) response.get("shippingAddress");
+            Log.d("shippingAddressJson", shippingAddressJson.toString());
             shippingAddress.setLat((Double) shippingAddressJson.get("latitude"))
                     .setLog((Double) shippingAddressJson.get("longitude"));
 
@@ -286,8 +287,11 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
         );
 
         // station
-        addMark(station, "station", R.drawable.station);
-        Log.d("isEqual", Boolean.toString("delivered".equals(Utils.DELIVER_MESG)));
+        if(status.equals(Utils.BEFORE_SHIP_MESG)){
+            addMark(station, "Preparing your Machine...", R.drawable.station);
+        }else{
+            addMark(station, "Station", R.drawable.station);
+        }
 
         if(status.equals(Utils.DEPART_MESG) || status.equals(Utils.BEFORE_SHIP_MESG)){
             // package haven't been picked up
@@ -299,10 +303,10 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
 
         if(status.equals(Utils.DELIVER_MESG)){
             // package have delivered
-            addMark(destination, "delivered!", R.drawable.destination);
+            addMark(destination, "Delivered!", R.drawable.destination);
         }else{
             // package haven't delivered yet
-            addMark(destination, "destination", R.drawable.location);
+            addMark(destination, "Destination", R.drawable.location);
         }
 
 //        // set the machine to the original location and get the marker
@@ -315,6 +319,35 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
             marker = addMark(station, "Drone on the way!", R.drawable.drone);
         }
 
+        // move camera to destination
+        moveCamera(destination, marker);
+    }
+
+
+    private void moveCamera(Location loc, Marker marker){
+        LatLng latLng = new LatLng(loc.getLat(), loc.getLog());
+        CameraPosition cameraPosition = new CameraPosition.Builder()
+                .target(latLng)      // Sets the center of the map to Mountain View
+                .zoom(12)// Sets the zoom
+                .bearing(0)           // Sets the orientation of the camera to east
+                .tilt(0)                   // Sets the tilt of the camera to 30 degrees
+                .build();                   // Creates a CameraPosition from the builder
+
+        googleMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition),3000, new GoogleMap.CancelableCallback() {
+            @Override
+            public void onFinish() {
+                startAnimateMarker(marker);
+            }
+
+            @Override
+            public void onCancel() {
+
+            }
+        });
+        //googleMap.moveCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
+    }
+
+    private void startAnimateMarker(Marker marker){
         Queue<Location> locations = new LinkedList<>();
         // move the marker based on status
         if(status.equals(Utils.DEPART_MESG)){
@@ -333,17 +366,8 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
             animateMarker(marker, locations, true);
         }
     }
-
     private Marker addMark(Location loc, String text, int id){
         LatLng latLng = new LatLng(loc.getLat(), loc.getLog());
-        CameraPosition cameraPosition = new CameraPosition.Builder()
-                .target(latLng)      // Sets the center of the map to Mountain View
-                .zoom(12)// Sets the zoom
-                .bearing(0)           // Sets the orientation of the camera to east
-                .tilt(0)                   // Sets the tilt of the camera to 30 degrees
-                .build();                   // Creates a CameraPosition from the builder
-
-        googleMap.moveCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
 
         MarkerOptions marker = new MarkerOptions().position(latLng).title(text);
 
