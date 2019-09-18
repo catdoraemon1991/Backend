@@ -34,6 +34,7 @@
             android:layout_width="wrap_content"
             android:textSize="25sp"
             android:textColor="@color/black"
+            android:textIsSelectable="true"
             android:id="@+id/order_detail_order_id"/>
     </LinearLayout>
 
@@ -54,6 +55,7 @@
             android:layout_width="wrap_content"
             android:textSize="25sp"
             android:textColor="@color/black"
+            android:textIsSelectable="true"
             android:id="@+id/order_detail_order_delivery_time"/>
     </LinearLayout>
 
@@ -74,6 +76,7 @@
             android:layout_width="wrap_content"
             android:textSize="25sp"
             android:textColor="@color/black"
+            android:textIsSelectable="true"
             android:id="@+id/order_detail_order_depart_time"/>
     </LinearLayout>
 
@@ -94,6 +97,7 @@
             android:layout_width="wrap_content"
             android:textSize="25sp"
             android:textColor="@color/black"
+            android:textIsSelectable="true"
             android:id="@+id/order_detail_order_destination"/>
     </LinearLayout>
 
@@ -114,6 +118,7 @@
             android:layout_width="wrap_content"
             android:textSize="25sp"
             android:textColor="@color/black"
+            android:textIsSelectable="true"
             android:id="@+id/order_detail_order_machine_id"/>
     </LinearLayout>
 
@@ -134,6 +139,7 @@
             android:layout_width="wrap_content"
             android:textSize="25sp"
             android:textColor="@color/black"
+            android:textIsSelectable="true"
             android:id="@+id/order_detail_order_pick_up_time"/>
     </LinearLayout>
 
@@ -154,6 +160,7 @@
             android:layout_width="wrap_content"
             android:textSize="25sp"
             android:textColor="@color/black"
+            android:textIsSelectable="true"
             android:id="@+id/order_detail_order_shipping_address"/>
     </LinearLayout>
 
@@ -174,6 +181,7 @@
             android:layout_width="wrap_content"
             android:textSize="25sp"
             android:textColor="@color/black"
+            android:textIsSelectable="true"
             android:id="@+id/order_detail_shipping_method"/>
     </LinearLayout>
 
@@ -194,6 +202,7 @@
             android:layout_width="wrap_content"
             android:textSize="25sp"
             android:textColor="@color/black"
+            android:textIsSelectable="true"
             android:id="@+id/order_detail_shipping_time"/>
     </LinearLayout>
 
@@ -214,6 +223,7 @@
             android:layout_width="wrap_content"
             android:textSize="25sp"
             android:textColor="@color/black"
+            android:textIsSelectable="true"
             android:id="@+id/order_detail_user_id"/>
     </LinearLayout>
 

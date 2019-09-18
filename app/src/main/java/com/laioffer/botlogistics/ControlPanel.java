@@ -4,6 +4,7 @@ package com.laioffer.botlogistics;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
@@ -12,6 +13,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.arlib.floatingsearchview.FloatingSearchView;
 import com.arlib.floatingsearchview.suggestions.model.SearchSuggestion;
@@ -135,6 +137,7 @@ public class ControlPanel extends AppCompatActivity implements OrderFragment.OnI
 
     @Override
     public void onBackPressed() {
+        Log.d("fragment left", Integer.toString(getSupportFragmentManager().getBackStackEntryCount()));
         if (getSupportFragmentManager().getBackStackEntryCount() > 0) {
             getSupportFragmentManager().popBackStack();
         } else {
@@ -171,7 +174,9 @@ public class ControlPanel extends AppCompatActivity implements OrderFragment.OnI
 
     @Override
     public void doTransactionFragment(Fragment fragment) {
-        getSupportFragmentManager().beginTransaction().replace(R.id.content_frame, fragment).addToBackStack(null).commit();
+        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+        ft.setCustomAnimations(R.anim.slide_in_left, R.anim.slide_out_right);
+        ft.replace(R.id.content_frame, fragment).addToBackStack(null).commit();
     }
 
     @Override

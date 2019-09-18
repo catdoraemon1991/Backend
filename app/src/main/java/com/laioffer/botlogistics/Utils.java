@@ -48,5 +48,13 @@ public class Utils {
 
         return formatter.format(calendar.getTime());
     }
+
+    public static String convertPrice(Double price){
+        return String.format("%.2f $", price);
+    }
+
+    public static String convertDuration(Double duration){
+        return String.format("%.2f s", duration);
+    }
 }
 

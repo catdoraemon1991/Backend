@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -73,8 +74,8 @@ public class OrderConfirmationFragment extends Fragment {
         confirmShippingMethod.setText(confirm.getShippingMethod());
         confirmStationId.setText(confirm.getStationId());
         confirmUserId.setText(confirm.getUserId());
-        confirmDuration.setText(Double.toString(confirm.getDuration()));
-        confirmPrice.setText(Double.toString(confirm.getPrice()));
+        confirmDuration.setText(Utils.convertDuration(confirm.getDuration()));
+        confirmPrice.setText(Utils.convertPrice(confirm.getPrice()));
 
         confirmButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -110,6 +111,7 @@ public class OrderConfirmationFragment extends Fragment {
                             public void onErrorResponse(VolleyError error) {
                                 //   Handle Error
                                 Log.d("Error", error.toString());
+                                Toast.makeText(getActivity(),"Invalid choice!", Toast.LENGTH_SHORT).show();
                             }
                         }) {
                 };

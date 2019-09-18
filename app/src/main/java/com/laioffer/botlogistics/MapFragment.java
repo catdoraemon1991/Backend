@@ -6,15 +6,18 @@ import android.os.Bundle;
 
 import androidx.annotation.IdRes;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import android.os.Handler;
+import android.os.Message;
 import android.os.SystemClock;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.BounceInterpolator;
 import android.view.animation.Interpolator;
 import android.view.animation.LinearInterpolator;
 
@@ -62,18 +65,23 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
     private RouteOverlayView mRouteOverlayView;
     private List<LatLng> track;
 
-    LatLng focusLatLng;
+    private LatLng focusLatLng;
 
     private FloatingActionButton fabOrderDetail;
     private FloatingActionButton fabFocus;
     private OrderDetailDialog dialog;
     private Order order;
 
-    Location current = new Location();
-    Location station = new Location();
-    Location shippingAddress = new Location();
-    Location destination = new Location();
-    String status = new String();
+    private Location current = new Location();
+    private Location station = new Location();
+    private Location shippingAddress = new Location();
+    private Location destination = new Location();
+    private String status = new String();
+
+    private Marker stationMarker;
+    private Marker boxMarker;
+    private Marker machineMarker;
+    private Marker destinationMarker;
 
     public static MapFragment newInstance(Order order) {
 
@@ -276,7 +284,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
                 .setCameraPosition(googleMap.getCameraPosition())
                 .setProjection(googleMap.getProjection())
                 .setLatLngs(track)
-                .setBottomLayerColor(Color.RED)
+                .setBottomLayerColor(Color.YELLOW)
                 .setTopLayerColor(Color.GREEN)
                 .create();
         });
@@ -288,39 +296,38 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
 
         // station
         if(status.equals(Utils.BEFORE_SHIP_MESG)){
-            addMark(station, "Preparing your Machine...", R.drawable.station);
+            stationMarker = addMark(station, "Preparing your Machine...", R.drawable.station);
         }else{
-            addMark(station, "Station", R.drawable.station);
+            stationMarker = addMark(station, "Station", R.drawable.station);
         }
 
         if(status.equals(Utils.DEPART_MESG) || status.equals(Utils.BEFORE_SHIP_MESG)){
             // package haven't been picked up
-            addMark(shippingAddress, "Your package is here", R.drawable.box);
+            boxMarker = addMark(shippingAddress, "Your package is here", R.drawable.box);
         }else{
             // package haven been picked up
-            addMark(shippingAddress, "Your package has been picked up", R.drawable.checkmark);
+            boxMarker = addMark(shippingAddress, "Your package has been picked up", R.drawable.checkmark);
         }
 
         if(status.equals(Utils.DELIVER_MESG)){
             // package have delivered
-            addMark(destination, "Delivered!", R.drawable.destination);
+            destinationMarker = addMark(destination, "Delivered!", R.drawable.destination);
         }else{
             // package haven't delivered yet
-            addMark(destination, "Destination", R.drawable.location);
+            destinationMarker = addMark(destination, "Destination", R.drawable.location);
         }
 
-//        // set the machine to the original location and get the marker
-        Marker marker;
+       // set the machine to the original location and get the marker
         if(order.getShippingMethod().equals("robot")){
             // task is assigned to a robot
-            marker = addMark(station, "Robot on the way!", R.drawable.robot);
+            machineMarker = addMark(station, "Robot on the way!", R.drawable.robot);
         }else {
             // task is assigned to a drone
-            marker = addMark(station, "Drone on the way!", R.drawable.drone);
+            machineMarker = addMark(station, "Drone on the way!", R.drawable.drone);
         }
 
         // move camera to destination
-        moveCamera(destination, marker);
+        moveCamera(destination, machineMarker);
     }
 
 
@@ -336,6 +343,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
         googleMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition),3000, new GoogleMap.CancelableCallback() {
             @Override
             public void onFinish() {
+                dropOtherMarker();
                 startAnimateMarker(marker);
             }
 
@@ -366,6 +374,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
             animateMarker(marker, locations, true);
         }
     }
+
     private Marker addMark(Location loc, String text, int id){
         LatLng latLng = new LatLng(loc.getLat(), loc.getLog());
 
@@ -423,6 +432,39 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
                 }
             }
         });
+    }
+
+    private void dropPinEffect(final Marker marker) {
+        final Handler handler = new Handler();
+        final long start = SystemClock.uptimeMillis();
+        final long duration = 1500;
+
+        final Interpolator interpolator = new BounceInterpolator();
+
+        handler.post(new Runnable() {
+            @Override
+            public void run() {
+                long elapsed = SystemClock.uptimeMillis() - start;
+                float t = Math.max(
+                        1 - interpolator.getInterpolation((float) elapsed
+                                / duration), 0);
+                marker.setAnchor(0.5f, 1.0f + 14 * t);
+
+                if (t > 0.0) {
+                    // Post again 15ms later.
+                    handler.postDelayed(this, 15);
+                } else {
+                    marker.showInfoWindow();
+
+                }
+            }
+        });
+    }
+
+    private void dropOtherMarker(){
+        dropPinEffect(stationMarker);
+        dropPinEffect(boxMarker);
+        dropPinEffect(destinationMarker);
     }
 
 }

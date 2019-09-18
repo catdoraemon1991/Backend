@@ -41,21 +41,21 @@ public class OrderDetailDialog extends Dialog {
         TextView orderId = (TextView) findViewById(R.id.order_detail_order_id);
         orderId.setText(order.getOrderId());
         TextView orderDeliveryTime = (TextView) findViewById(R.id.order_detail_order_delivery_time);
-        orderDeliveryTime.setText(Long.toString(order.getDeliveryTime()));
+        orderDeliveryTime.setText(Utils.convertTime(order.getDeliveryTime()));
         TextView orderDepartTime = (TextView) findViewById(R.id.order_detail_order_depart_time);
-        orderDepartTime.setText(Long.toString(order.getDepartTime()));
+        orderDepartTime.setText(Utils.convertTime(order.getDepartTime()));
         TextView orderDestination = (TextView) findViewById(R.id.order_detail_order_destination);
         orderDestination.setText(order.getDestination());
         TextView orderMachineId = (TextView) findViewById(R.id.order_detail_order_machine_id);
         orderMachineId.setText(order.getMachineId());
         TextView orderPickupTime = (TextView) findViewById(R.id.order_detail_order_pick_up_time);
-        orderPickupTime.setText(Long.toString(order.getPickupTime()));
+        orderPickupTime.setText(Utils.convertTime(order.getPickupTime()));
         TextView orderShippingAddress = (TextView) findViewById(R.id.order_detail_order_shipping_address);
         orderShippingAddress.setText(order.getShippingAddress());
         TextView orderShippingMethod = (TextView) findViewById(R.id.order_detail_shipping_method);
         orderShippingMethod.setText(order.getShippingMethod());
         TextView orderShippingTime = (TextView) findViewById(R.id.order_detail_shipping_time);
-        orderShippingTime.setText(Long.toString(order.getShippingTime()));
+        orderShippingTime.setText(Utils.convertTime(order.getShippingTime()));
         TextView orderUserId = (TextView) findViewById(R.id.order_detail_user_id);
         orderUserId.setText(order.getUserId());
     }

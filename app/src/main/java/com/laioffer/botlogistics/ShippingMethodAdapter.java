@@ -92,8 +92,8 @@ public class ShippingMethodAdapter extends BaseAdapter {
         // set basic information for an order
         methodStation.setText(method.getStation());
         methodQuantity.setText(Integer.toString(method.getQuantity()));
-        methodPrice.setText(Double.toString(method.getPrice()));
-        methodDuration.setText(Double.toString(method.getDutation()));
+        methodPrice.setText(Utils.convertPrice(method.getPrice()));
+        methodDuration.setText(Utils.convertDuration(method.getDutation()));
 
         return convertView;
     }
