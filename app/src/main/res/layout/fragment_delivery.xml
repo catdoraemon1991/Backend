@@ -34,8 +34,6 @@
             android:text="What is your package size?" />
 
 
-
-
         <RadioGroup
             android:id="@+id/size"
             android:layout_width="wrap_content"

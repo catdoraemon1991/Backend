@@ -37,7 +37,7 @@ public class OnBoardingActivity extends AppCompatActivity implements Transaction
     }
 
     @Override
-    public void doTransactionFragment(Fragment fragment) {
+    public void doTransactionFragment(Fragment fragment, boolean isAnimate, boolean isAddBackStack) {
 
     }
 

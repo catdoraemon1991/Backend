@@ -16,9 +16,7 @@ import android.widget.ListView;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.gson.Gson;
 import com.laioffer.entity.ConfirmationRequest;
-import com.laioffer.entity.Order;
 import com.laioffer.entity.ShippingMethod;
 
 import org.json.JSONException;
@@ -130,7 +128,7 @@ public class ShippingMethodFragment extends Fragment implements TransactionManag
                         .setDuration(method.getDutation())
                         .setPrice(method.getPrice());
                 orderConfirmationFragment = OrderConfirmationFragment.newInstance(confirm);
-                doTransactionFragment(orderConfirmationFragment);
+                doTransactionFragment(orderConfirmationFragment, true, true);
             }
         });
 
@@ -151,7 +149,7 @@ public class ShippingMethodFragment extends Fragment implements TransactionManag
     }
 
     @Override
-    public void doTransactionFragment(Fragment fragment) {
+    public void doTransactionFragment(Fragment fragment, boolean isAnimate, boolean isAddBackStack) {
         getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.content_frame, fragment).addToBackStack(null).commit();
     }
 
