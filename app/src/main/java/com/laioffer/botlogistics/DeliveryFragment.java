@@ -14,34 +14,23 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioGroup;
-import android.widget.TextView;
 import android.widget.TimePicker;
-
-import com.android.volley.AuthFailureError;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
 
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 import com.laioffer.entity.ConfirmationRequest;
-import com.laioffer.entity.Order;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
 
 import java.util.Calendar;
-import java.util.HashMap;
-import java.util.Map;
 
 public class DeliveryFragment extends Fragment {
     protected EditText pickupEditText;
@@ -154,7 +143,7 @@ public class DeliveryFragment extends Fragment {
                                 confirm.setDestination(dropOff);
                                 confirm.setShippingAddress(pickUp);
                                 confirm.setShippingTime(time);
-                                transactionManager.doTransactionFragment(ShippingMethodFragment.newInstance(response, confirm));
+                                transactionManager.doTransactionFragment(ShippingMethodFragment.newInstance(response, confirm), true, true);
                             }
                         },
                         new Response.ErrorListener() {

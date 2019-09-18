@@ -15,7 +15,6 @@
     <style name="MyTheme.EditText" parent="Theme.AppCompat.Light">
         <!-- Inactive underline color-->
         <item name="colorControlNormal">@color/colorLightGrey</item>
-
         <!-- Cursor and Active underline color, uses colorAccent by default if not defined-->
         <item name="colorControlActivated">@color/colorYellow</item>
     </style>

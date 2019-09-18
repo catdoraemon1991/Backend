@@ -21,7 +21,6 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.laioffer.entity.ConfirmationRequest;
-import com.laioffer.entity.ShippingMethod;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -103,7 +102,7 @@ public class OrderConfirmationFragment extends Fragment {
                             @Override
                             public void onResponse(JSONObject response) {
                                 Log.d("Response", response.toString());
-                                transactionManager.doTransactionFragment(new OrderFragment());
+                                transactionManager.doTransactionFragment(new OrderFragment(), true, true);
                             }
                         },
                         new Response.ErrorListener() {

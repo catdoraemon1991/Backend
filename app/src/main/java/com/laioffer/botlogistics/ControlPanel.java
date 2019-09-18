@@ -25,10 +25,11 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.laioffer.entity.Order;
 
-public class ControlPanel extends AppCompatActivity implements OrderFragment.OnItemSelectListener, TransactionManager{
+public class ControlPanel extends AppCompatActivity implements OrderFragment.OnItemSelectListener, TransactionManager {
     private DrawerLayout drawerLayout;
     private OrderFragment orderFragment;
     private DatabaseReference database;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -79,9 +80,10 @@ public class ControlPanel extends AppCompatActivity implements OrderFragment.OnI
                             logout();
                         }
 
-                        if (menuItem.getItemId() == R.id.drawer_home) {
-                            doTransactionFragment(new OrderFragment());
-                        }
+                        //TODO implement updates
+//                        if (menuItem.getItemId() == R.id.drawer_home) {
+//                            doTransactionFragment(new OrderFragment(), true, false);
+//                        }
                         return true;
                     }
                 });
@@ -92,24 +94,20 @@ public class ControlPanel extends AppCompatActivity implements OrderFragment.OnI
         final FloatingSearchView mSearchView = findViewById(R.id.floating_search_view);
 
         mSearchView.setOnHomeActionClickListener(
-                new FloatingSearchView.OnHomeActionClickListener() {
-                    @Override
-                    public void onHomeClicked() {
-                        drawerLayout.openDrawer(GravityCompat.START);
-                    }
-                });
+                () -> drawerLayout.openDrawer(GravityCompat.START));
 
         // set listener to search content
         mSearchView.setOnSearchListener(new FloatingSearchView.OnSearchListener() {
             @Override
             public void onSuggestionClicked(SearchSuggestion searchSuggestion) {
             }
+
             @Override
             public void onSearchAction(final String currentQuery) {
                 database.child("order").addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
-                        if(dataSnapshot.hasChild(currentQuery)){
+                        if (dataSnapshot.hasChild(currentQuery)) {
                             Order order = dataSnapshot.child(currentQuery).getValue(Order.class);
                             OrderDetailDialog dialog = OrderDetailDialog.newInstance(context, order);
                             dialog.show();
@@ -125,14 +123,13 @@ public class ControlPanel extends AppCompatActivity implements OrderFragment.OnI
 
         // add Fragment to the activity
         orderFragment = OrderFragment.newInstance();
-        doTransactionFragment(orderFragment);
+        doTransactionFragment(orderFragment, true, false);
 
     }
 
     @Override
     public void onItemSelected(int position, Order order) {
-        doTransactionFragment(MapFragment.newInstance(order));
-
+        doTransactionFragment(MapFragment.newInstance(order), true, true);
     }
 
     @Override
@@ -169,14 +166,19 @@ public class ControlPanel extends AppCompatActivity implements OrderFragment.OnI
         finish();
     }
 
-    private void search(){
+    private void search() {
     }
 
     @Override
-    public void doTransactionFragment(Fragment fragment) {
+    public void doTransactionFragment(Fragment fragment, boolean isAnimate, boolean isAddBackStack) {
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-        ft.setCustomAnimations(R.anim.slide_in_left, R.anim.slide_out_right);
-        ft.replace(R.id.content_frame, fragment).addToBackStack(null).commit();
+        if (isAddBackStack) {
+            ft.addToBackStack(null);
+        }
+        if (isAnimate) {
+            ft.setCustomAnimations(R.anim.slide_in_left, R.anim.slide_out_right);
+        }
+        ft.replace(R.id.content_frame, fragment).commit();
     }
 
     @Override

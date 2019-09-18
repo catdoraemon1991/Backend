@@ -2,7 +2,6 @@ package com.laioffer.botlogistics;
 
 
 import android.content.Context;
-import android.graphics.Color;
 import android.os.Bundle;
 
 import androidx.annotation.LayoutRes;
@@ -138,7 +137,7 @@ public class OrderFragment extends Fragment{
 
 
     private void showDialog(String label, String prefillText) {
-        transactionManager.doTransactionFragment(DeliveryFragment.newInstance());
+        transactionManager.doTransactionFragment(DeliveryFragment.newInstance(), true, true);
     }
 
     // get selected order
