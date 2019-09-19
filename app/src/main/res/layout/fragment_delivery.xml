@@ -107,7 +107,7 @@
                 android:theme="@style/MyTheme.EditText"
                 android:maxLines="1"
                 android:inputType="text"
-                android:text="Steiner St, Hayes St, San Francisco, CA 94117"/>
+                android:text="1256 Mission St, San Francisco, CA 94103"/>
 
         </com.google.android.material.textfield.TextInputLayout>
 

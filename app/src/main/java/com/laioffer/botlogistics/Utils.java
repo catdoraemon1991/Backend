@@ -19,8 +19,9 @@ public class Utils {
     public static final String DEPART_MESG = "departed, on its way to pickup";
     public static final String PICKUP_MESG = "picked up, on its way to destination";
     public static final String DELIVER_MESG = "delivered";
-    public static final String VALID_SHIPPING_ADDRESS = "Steiner St &, Hayes St, San Francisco, CA 94117";
+    public static final String VALID_SHIPPING_ADDRESS = "1256 Mission St, San Francisco, CA 94103";
     public static final String VALID_DESTINATION = "2130 Fulton St, San Francisco, CA 94117";
+    public static final String DEMO_DELIVEREDCASE = "tsexWfCunBxim8kF";
     /**
      * Md5 encryption, encode string
      * @param input the string to be encoded
