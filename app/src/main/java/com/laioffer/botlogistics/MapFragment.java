@@ -306,7 +306,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
             boxMarker = addMark(shippingAddress, "Your package is here", R.drawable.box);
         }else{
             // package haven been picked up
-            boxMarker = addMark(shippingAddress, "Your package has been picked up", R.drawable.checkmark);
+            boxMarker = addMark(shippingAddress, "Your package has been picked up", R.drawable.ic_box);
         }
 
         if(status.equals(Utils.DELIVER_MESG)){

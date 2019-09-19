@@ -5,35 +5,46 @@
     android:id="@+id/event_type_layout_id"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFFFFF">
+    android:layout_marginTop="140dp"
+    android:elevation="5dp"
+    android:background="@drawable/dialogshape">
 
     <TextView
         android:layout_height="wrap_content"
         android:layout_width="match_parent"
         android:gravity="center"
-        android:textSize="25sp"
-        android:textColor="@color/black"
-        android:paddingTop="25dp"
+        style="@style/TextAppearance.Widget.AppCompat.Toolbar.Title"
+        android:textSize="28sp"
+        android:paddingTop="35dp"
         android:paddingBottom="25dp"
-        android:text="Order detail"/>
+        android:text="Order Details"/>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:paddingLeft="24dp"
+        android:paddingRight="24dp"
         android:orientation="horizontal">
+        <ImageView
+            android:src="@drawable/ic_yellowcube"
+            android:layout_width="12dp"
+            android:layout_height="12dp"
+            android:layout_marginRight="14dp"
+            android:layout_gravity="center"/>
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            style="@style/TextAppearance.Widget.AppCompat.Toolbar.Subtitle"
+            android:textSize="20sp"
+            android:textColor="@color/colorDarkGrey"
+            android:text="Order ID "/>
 
         <TextView
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
-            android:textSize="25sp"
-            android:textColor="@color/black"
-            android:text="Order ID: "/>
-
-        <TextView
-            android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
-            android:textSize="25sp"
-            android:textColor="@color/black"
+            android:textSize="20sp"
+            style="@style/TextAppearance.Widget.AppCompat.Toolbar.Subtitle"
+            android:textColor="@color/colorDarkGrey"
             android:textIsSelectable="true"
             android:id="@+id/order_detail_order_id"/>
     </LinearLayout>
@@ -41,104 +52,24 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:paddingLeft="24dp"
+        android:paddingRight="24dp"
+        android:paddingTop="8dp"
         android:orientation="horizontal">
 
         <TextView
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
-            android:textSize="25sp"
-            android:textColor="@color/black"
-            android:text="Delivery Time: "/>
+            android:paddingLeft="28dp"
+            style="@style/TextAppearance.Widget.AppCompat.Toolbar.Subtitle"
+            android:textSize="15sp"
+            android:text="Pick up at "/>
 
         <TextView
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
-            android:textSize="25sp"
-            android:textColor="@color/black"
-            android:textIsSelectable="true"
-            android:id="@+id/order_detail_order_delivery_time"/>
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <TextView
-            android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
-            android:textSize="25sp"
-            android:textColor="@color/black"
-            android:text="Depart Time"/>
-
-        <TextView
-            android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
-            android:textSize="25sp"
-            android:textColor="@color/black"
-            android:textIsSelectable="true"
-            android:id="@+id/order_detail_order_depart_time"/>
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <TextView
-            android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
-            android:textSize="25sp"
-            android:textColor="@color/black"
-            android:text="Destination"/>
-
-        <TextView
-            android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
-            android:textSize="25sp"
-            android:textColor="@color/black"
-            android:textIsSelectable="true"
-            android:id="@+id/order_detail_order_destination"/>
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <TextView
-            android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
-            android:textSize="25sp"
-            android:textColor="@color/black"
-            android:text="Machine ID: "/>
-
-        <TextView
-            android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
-            android:textSize="25sp"
-            android:textColor="@color/black"
-            android:textIsSelectable="true"
-            android:id="@+id/order_detail_order_machine_id"/>
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <TextView
-            android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
-            android:textSize="25sp"
-            android:textColor="@color/black"
-            android:text="Pick-Up Time: "/>
-
-        <TextView
-            android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
-            android:textSize="25sp"
-            android:textColor="@color/black"
+            android:textSize="15sp"
+            style="@style/TextAppearance.Widget.AppCompat.Toolbar.Subtitle"
             android:textIsSelectable="true"
             android:id="@+id/order_detail_order_pick_up_time"/>
     </LinearLayout>
@@ -146,20 +77,23 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:paddingLeft="24dp"
+        android:paddingRight="24dp"
         android:orientation="horizontal">
 
         <TextView
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
-            android:textSize="25sp"
-            android:textColor="@color/black"
-            android:text="Shipping Address: "/>
+            android:paddingLeft="80dp"
+            style="@style/TextAppearance.Widget.AppCompat.Toolbar.Subtitle"
+            android:textSize="15sp"
+            android:text="from "/>
 
         <TextView
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
-            android:textSize="25sp"
-            android:textColor="@color/black"
+            android:textSize="15sp"
+            style="@style/TextAppearance.Widget.AppCompat.Toolbar.Subtitle"
             android:textIsSelectable="true"
             android:id="@+id/order_detail_order_shipping_address"/>
     </LinearLayout>
@@ -167,41 +101,138 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:paddingLeft="24dp"
+        android:paddingRight="24dp"
         android:orientation="horizontal">
 
         <TextView
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
-            android:textSize="25sp"
-            android:textColor="@color/black"
-            android:text="Shipping Method: "/>
+            android:textSize="15sp"
+            android:paddingLeft="28dp"
+            android:text="Deliver at    "
+            style="@style/TextAppearance.Widget.AppCompat.Toolbar.Subtitle" />
 
         <TextView
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
-            android:textSize="25sp"
-            android:textColor="@color/black"
+            android:textSize="15sp"
+            style="@style/TextAppearance.Widget.AppCompat.Toolbar.Subtitle"
             android:textIsSelectable="true"
-            android:id="@+id/order_detail_shipping_method"/>
+            android:id="@+id/order_detail_order_delivery_time"/>
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:paddingLeft="24dp"
+        android:paddingRight="24dp"
         android:orientation="horizontal">
 
         <TextView
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
-            android:textSize="25sp"
-            android:textColor="@color/black"
-            android:text="Shipping Time: "/>
+            android:paddingLeft="80dp"
+            style="@style/TextAppearance.Widget.AppCompat.Toolbar.Subtitle"
+            android:textSize="15sp"
+            android:text="to "/>
 
         <TextView
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
-            android:textSize="25sp"
-            android:textColor="@color/black"
+            android:textSize="15sp"
+            style="@style/TextAppearance.Widget.AppCompat.Toolbar.Subtitle"
+            android:textIsSelectable="true"
+            android:id="@+id/order_detail_order_destination"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="24dp"
+        android:paddingRight="24dp"
+        android:orientation="horizontal">
+        <ImageView
+            android:src="@drawable/ic_yellowcube"
+            android:layout_width="12dp"
+            android:layout_height="12dp"
+            android:layout_marginRight="14dp"
+            android:layout_gravity="center"/>
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            style="@style/TextAppearance.Widget.AppCompat.Toolbar.Subtitle"
+            android:textSize="20sp"
+            android:text="Carried by"/>
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:textSize="20sp"
+            style="@style/TextAppearance.Widget.AppCompat.Toolbar.Subtitle"
+            android:textColor="@color/colorDarkGrey"
+            android:textIsSelectable="true"
+            android:id="@+id/order_detail_shipping_method"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="24dp"
+        android:paddingRight="24dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:paddingLeft="28dp"
+            android:paddingTop="8dp"
+            android:textSize="15sp"
+            style="@style/TextAppearance.Widget.AppCompat.Toolbar.Subtitle"
+            android:textColor="@color/colorDarkGrey"
+            android:textIsSelectable="true"
+            android:id="@+id/order_detail_order_machine_id"/>
+
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            style="@style/TextAppearance.Widget.AppCompat.Toolbar.Subtitle"
+            android:textSize="15sp"
+            android:text=" departed from station at "/>
+
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:textSize="15sp"
+            style="@style/TextAppearance.Widget.AppCompat.Toolbar.Subtitle"
+            android:textIsSelectable="true"
+            android:id="@+id/order_detail_order_depart_time"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="24dp"
+        android:paddingRight="24dp"
+        android:orientation="horizontal">
+        <ImageView
+            android:src="@drawable/ic_yellowcube"
+            android:layout_width="12dp"
+            android:layout_height="12dp"
+            android:layout_marginRight="14dp"
+            android:layout_gravity="center"/>
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            style="@style/TextAppearance.Widget.AppCompat.Toolbar.Subtitle"
+            android:textSize="20sp"
+            android:text="This order takes "/>
+
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:textSize="20sp"
+            style="@style/TextAppearance.Widget.AppCompat.Toolbar.Subtitle"
             android:textIsSelectable="true"
             android:id="@+id/order_detail_shipping_time"/>
     </LinearLayout>
@@ -209,20 +240,25 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:paddingLeft="24dp"
+        android:paddingRight="24dp"
+        android:paddingTop="24dp"
         android:orientation="horizontal">
 
         <TextView
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
-            android:textSize="25sp"
-            android:textColor="@color/black"
-            android:text="User ID: "/>
+            style="@style/TextAppearance.Widget.AppCompat.Toolbar.Subtitle"
+            android:textColor="@color/colorYellow"
+            android:textSize="20sp"
+            android:text="Thank you for your order, "/>
 
         <TextView
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
-            android:textSize="25sp"
-            android:textColor="@color/black"
+            android:textSize="20sp"
+            style="@style/TextAppearance.Widget.AppCompat.Toolbar.Subtitle"
+            android:textColor="@color/colorDarkGrey"
             android:textIsSelectable="true"
             android:id="@+id/order_detail_user_id"/>
     </LinearLayout>
