@@ -49,4 +49,12 @@ public class OnBoardingActivity extends AppCompatActivity implements Transaction
             finish();
         }
     }
+
+    @Override
+    public void doCleanBackStack() {
+    }
+
+    @Override
+    public void doBackStack() {
+    }
 }

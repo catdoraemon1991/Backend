@@ -15,6 +15,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioGroup;
 import android.widget.TimePicker;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -103,59 +104,66 @@ public class DeliveryFragment extends Fragment {
         submitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                 pickUp = pickupEditText.getText().toString();
-                 dropOff = dropoffEditText.getText().toString();
+                if (size == null) {
+                    Toast.makeText(getActivity(), "Please choose size of your package!", Toast.LENGTH_SHORT).show();
+                } else {
+                    pickUp = pickupEditText.getText().toString();
+                    dropOff = dropoffEditText.getText().toString();
 
-               // read by a calendar
-                Calendar cal = Calendar.getInstance();
-                cal.set(Calendar.HOUR, timePicker.getCurrentHour());
-                cal.set(Calendar.MINUTE, timePicker.getCurrentMinute());
-                time = cal.getTimeInMillis();
+                    // read by a calendar
+                    Calendar cal = Calendar.getInstance();
+                    cal.set(Calendar.HOUR, timePicker.getCurrentHour());
+                    cal.set(Calendar.MINUTE, timePicker.getCurrentMinute());
+                    time = cal.getTimeInMillis();
 
-                 Log.d("pickUp", pickUp);
-                 Log.d("dropOff", dropOff);
-                 Log.d("time", Long.toString(time));
-                 Log.d("size", size);
+                    Log.d("pickUp", pickUp);
+                    Log.d("dropOff", dropOff);
+                    Log.d("time", Long.toString(time));
+                    Log.d("size", size);
 
-                 submitButton.setText("Clicked !");
+                    submitButton.setText("Clicked !");
 
-                // Instantiate the RequestQueue.
-                RequestQueue queue = HttpHelper.getInstance(getContext()).getRequestQueue();
-                String url = Config.url_prefix + "shippingMethod";
+                    // Instantiate the RequestQueue.
+                    RequestQueue queue = HttpHelper.getInstance(getContext()).getRequestQueue();
+                    String url = Config.url_prefix + "shippingMethod";
 
-                JSONObject parameters = new JSONObject();
-                try {
-                    parameters.put("destination", dropOff);
-                    parameters.put("shippingAddress", pickUp);
-                    parameters.put("shippingTime", time);
-                    parameters.put("size", size);
-                } catch (JSONException e) {
-                    e.printStackTrace();
+                    JSONObject parameters = new JSONObject();
+                    try {
+                        parameters.put("destination", dropOff);
+                        parameters.put("shippingAddress", pickUp);
+                        parameters.put("shippingTime", time);
+                        parameters.put("size", size);
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+
+                    JsonObjectRequest postRequest = new JsonObjectRequest(Request.Method.POST, url,
+                            parameters,
+                            new Response.Listener<JSONObject>() {
+                                @Override
+                                public void onResponse(JSONObject response) {
+                                    Log.d("Response", response.toString());
+                                    if (response.has("Error")) {
+                                        //   Handle Error
+                                        Toast.makeText(getActivity(), "Invalid addresses, please verify using google map", Toast.LENGTH_SHORT).show();
+                                    } else {
+                                        ConfirmationRequest confirm = new ConfirmationRequest();
+                                        confirm.setDestination(dropOff);
+                                        confirm.setShippingAddress(pickUp);
+                                        confirm.setShippingTime(time);
+                                        transactionManager.doTransactionFragment(ShippingMethodFragment.newInstance(response, confirm), true, true);
+                                    }
+                                }
+                            },
+                            new Response.ErrorListener() {
+                                @Override
+                                public void onErrorResponse(VolleyError error) {
+                                    Log.d("Error", error.toString());
+                                }
+                            }) {
+                    };
+                    queue.add(postRequest);
                 }
-
-                JsonObjectRequest postRequest = new JsonObjectRequest( Request.Method.POST, url,
-                        parameters,
-                        new Response.Listener<JSONObject>() {
-                            @Override
-                            public void onResponse(JSONObject response) {
-                                Log.d("Response", response.toString());
-                                ConfirmationRequest confirm = new ConfirmationRequest();
-                                confirm.setDestination(dropOff);
-                                confirm.setShippingAddress(pickUp);
-                                confirm.setShippingTime(time);
-                                transactionManager.doTransactionFragment(ShippingMethodFragment.newInstance(response, confirm), true, true);
-                            }
-                        },
-                        new Response.ErrorListener() {
-                            @Override
-                            public void onErrorResponse(VolleyError error) {
-                                //   Handle Error
-                                Log.d("Error", error.toString());
-                            }
-                        }) {
-                };
-                queue.add(postRequest);
-
             }
         });
 

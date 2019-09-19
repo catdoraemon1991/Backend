@@ -30,7 +30,7 @@ import java.util.List;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class ShippingMethodFragment extends Fragment implements TransactionManager{
+public class ShippingMethodFragment extends Fragment{
     private ListView listView;
     protected DatabaseReference database;
     private ShippingMethodAdapter shippingMethodAdapter;
@@ -128,7 +128,7 @@ public class ShippingMethodFragment extends Fragment implements TransactionManag
                         .setDuration(method.getDutation())
                         .setPrice(method.getPrice());
                 orderConfirmationFragment = OrderConfirmationFragment.newInstance(confirm);
-                doTransactionFragment(orderConfirmationFragment, true, true);
+                transactionManager.doTransactionFragment(orderConfirmationFragment, true, true);
             }
         });
 
@@ -146,15 +146,5 @@ public class ShippingMethodFragment extends Fragment implements TransactionManag
     @LayoutRes
     protected int getLayout() {
         return R.layout.fragment_shipping_method;
-    }
-
-    @Override
-    public void doTransactionFragment(Fragment fragment, boolean isAnimate, boolean isAddBackStack) {
-        getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.content_frame, fragment).addToBackStack(null).commit();
-    }
-
-    @Override
-    public void doActivityTransaction(Class clazz, boolean isFinish) {
-
     }
 }

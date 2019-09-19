@@ -102,7 +102,15 @@ public class OrderConfirmationFragment extends Fragment {
                             @Override
                             public void onResponse(JSONObject response) {
                                 Log.d("Response", response.toString());
-                                transactionManager.doTransactionFragment(new OrderFragment(), true, true);
+                                if(response.has("Back")){
+                                    Toast.makeText(getActivity(),"Invalid choice!", Toast.LENGTH_SHORT).show();
+                                    transactionManager.doBackStack();
+                                }else {
+                                    Toast.makeText(getActivity(),"Your machine is on the way!", Toast.LENGTH_SHORT).show();
+                                    ControlPanel main = (ControlPanel)getContext();
+                                    main.updateOrderList();
+                                    transactionManager.doCleanBackStack();
+                                }
                             }
                         },
                         new Response.ErrorListener() {
@@ -110,7 +118,6 @@ public class OrderConfirmationFragment extends Fragment {
                             public void onErrorResponse(VolleyError error) {
                                 //   Handle Error
                                 Log.d("Error", error.toString());
-                                Toast.makeText(getActivity(),"Invalid choice!", Toast.LENGTH_SHORT).show();
                             }
                         }) {
                 };

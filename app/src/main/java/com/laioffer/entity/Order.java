@@ -1,8 +1,12 @@
 package com.laioffer.entity;
 
+import android.os.Parcel;
+
+import com.arlib.floatingsearchview.suggestions.model.SearchSuggestion;
+
 import java.io.Serializable;
 
-public class Order implements Serializable {
+public class Order implements Serializable, SearchSuggestion {
     private String orderId;
     private Long deliveryTime;
     private Long departTime;
@@ -95,5 +99,20 @@ public class Order implements Serializable {
 
     public void setUserId(String userId) {
         this.userId = userId;
+    }
+
+    @Override
+    public String getBody() {
+        return orderId;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+
     }
 }

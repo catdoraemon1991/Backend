@@ -89,7 +89,8 @@
                 android:layout_height="wrap_content"
                 android:theme="@style/MyTheme.EditText"
                 android:maxLines="1"
-                android:inputType="text"/>
+                android:inputType="text"
+                android:text="2130 Fulton St, San Francisco, CA 94117"/>
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -105,7 +106,8 @@
                 android:layout_height="wrap_content"
                 android:theme="@style/MyTheme.EditText"
                 android:maxLines="1"
-                android:inputType="text"/>
+                android:inputType="text"
+                android:text="Steiner St, Hayes St, San Francisco, CA 94117"/>
 
         </com.google.android.material.textfield.TextInputLayout>
 

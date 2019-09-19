@@ -41,7 +41,7 @@ public class OrderFragment extends Fragment{
 
     private OrderAdapter orderAdapter;
     protected TransactionManager transactionManager;
-
+    private String username;
     // Container Activity must implement this interface
     public interface OnItemSelectListener {
         public void onItemSelected(int position, Order order);
@@ -86,8 +86,7 @@ public class OrderFragment extends Fragment{
             }
         });
 
-
-        final String username = Config.username;
+        username = Config.username;
 
         database = FirebaseDatabase.getInstance().getReference();
 
@@ -96,33 +95,8 @@ public class OrderFragment extends Fragment{
         // Assign adapter to ListView.
         orderAdapter = new OrderAdapter(getActivity());
         listView.setAdapter(orderAdapter);
-        database.child("order").addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                List<Order> orders = new ArrayList<>();
-                for (DataSnapshot child : dataSnapshot.getChildren()) {
-                    Order order = child.getValue(Order.class);
-                    if (order.getUserId().equals(username)) {
-                        orders.add(order);
-                    }
-                }
-                // sort orders based on delivery time
-                Collections.sort(orders, new Comparator<Order>() {
-                    @Override
-                    public int compare(Order o1, Order o2) {
-                        if(o1.getDeliveryTime() == o2.getDeliveryTime()){
-                            return 0;
-                        }
-                        return o1.getDeliveryTime() > o2.getDeliveryTime() ? -1 : 1;
-                    }
-                });
-                orderAdapter.updateOrder(orders);
-            }
 
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-            }
-        });
+        updateOrderList();
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -151,6 +125,36 @@ public class OrderFragment extends Fragment{
     @LayoutRes
     protected int getLayout() {
         return R.layout.fragment_order;
+    }
+
+    public void updateOrderList(){
+        database.child("order").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                List<Order> orders = new ArrayList<>();
+                for (DataSnapshot child : dataSnapshot.getChildren()) {
+                    Order order = child.getValue(Order.class);
+                    if (order.getUserId().equals(username)) {
+                        orders.add(order);
+                    }
+                }
+                // sort orders based on delivery time
+                Collections.sort(orders, new Comparator<Order>() {
+                    @Override
+                    public int compare(Order o1, Order o2) {
+                        if(o1.getDeliveryTime() == o2.getDeliveryTime()){
+                            return 0;
+                        }
+                        return o1.getDeliveryTime() > o2.getDeliveryTime() ? -1 : 1;
+                    }
+                });
+                orderAdapter.updateOrder(orders);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+            }
+        });
     }
 
 }

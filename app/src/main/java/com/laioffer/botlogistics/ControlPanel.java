@@ -13,6 +13,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.arlib.floatingsearchview.FloatingSearchView;
@@ -24,6 +25,9 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.laioffer.entity.Order;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class ControlPanel extends AppCompatActivity implements OrderFragment.OnItemSelectListener, TransactionManager {
     private DrawerLayout drawerLayout;
@@ -96,12 +100,35 @@ public class ControlPanel extends AppCompatActivity implements OrderFragment.OnI
         mSearchView.setOnHomeActionClickListener(
                 () -> drawerLayout.openDrawer(GravityCompat.START));
 
+//        // set listener to show suggestions
+//        mSearchView.setOnQueryChangeListener(new FloatingSearchView.OnQueryChangeListener() {
+//            @Override
+//            public void onSearchTextChanged(String oldQuery, final String newQuery) {
+//                List<Order> orders = new ArrayList<>();
+//                database.child("order").addListenerForSingleValueEvent(new ValueEventListener() {
+//                    @Override
+//                    public void onDataChange(DataSnapshot dataSnapshot) {
+//                        for (DataSnapshot child : dataSnapshot.getChildren()) {
+//                            Order order = child.getValue(Order.class);
+//                            if(order.getOrderId().contains(newQuery)){
+//                                orders.add(order);
+//                            }
+//                        }
+//                    }
+//                    @Override
+//                    public void onCancelled(DatabaseError databaseError) {
+//                    }
+//                });
+//                //pass them on to the search view
+//                mSearchView.swapSuggestions(orders);
+//            }
+//        });
+
         // set listener to search content
         mSearchView.setOnSearchListener(new FloatingSearchView.OnSearchListener() {
             @Override
             public void onSuggestionClicked(SearchSuggestion searchSuggestion) {
             }
-
             @Override
             public void onSearchAction(final String currentQuery) {
                 database.child("order").addListenerForSingleValueEvent(new ValueEventListener() {
@@ -155,7 +182,6 @@ public class ControlPanel extends AppCompatActivity implements OrderFragment.OnI
     @Override
     public boolean onSearchRequested() {
         Bundle appData = new Bundle();
-        // sappData.putBoolean(SearchActivity.JARGON, true);
         startSearch(null, false, appData, false);
         return true;
     }
@@ -181,8 +207,30 @@ public class ControlPanel extends AppCompatActivity implements OrderFragment.OnI
         ft.replace(R.id.content_frame, fragment).commit();
     }
 
+
+
     @Override
     public void doActivityTransaction(Class clazz, boolean isFinish) {
 
+    }
+
+    @Override
+    public void doCleanBackStack() {
+        FragmentManager fm = getSupportFragmentManager();
+        for(int i = 0; i < fm.getBackStackEntryCount(); ++i) {
+            fm.popBackStack();
+        }
+    }
+
+    @Override
+    public void doBackStack() {
+        FragmentManager fm = getSupportFragmentManager();
+        if (fm.getBackStackEntryCount() > 1){
+            fm.popBackStack();
+        }
+    }
+
+    public void updateOrderList(){
+        orderFragment.updateOrderList();
     }
 }
