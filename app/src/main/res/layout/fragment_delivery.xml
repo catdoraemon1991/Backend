@@ -3,34 +3,37 @@
     android:animateLayoutChanges="true"
 
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     android:layout_gravity="center_horizontal"
-    android:background="@color/colorWhite"
+    android:background="@drawable/border"
     android:scrollbars="vertical"
     android:fillViewport="true">
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-
+        android:layout_marginTop="50dp"
         android:layout_gravity="center"
         android:background="@drawable/border"
 
         android:orientation="vertical"
-        android:paddingLeft="20dp"
-        android:paddingTop="20dp"
-        android:paddingRight="20dp">
+        android:paddingLeft="24dp"
+        android:paddingTop="40dp"
+        android:paddingRight="24dp">
 
 
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="@android:color/darker_gray"/>
+            android:paddingTop="50dp" />
         
         <TextView
             style="@style/TextAppearance.Widget.AppCompat.Toolbar.Title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:paddingTop="11dp"
+
             android:text="What is your package size?" />
 
 
@@ -38,6 +41,7 @@
             android:id="@+id/size"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:paddingTop="11dp"
             android:orientation="vertical"
             style="@style/MyStyle.InputLayout">
 
@@ -72,15 +76,20 @@
 
         <TimePicker
             android:id="@+id/timePicker"
-            android:paddingTop="20dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:timePickerMode="spinner" />
 
+        <TextView
+            style="@style/TextAppearance.Widget.AppCompat.Toolbar.Title"
+            android:paddingTop="17dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Where to pick up?"
+            />
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/drop_off"
             style="@style/MyStyle.InputLayout">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -90,14 +99,19 @@
                 android:theme="@style/MyTheme.EditText"
                 android:maxLines="1"
                 android:inputType="text"
-                android:text="2130 Fulton St, San Francisco, CA 94117"/>
+                android:hint="e.g. 2130 Fulton St, San Francisco, CA 94117"/>
 
         </com.google.android.material.textfield.TextInputLayout>
-
+        <TextView
+            style="@style/TextAppearance.Widget.AppCompat.Toolbar.Title"
+            android:paddingTop="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Where to drop off?"
+            />
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/pick_up"
             style="@style/MyStyle.InputLayout">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -107,7 +121,7 @@
                 android:theme="@style/MyTheme.EditText"
                 android:maxLines="1"
                 android:inputType="text"
-                android:text="1256 Mission St, San Francisco, CA 94103"/>
+                android:hint="e.g. 1256 Mission St, San Francisco, CA 94103"/>
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -119,7 +133,7 @@
             android:layout_height="48dp"
             android:layout_gravity="center"
             android:background="@drawable/login_buttons"
-            android:fontFamily="Roboto"
+            android:text="@string/submit"
             android:textColor="@android:color/black" />
     </LinearLayout>
 </ScrollView>

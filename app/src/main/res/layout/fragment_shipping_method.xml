@@ -3,12 +3,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:paddingLeft="20dp"
+    android:paddingRight="20dp"
+    android:layout_marginTop="75dp"
     tools:context=".ShippingMethodFragment">
 
     <!--display a row/column list of items-->
     <ListView android:id="@+id/station_list"
         android:layout_height="match_parent"
-        android:layout_width="match_parent">
+        android:layout_width="match_parent"
+        android:divider="@null"
+        android:dividerHeight="10dp">
     </ListView>
 
 </FrameLayout>
