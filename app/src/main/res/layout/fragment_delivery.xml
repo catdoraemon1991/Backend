@@ -26,8 +26,7 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:paddingTop="50dp"
-            android:background="@color/colorLightGrey"/>
+            android:paddingTop="50dp" />
         
         <TextView
             style="@style/TextAppearance.Widget.AppCompat.Toolbar.Title"
