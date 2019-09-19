@@ -437,7 +437,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
     private void dropPinEffect(final Marker marker) {
         final Handler handler = new Handler();
         final long start = SystemClock.uptimeMillis();
-        final long duration = 1500;
+        final long duration = 1000;
 
         final Interpolator interpolator = new BounceInterpolator();
 

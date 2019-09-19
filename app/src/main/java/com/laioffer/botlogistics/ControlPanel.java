@@ -84,15 +84,13 @@ public class ControlPanel extends AppCompatActivity implements OrderFragment.OnI
                             logout();
                         }
 
-                        //TODO implement updates
-//                        if (menuItem.getItemId() == R.id.drawer_home) {
-//                            doTransactionFragment(new OrderFragment(), true, false);
-//                        }
+                        if (menuItem.getItemId() == R.id.drawer_home) {
+                            orderFragment.updateOrderList();
+                        }
                         return true;
                     }
                 });
 
-        // TODO: How to get activity context more elegent
         final Context context = this;
 
         final FloatingSearchView mSearchView = findViewById(R.id.floating_search_view);
