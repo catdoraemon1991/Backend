@@ -3,6 +3,7 @@ package com.laioffer.botlogistics;
 import android.content.Context;
 import android.graphics.Color;
 import android.media.Image;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -94,6 +95,10 @@ public class ShippingMethodAdapter extends BaseAdapter {
         methodQuantity.setText(Integer.toString(method.getQuantity()));
         methodPrice.setText(Utils.convertPrice(method.getPrice()));
         methodDuration.setText(Utils.convertDuration(method.getDutation()));
+        Log.d("station:", methodStation.getText().toString());
+        Log.d("Quantity", methodQuantity.getText().toString());
+        Log.d("Price", methodPrice.getText().toString());
+        Log.d("Duration", methodDuration.getText().toString());
 
         return convertView;
     }
