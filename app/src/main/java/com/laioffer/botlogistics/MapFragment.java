@@ -9,6 +9,7 @@ import androidx.annotation.IdRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
 
 import android.os.Handler;
 import android.os.Message;
@@ -20,6 +21,7 @@ import android.view.ViewGroup;
 import android.view.animation.BounceInterpolator;
 import android.view.animation.Interpolator;
 import android.view.animation.LinearInterpolator;
+import android.widget.TextView;
 
 import com.amalbit.trail.Route;
 import com.amalbit.trail.RouteOverlayView;
@@ -102,6 +104,8 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
         view = inflater.inflate(R.layout.fragment_map, container,
                 false);
         order = (Order)getArguments().get(ORDER);
+        configOrderDetail();
+
         track = new ArrayList<LatLng>();
         // Instantiate the RequestQueue.
         RequestQueue queue = HttpHelper.getInstance(getContext()).getRequestQueue();
@@ -139,7 +143,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
             @Override
             public void onClick(View v) {
                 //show Detail
-                showDialog(null, null);
+                Log.d("fabOrderDetail", "Clicked!");
             }
         });
 
@@ -306,7 +310,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
             boxMarker = addMark(shippingAddress, "Your package is here", R.drawable.box);
         }else{
             // package haven been picked up
-            boxMarker = addMark(shippingAddress, "Your package has been picked up", R.drawable.ic_box);
+            boxMarker = addMark(shippingAddress, "Your package has been picked up", R.drawable.ic_picked_up_box);
         }
 
         if(status.equals(Utils.DELIVER_MESG)){
@@ -465,6 +469,30 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
         dropPinEffect(stationMarker);
         dropPinEffect(boxMarker);
         dropPinEffect(destinationMarker);
+    }
+
+    private void configOrderDetail() {
+        // show order detail data
+        TextView orderId = (TextView) view.findViewById(R.id.order_detail_order_id);
+        orderId.setText(order.getOrderId());
+        TextView orderDeliveryTime = (TextView) view.findViewById(R.id.order_detail_order_delivery_time);
+        orderDeliveryTime.setText(Utils.convertTime(order.getDeliveryTime()));
+        TextView orderDepartTime = (TextView) view.findViewById(R.id.order_detail_order_depart_time);
+        orderDepartTime.setText(Utils.convertTime(order.getDepartTime()));
+        TextView orderDestination = (TextView) view.findViewById(R.id.order_detail_order_destination);
+        orderDestination.setText(order.getDestination());
+        TextView orderMachineId = (TextView) view.findViewById(R.id.order_detail_order_machine_id);
+        orderMachineId.setText(order.getMachineId());
+        TextView orderPickupTime = (TextView) view.findViewById(R.id.order_detail_order_pick_up_time);
+        orderPickupTime.setText(Utils.convertTime(order.getPickupTime()));
+        TextView orderShippingAddress = (TextView) view.findViewById(R.id.order_detail_order_shipping_address);
+        orderShippingAddress.setText(order.getShippingAddress());
+        TextView orderShippingMethod = (TextView) view.findViewById(R.id.order_detail_shipping_method);
+        orderShippingMethod.setText(order.getShippingMethod());
+        TextView orderShippingTime = (TextView) view.findViewById(R.id.order_detail_shipping_time);
+        orderShippingTime.setText(Utils.convertTime(order.getShippingTime()));
+        TextView orderUserId = (TextView) view.findViewById(R.id.order_detail_user_id);
+        orderUserId.setText(order.getUserId());
     }
 
 }
