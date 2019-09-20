@@ -50,7 +50,6 @@ dependencies {
     // lib for sliding up panel
     implementation 'com.sothree.slidinguppanel:library:3.4.0'
 
-
     // lib for animation from Adobe AE, founded by Airbnb
     implementation "com.airbnb.android:lottie:3.0.7"
 
