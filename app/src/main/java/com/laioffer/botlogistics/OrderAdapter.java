@@ -84,8 +84,8 @@ public class OrderAdapter extends BaseAdapter{
                 R.id.order_id);
         TextView orderShippingAddress = (TextView) convertView.findViewById(
                 R.id.order_shipping_address);
-        TextView orderDeliveryTime = (TextView) convertView.findViewById(
-                R.id.order_delivery_time);
+        TextView orderShippingTime = (TextView) convertView.findViewById(
+                R.id.order_shipping_time);
         TextView orderStatus = (TextView) convertView.findViewById(R.id.order_status);
 
         Order r = orderData.get(position);
@@ -102,7 +102,7 @@ public class OrderAdapter extends BaseAdapter{
         // set basic information for an order
         orderId.setText(r.getOrderId());
         orderShippingAddress.setText(r.getShippingAddress());
-        orderDeliveryTime.setText(Utils.convertTime(r.getDeliveryTime()));
+        orderShippingTime.setText(Utils.convertTime(r.getShippingTime()));
 
 
         // set order status

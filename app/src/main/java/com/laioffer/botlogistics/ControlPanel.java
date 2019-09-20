@@ -16,6 +16,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.airbnb.lottie.LottieAnimationView;
 import com.arlib.floatingsearchview.FloatingSearchView;
 import com.arlib.floatingsearchview.suggestions.model.SearchSuggestion;
 import com.google.android.material.navigation.NavigationView;
@@ -93,34 +94,14 @@ public class ControlPanel extends AppCompatActivity implements OrderFragment.OnI
 
         final Context context = this;
 
+//        final LottieAnimationView animationView = findViewById(R.id.animation_view);
+//        animationView.setAnimation(R.raw.lottie_anim_entry);
+//        animationView.playAnimation();
+
         final FloatingSearchView mSearchView = findViewById(R.id.floating_search_view);
 
         mSearchView.setOnHomeActionClickListener(
                 () -> drawerLayout.openDrawer(GravityCompat.START));
-
-//        // set listener to show suggestions
-//        mSearchView.setOnQueryChangeListener(new FloatingSearchView.OnQueryChangeListener() {
-//            @Override
-//            public void onSearchTextChanged(String oldQuery, final String newQuery) {
-//                List<Order> orders = new ArrayList<>();
-//                database.child("order").addListenerForSingleValueEvent(new ValueEventListener() {
-//                    @Override
-//                    public void onDataChange(DataSnapshot dataSnapshot) {
-//                        for (DataSnapshot child : dataSnapshot.getChildren()) {
-//                            Order order = child.getValue(Order.class);
-//                            if(order.getOrderId().contains(newQuery)){
-//                                orders.add(order);
-//                            }
-//                        }
-//                    }
-//                    @Override
-//                    public void onCancelled(DatabaseError databaseError) {
-//                    }
-//                });
-//                //pass them on to the search view
-//                mSearchView.swapSuggestions(orders);
-//            }
-//        });
 
         // set listener to search content
         mSearchView.setOnSearchListener(new FloatingSearchView.OnSearchListener() {

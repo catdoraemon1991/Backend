@@ -74,6 +74,13 @@
             android:layout_height="wrap_content"
             android:text="When to pick up?" />
 
+        <DatePicker
+            android:id="@+id/datePicker"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:calendarViewShown="false"
+            android:datePickerMode="spinner"/>
+
         <TimePicker
             android:id="@+id/timePicker"
             android:layout_width="wrap_content"
@@ -99,7 +106,7 @@
                 android:theme="@style/MyTheme.EditText"
                 android:maxLines="1"
                 android:inputType="text"
-                android:hint="e.g. 2130 Fulton St, San Francisco, CA 94117"/>
+                android:hint="e.g. 1310 Junipero Serra Blvd, San Francisco, CA 94132"/>
 
         </com.google.android.material.textfield.TextInputLayout>
         <TextView
@@ -121,7 +128,7 @@
                 android:theme="@style/MyTheme.EditText"
                 android:maxLines="1"
                 android:inputType="text"
-                android:hint="e.g. 1256 Mission St, San Francisco, CA 94103"/>
+                android:hint="e.g. 2130 Fulton St, San Francisco, CA 94117"/>
 
         </com.google.android.material.textfield.TextInputLayout>
 
