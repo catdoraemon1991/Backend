@@ -17,6 +17,7 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+    dataBinding { enabled = true }
     compileOptions {
         sourceCompatibility 1.8
         targetCompatibility 1.8
@@ -49,6 +50,10 @@ dependencies {
     // lib for sliding up panel
     implementation 'com.sothree.slidinguppanel:library:3.4.0'
 
+    // lib for animation from Adobe AE, founded by Airbnb
+    implementation "com.airbnb.android:lottie:3.0.7"
+
+    // other libs
     implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     testImplementation 'junit:junit:4.12'

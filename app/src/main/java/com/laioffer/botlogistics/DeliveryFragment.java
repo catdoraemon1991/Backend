@@ -12,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.RadioGroup;
 import android.widget.TimePicker;
@@ -37,6 +38,7 @@ public class DeliveryFragment extends Fragment {
     protected EditText pickupEditText;
     protected EditText dropoffEditText;
     protected RadioGroup sizeOptions;
+    protected DatePicker datePicker;
     protected TimePicker timePicker;
     protected Button submitButton;
     protected DatabaseReference database;
@@ -74,8 +76,11 @@ public class DeliveryFragment extends Fragment {
 
         pickupEditText = (EditText) view.findViewById(R.id.editTextPickUp);
         dropoffEditText = (EditText) view.findViewById(R.id.editTextDropOff);
+
+        datePicker = (DatePicker) view.findViewById(R.id.datePicker);
         timePicker=(TimePicker)view.findViewById(R.id.timePicker);
         timePicker.setIs24HourView(true);
+
         sizeOptions = (RadioGroup) view.findViewById(R.id.size);
         submitButton = (Button) view.findViewById(R.id.delivery_submit);
         submitButton.setText(getString(R.string.submit));
@@ -112,6 +117,9 @@ public class DeliveryFragment extends Fragment {
 
                     // read by a calendar
                     Calendar cal = Calendar.getInstance();
+                    cal.set(Calendar.YEAR, datePicker.getYear());
+                    cal.set(Calendar.MONTH, datePicker.getMonth());
+                    cal.set(Calendar.DAY_OF_MONTH, datePicker.getDayOfMonth());
                     cal.set(Calendar.HOUR, timePicker.getCurrentHour());
                     cal.set(Calendar.MINUTE, timePicker.getCurrentMinute());
                     time = cal.getTimeInMillis();

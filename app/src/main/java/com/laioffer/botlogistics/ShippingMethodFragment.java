@@ -98,7 +98,9 @@ public class ShippingMethodFragment extends Fragment{
                                         .setDutation((Double) machine.get("duration"))
                                         .setType(machineName)
                                         .setStation(stationName);
-                                methods.add(method);
+                                if(method.getQuantity() > 0){
+                                    methods.add(method);
+                                }
                             }
                         }
                     }

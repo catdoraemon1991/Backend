@@ -31,6 +31,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 
+import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
@@ -39,6 +40,7 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.MapStyleOptions;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
@@ -79,6 +81,8 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
     private Location shippingAddress = new Location();
     private Location destination = new Location();
     private String status = new String();
+
+    private CameraUpdate defaultCameraUpdate;
 
     private Marker stationMarker;
     private Marker boxMarker;
@@ -152,14 +156,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
         fabFocus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                CameraPosition cameraPosition = new CameraPosition.Builder()
-                        .target(focusLatLng)      // Sets the center of the map to Mountain View
-                        .zoom(12)// Sets the zoom
-                        .bearing(0)           // Sets the orientation of the camera to east
-                        .tilt(0)                   // Sets the tilt of the camera to 30 degrees
-                        .build();                   // Creates a CameraPosition from the builder
-
-                googleMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
+                googleMap.animateCamera(defaultCameraUpdate);
             }
         });
 
@@ -330,33 +327,27 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
             machineMarker = addMark(station, "Drone on the way!", R.drawable.drone);
         }
 
-        // move camera to destination
-        moveCamera(destination, machineMarker);
-    }
-
-
-    private void moveCamera(Location loc, Marker marker){
-        LatLng latLng = new LatLng(loc.getLat(), loc.getLog());
-        CameraPosition cameraPosition = new CameraPosition.Builder()
-                .target(latLng)      // Sets the center of the map to Mountain View
-                .zoom(12)// Sets the zoom
-                .bearing(0)           // Sets the orientation of the camera to east
-                .tilt(0)                   // Sets the tilt of the camera to 30 degrees
-                .build();                   // Creates a CameraPosition from the builder
-
-        googleMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition),3000, new GoogleMap.CancelableCallback() {
+        // move camera to include all markers
+        LatLngBounds.Builder builder = new LatLngBounds.Builder();
+        builder.include(stationLatLng);
+        builder.include(currentLatLng);
+        builder.include(shippingLatLng);
+        builder.include(destinationLatLng);
+        LatLngBounds bounds = builder.build();
+        int padding = 300; // offset from edges of the map in pixels
+        defaultCameraUpdate = CameraUpdateFactory.newLatLngBounds(bounds, padding);
+        googleMap.animateCamera(defaultCameraUpdate,3000, new GoogleMap.CancelableCallback() {
             @Override
             public void onFinish() {
+                // start animations
                 dropOtherMarker();
-                startAnimateMarker(marker);
+                startAnimateMarker(machineMarker);
             }
 
             @Override
             public void onCancel() {
-
             }
         });
-        //googleMap.moveCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
     }
 
     private void startAnimateMarker(Marker marker){

@@ -57,7 +57,9 @@ public class Utils {
     }
 
     public static String convertDuration(Double duration){
-        return String.format("%.2f s", duration);
+        int mins = duration.intValue();
+        int seconds = (int) ((duration - mins) * 60);
+        return String.format("%d mins %d s", mins, seconds);
     }
 }
 
