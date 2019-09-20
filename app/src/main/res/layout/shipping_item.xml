@@ -16,7 +16,11 @@
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
         android:orientation="vertical">
 
         <LinearLayout
@@ -26,16 +30,16 @@
 
             <TextView
                 android:id="@+id/label_method_station"
+                android:layout_height="match_parent"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
                 android:text="Station: "
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/method_station"
+                android:layout_height="match_parent"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
                 android:textSize="18sp"
                 android:textStyle="bold" />
         </LinearLayout>
@@ -47,15 +51,15 @@
 
             <TextView
                 android:id="@+id/label_method_quantity"
+                android:layout_height="match_parent"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
                 android:text="Quantity: "
                 android:textSize="13sp" />
 
             <TextView
                 android:id="@+id/method_quantity"
+                android:layout_height="match_parent"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
                 android:textSize="13sp" />
         </LinearLayout>
 
@@ -66,15 +70,15 @@
 
             <TextView
                 android:id="@+id/label_method_price"
+                android:layout_height="match_parent"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
                 android:textSize="13sp"
-                android:text="Price:"/>
+                android:text="Price: "/>
 
             <TextView
                 android:id="@+id/method_price"
+                android:layout_height="match_parent"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
                 android:textSize="13sp" />
         </LinearLayout>
 
@@ -85,15 +89,15 @@
 
             <TextView
                 android:id="@+id/label_method_duration"
+                android:layout_height="match_parent"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
                 android:textSize="13sp"
                 android:text="Duration: "/>
 
             <TextView
                 android:id="@+id/method_duration"
+                android:layout_height="match_parent"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
                 android:textSize="13sp" />
         </LinearLayout>
     </LinearLayout>
