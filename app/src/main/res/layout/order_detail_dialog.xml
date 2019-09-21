@@ -5,12 +5,13 @@
     android:layout_width="match_parent"
     android:id="@+id/dialog"
     android:layout_height="match_parent"
-    android:background="@color/colorWhite">
+    android:background="@color/transparent">
 
     <ViewSwitcher
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/viewSwitcher">
+        android:id="@+id/viewSwitcher"
+        android:background="@color/transparent">
         <include layout="@layout/order_detail_layout"/>
     </ViewSwitcher>
 
