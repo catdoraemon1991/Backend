@@ -1,18 +1,8 @@
 package com.laioffer.botlogistics;
 
-import android.animation.ValueAnimator;
 import android.graphics.Color;
 import android.os.Bundle;
-
-import androidx.annotation.IdRes;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentActivity;
-
 import android.os.Handler;
-import android.os.Message;
 import android.os.SystemClock;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -23,6 +13,9 @@ import android.view.animation.Interpolator;
 import android.view.animation.LinearInterpolator;
 import android.widget.TextView;
 
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+
 import com.amalbit.trail.Route;
 import com.amalbit.trail.RouteOverlayView;
 import com.android.volley.Request;
@@ -30,7 +23,6 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
-
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -38,24 +30,20 @@ import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.MapsInitializer;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
-import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.MapStyleOptions;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
-
-import com.google.android.gms.maps.model.Polyline;
-import com.google.android.gms.maps.model.PolylineOptions;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.laioffer.entity.Location;
+import com.sothree.slidinguppanel.SlidingUpPanelLayout;
 import com.laioffer.entity.Order;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.Deque;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
@@ -65,6 +53,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
     private static final String ORDER = "order_key";
     private MapView mapView;
     private View view;
+    private SlidingUpPanelLayout slidingUpPanelLayout;
     private GoogleMap googleMap;
     private RouteOverlayView mRouteOverlayView;
     private List<LatLng> track;
@@ -107,6 +96,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
                              Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_map, container,
                 false);
+        slidingUpPanelLayout = view.findViewById(R.id.sliding_layout);
         order = (Order)getArguments().get(ORDER);
         configOrderDetail();
 

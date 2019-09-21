@@ -6,8 +6,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_marginTop="140dp"
-    android:elevation="5dp"
-    android:background="@drawable/dialogshape">
+    android:background="@drawable/dialogshape"
+    android:elevation="5dp">
 
     <TextView
         android:layout_height="wrap_content"

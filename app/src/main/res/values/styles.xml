@@ -31,4 +31,8 @@
         <item name="android:windowIsFloating">false</item>
         <item name="android:windowBackground">@color/colorWhite</item>
     </style>
+
+    <style name="ContentLoadingProgress">
+        <item name="colorAccent">@color/colorOrange</item>
+    </style>
 </resources>

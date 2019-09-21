@@ -38,6 +38,7 @@ public class OrderFragment extends Fragment{
     private FloatingActionButton fabReport;
     private ListView listView;
     protected DatabaseReference database;
+    private List<Order> currentOrders;
 
     private OrderAdapter orderAdapter;
     protected TransactionManager transactionManager;
@@ -148,13 +149,24 @@ public class OrderFragment extends Fragment{
                         return o1.getDeliveryTime() > o2.getDeliveryTime() ? -1 : 1;
                     }
                 });
-                orderAdapter.updateOrder(orders);
+                currentOrders = orders;
+                orderAdapter.updateOrder(currentOrders);
             }
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
             }
         });
+    }
+
+    public void searchOrder(String string) {
+        List<Order> orders = new ArrayList<>();
+        for (Order order : currentOrders) {
+            if (string != null && order.getOrderId().toLowerCase().contains(string.toLowerCase())) {
+                orders.add(order);
+            }
+        }
+        orderAdapter.updateOrder(orders);
     }
 
 }
