@@ -1,16 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:animateLayoutChanges="true"
-
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_gravity="center_horizontal"
     android:background="@drawable/border"
     android:scrollbars="vertical"
     android:fillViewport="true">
-
+    
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
     <LinearLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="150dp"
@@ -143,4 +144,13 @@
             android:text="@string/submit"
             android:textColor="@android:color/black" />
     </LinearLayout>
+        <androidx.core.widget.ContentLoadingProgressBar
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:visibility="gone"
+            android:theme="@style/ContentLoadingProgress"
+            style="?android:attr/progressBarStyle"
+            android:layout_centerInParent="true"
+            android:id="@+id/progress_bar"/>
+    </RelativeLayout>
 </ScrollView>

@@ -2,10 +2,14 @@ package com.laioffer.botlogistics;
 
 import android.content.Context;
 import android.os.Bundle;
+
 import androidx.annotation.CallSuper;
 import androidx.annotation.LayoutRes;
+import androidx.core.widget.ContentLoadingProgressBar;
 import androidx.fragment.app.Fragment;
 
+import android.os.Handler;
+import android.os.Looper;
 import android.util.Log;
 
 import android.view.LayoutInflater;
@@ -41,6 +45,7 @@ public class DeliveryFragment extends Fragment {
     protected DatePicker datePicker;
     protected TimePicker timePicker;
     protected Button submitButton;
+    protected ContentLoadingProgressBar progressBar;
     protected DatabaseReference database;
 
     private String pickUp;
@@ -78,12 +83,13 @@ public class DeliveryFragment extends Fragment {
         dropoffEditText = (EditText) view.findViewById(R.id.editTextDropOff);
 
         datePicker = (DatePicker) view.findViewById(R.id.datePicker);
-        timePicker=(TimePicker)view.findViewById(R.id.timePicker);
+        timePicker = (TimePicker) view.findViewById(R.id.timePicker);
         timePicker.setIs24HourView(true);
 
         sizeOptions = (RadioGroup) view.findViewById(R.id.size);
         submitButton = (Button) view.findViewById(R.id.delivery_submit);
         submitButton.setText(getString(R.string.submit));
+        progressBar = view.findViewById(R.id.progress_bar);
 
         database = FirebaseDatabase.getInstance().getReference();
 
@@ -129,7 +135,8 @@ public class DeliveryFragment extends Fragment {
                     Log.d("time", Long.toString(time));
                     Log.d("size", size);
 
-                    submitButton.setText("Clicked !");
+                    progressBar.setVisibility(View.VISIBLE);
+                    submitButton.setClickable(false);
 
                     // Instantiate the RequestQueue.
                     RequestQueue queue = HttpHelper.getInstance(getContext()).getRequestQueue();
@@ -161,13 +168,12 @@ public class DeliveryFragment extends Fragment {
                                         confirm.setShippingTime(time);
                                         transactionManager.doTransactionFragment(ShippingMethodFragment.newInstance(response, confirm), true, true);
                                     }
+                                    reset();
                                 }
                             },
-                            new Response.ErrorListener() {
-                                @Override
-                                public void onErrorResponse(VolleyError error) {
-                                    Log.d("Error", error.toString());
-                                }
+                            error -> {
+                                Log.d("Error", error.toString());
+                                reset();
                             }) {
                     };
                     queue.add(postRequest);
@@ -175,10 +181,18 @@ public class DeliveryFragment extends Fragment {
             }
         });
 
-
-
         return view;
 
+    }
+
+    private void reset() {
+        new Handler(Looper.getMainLooper()).post(new Runnable() {
+            @Override
+            public void run() {
+                submitButton.setClickable(true);
+                progressBar.setVisibility(View.GONE);
+            }
+        });
     }
 
     @LayoutRes

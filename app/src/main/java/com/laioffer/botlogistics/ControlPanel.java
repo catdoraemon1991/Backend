@@ -100,36 +100,17 @@ public class ControlPanel extends AppCompatActivity implements OrderFragment.OnI
 
         final FloatingSearchView mSearchView = findViewById(R.id.floating_search_view);
 
+        // add Fragment to the activity
+        orderFragment = OrderFragment.newInstance();
+        doTransactionFragment(orderFragment, true, false);
+
         mSearchView.setOnHomeActionClickListener(
                 () -> drawerLayout.openDrawer(GravityCompat.START));
 
         // set listener to search content
-        mSearchView.setOnSearchListener(new FloatingSearchView.OnSearchListener() {
-            @Override
-            public void onSuggestionClicked(SearchSuggestion searchSuggestion) {
-            }
-            @Override
-            public void onSearchAction(final String currentQuery) {
-                database.child("order").addListenerForSingleValueEvent(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(DataSnapshot dataSnapshot) {
-                        if (dataSnapshot.hasChild(currentQuery)) {
-                            Order order = dataSnapshot.child(currentQuery).getValue(Order.class);
-                            OrderDetailDialog dialog = OrderDetailDialog.newInstance(context, order);
-                            dialog.show();
-                        }
-                    }
-
-                    @Override
-                    public void onCancelled(DatabaseError databaseError) {
-                    }
-                });
-            }
+        mSearchView.setOnQueryChangeListener((oldQuery, newQuery) -> {
+            orderFragment.searchOrder(newQuery);
         });
-
-        // add Fragment to the activity
-        orderFragment = OrderFragment.newInstance();
-        doTransactionFragment(orderFragment, true, false);
 
     }
 

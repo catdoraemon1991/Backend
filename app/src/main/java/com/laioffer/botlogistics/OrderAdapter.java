@@ -32,6 +32,10 @@ public class OrderAdapter extends BaseAdapter{
         notifyDataSetChanged();
     }
 
+    public void searchOrder(String string) {
+
+    }
+
     public List<Order> getOrders() {
         return orderData;
     }
