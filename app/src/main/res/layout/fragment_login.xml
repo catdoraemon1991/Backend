@@ -54,7 +54,7 @@
                         android:id="@+id/editTextPassword"
                         android:theme="@style/MyTheme.EditText"
                         android:maxLines="1"
-                        android:inputType="text"/>
+                        android:inputType = "textPassword" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 

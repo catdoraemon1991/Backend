@@ -143,10 +143,10 @@ public class OrderFragment extends Fragment{
                 Collections.sort(orders, new Comparator<Order>() {
                     @Override
                     public int compare(Order o1, Order o2) {
-                        if(o1.getDeliveryTime() == o2.getDeliveryTime()){
+                        if(o1.getShippingTime() == o2.getShippingTime()){
                             return 0;
                         }
-                        return o1.getDeliveryTime() > o2.getDeliveryTime() ? -1 : 1;
+                        return o1.getShippingTime() > o2.getShippingTime() ? -1 : 1;
                     }
                 });
                 currentOrders = orders;
